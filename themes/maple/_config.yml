@@ -1,0 +1,34 @@
+# Header
+nav:
+  Posts: /archives
+  Categories: /category
+  Tags: /tag
+
+rss: /atom.xml
+
+# favicon
+favicon: /favicon.png
+
+# logo
+logo: /images/logo.svg
+
+# links
+links:
+  Github: https://github.com/xbmlz
+  ZhiHu:
+  Twitter:
+  Weibo:
+
+google_analytics:
+baidu_analytics:
+
+
+# stylesheets loaded in the <head>
+stylesheets:
+  - /css/style.css
+  - /lib/tocbot/tocbot.css
+
+scripts:
+  - /js/index.js
+  - /js/iconify.min.js
+  - /lib/tocbot/tocbot.min.js

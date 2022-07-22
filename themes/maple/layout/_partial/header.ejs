@@ -1,0 +1,28 @@
+<header class="header">
+  <a href="<%- config.root %>" class="logo" focusable="false">
+    <img src="<%- theme.logo %>" alt="<%- config.title %>" />
+  </a>
+  <nav class="nav">
+    <div class="spacer"></div>
+    <div class="right">
+      <div class="menu">
+        <% for (var i in theme.nav){ %>
+          <a class="item" href="<%- url_for(theme.nav[i]) %>"><%= i %></a>
+          <% } %>
+      </div>
+      <div class="links">
+        <% if (theme.links !== undefined) { %>
+          <% for (var key in theme.links) { %>
+            <a title="<%- key %>" href="<%= theme.links[key] %>" class="link-item">
+              <span class="iconify" data-icon="ri:<%- key.toLowerCase() %>-line"></span>
+            </a>
+          <% } %>
+        <% } %>
+      </div>
+      <a class="toggleDark" id="dark-mode">
+        <span class="iconify" data-icon="ri:sun-line" id="sun-icon" style="display: none"></span>
+        <span class="iconify" data-icon="ri:moon-line" id="moon-icon" style="display: none"></span>
+      </a>
+    </div>
+  </nav>
+</header>
