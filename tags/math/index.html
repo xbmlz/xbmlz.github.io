@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <meta name="author" content="xbmlz">
+
+
+
+
+
+<title>tag: math | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.png">
+
+
+
+
+  <!-- stylesheets list from _config.yml -->
+  
+    <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/lib/tocbot/tocbot.css">
+  
+
+
+
+  <!-- scripts list from _config.yml -->
+  
+    <script src="/js/index.js"></script>
+  
+    <script src="/js/iconify.min.js"></script>
+  
+    <script src="/lib/tocbot/tocbot.min.js"></script>
+  
+
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+  });
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>
+document.ready(() => {
+  const maraidConfig = {
+     startOnLoad: true,
+     flowchart: {
+       useMaxWidth: false,
+       htmlLabels: true
+     }
+   }
+   mermaid.initialize(maraidConfig)
+})
+</script>
+
+
+<script>
+  document.ready(() => {
+    let media = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)')
+    let isDark = () => {
+      const setting = localStorage.getItem('hexo-color-scheme') || 'auto'
+      if (setting === 'dark' || (media.matches && setting !== 'light')) {
+        return true
+      } else {
+        return false
+      }
+    }
+    // 切换为深色模式
+    let toggleDarkMode = () => {
+      document.documentElement.classList.toggle('dark', true)
+      document.getElementById('moon-icon').style.display = 'block'
+      document.getElementById('sun-icon').style.display = 'none'
+      setDarkMode('dark')
+    }
+    // 切换为浅色模式
+    let toggleLightMode = () => {
+      document.documentElement.classList.toggle('dark', false)
+      document.getElementById('moon-icon').style.display = 'none'
+      document.getElementById('sun-icon').style.display = 'block'
+      setDarkMode('light')
+    }
+    let setDarkMode = (scheme) => {
+      const darkMode = media.matches ? 'dark' : 'light'
+      if (darkMode !== scheme) {
+        localStorage.setItem('hexo-color-scheme', scheme)
+      } else {
+        localStorage.setItem('hexo-color-scheme', 'auto')
+      }
+    }
+    // 切换为自动模式
+    let updateMode = (e) => {
+      const setting = localStorage.getItem('hexo-color-scheme') || 'auto'
+      console.log(setting, e.matches)
+      if (setting === 'auto') {
+        if (e.matches) {
+          toggleDarkMode()
+        } else {
+          toggleLightMode()
+        }
+      }
+    }
+
+    if (typeof media.addEventListener === 'function') {
+      media.addEventListener('change', updateMode)
+    } else if (typeof media.addListener === 'function') {
+      media.addListener(updateMode)
+    }
+
+    document.getElementById('moon-icon').addEventListener('click', () => {
+      toggleLightMode()
+    })
+    document.getElementById('sun-icon').addEventListener('click', () => {
+      toggleDarkMode()
+    })
+
+
+    // theme icon init
+    if (isDark()) {
+      document.getElementById('moon-icon').style.display = 'block'
+    } else {
+      document.getElementById('sun-icon').style.display = 'block'
+    }
+  })
+</script>
+
+
+<meta name="generator" content="Hexo 6.2.0"></head>
+<body>
+  <script>
+    (function() {
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+      const setting = localStorage.getItem('hexo-color-scheme') || 'auto'
+      if (setting === 'dark' || (prefersDark && setting !== 'light'))
+        document.documentElement.classList.toggle('dark', true)
+    })()
+  </script>
+
+  <div id="app">
+    <header class="header">
+  <a href="/" class="logo" focusable="false">
+    <img src="/images/logo.svg" alt="Hexo" />
+  </a>
+  <nav class="nav">
+    <div class="spacer"></div>
+    <div class="right">
+      <div class="menu">
+        
+          <a class="item" href="/archives">Posts</a>
+          
+          <a class="item" href="/category">Categories</a>
+          
+          <a class="item" href="/tag">Tags</a>
+          
+      </div>
+      <div class="links">
+        
+          
+            <a title="Github" target="_blank" rel="noopener" href="https://github.com/xbmlz" class="link-item">
+              <span class="iconify" data-icon="ri:github-line"></span>
+            </a>
+          
+            <a title="ZhiHu" href="" class="link-item">
+              <span class="iconify" data-icon="ri:zhihu-line"></span>
+            </a>
+          
+            <a title="Twitter" href="" class="link-item">
+              <span class="iconify" data-icon="ri:twitter-line"></span>
+            </a>
+          
+            <a title="Weibo" href="" class="link-item">
+              <span class="iconify" data-icon="ri:weibo-line"></span>
+            </a>
+          
+        
+      </div>
+      <a class="toggleDark" id="dark-mode">
+        <span class="iconify" data-icon="ri:sun-line" id="sun-icon" style="display: none"></span>
+        <span class="iconify" data-icon="ri:moon-line" id="moon-icon" style="display: none"></span>
+      </a>
+    </div>
+  </nav>
+</header>
+
+    <main class="container">
+      
+
+  <div class="tags">
+    <h2 class="post-title">Tag - math</h2>
+  </div>
+  <div class="posts">
+  
+  <ul>
+    
+    
+    
+      <h2>2022</h2>
+    
+    <a href="/2022/07/20/math-jax-test/" class="item">
+      <li>
+        <div class="title">MathJax Test</div>
+        <div class="time">2022-07-20 08:07</div>
+      </li>
+    </a>
+    
+  </ul>
+  
+
+</div>
+
+
+
+    </main>
+    <footer class="footer">
+  <div class="copyright">
+    <span>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/xbmlz/hexo-theme-maple" target="_blank">Maple</a></span>
+  </div>
+</footer>
+
+  </div>
+  
+</body>
+
+</html>

@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <meta name="author" content="xbmlz">
+
+
+
+
+
+<title>MathJax Test | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.png">
+
+
+
+
+  <!-- stylesheets list from _config.yml -->
+  
+    <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/lib/tocbot/tocbot.css">
+  
+
+
+
+  <!-- scripts list from _config.yml -->
+  
+    <script src="/js/index.js"></script>
+  
+    <script src="/js/iconify.min.js"></script>
+  
+    <script src="/lib/tocbot/tocbot.min.js"></script>
+  
+
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+  });
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>
+document.ready(() => {
+  const maraidConfig = {
+     startOnLoad: true,
+     flowchart: {
+       useMaxWidth: false,
+       htmlLabels: true
+     }
+   }
+   mermaid.initialize(maraidConfig)
+})
+</script>
+
+
+<script>
+  document.ready(() => {
+    let media = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)')
+    let isDark = () => {
+      const setting = localStorage.getItem('hexo-color-scheme') || 'auto'
+      if (setting === 'dark' || (media.matches && setting !== 'light')) {
+        return true
+      } else {
+        return false
+      }
+    }
+    // 切换为深色模式
+    let toggleDarkMode = () => {
+      document.documentElement.classList.toggle('dark', true)
+      document.getElementById('moon-icon').style.display = 'block'
+      document.getElementById('sun-icon').style.display = 'none'
+      setDarkMode('dark')
+    }
+    // 切换为浅色模式
+    let toggleLightMode = () => {
+      document.documentElement.classList.toggle('dark', false)
+      document.getElementById('moon-icon').style.display = 'none'
+      document.getElementById('sun-icon').style.display = 'block'
+      setDarkMode('light')
+    }
+    let setDarkMode = (scheme) => {
+      const darkMode = media.matches ? 'dark' : 'light'
+      if (darkMode !== scheme) {
+        localStorage.setItem('hexo-color-scheme', scheme)
+      } else {
+        localStorage.setItem('hexo-color-scheme', 'auto')
+      }
+    }
+    // 切换为自动模式
+    let updateMode = (e) => {
+      const setting = localStorage.getItem('hexo-color-scheme') || 'auto'
+      console.log(setting, e.matches)
+      if (setting === 'auto') {
+        if (e.matches) {
+          toggleDarkMode()
+        } else {
+          toggleLightMode()
+        }
+      }
+    }
+
+    if (typeof media.addEventListener === 'function') {
+      media.addEventListener('change', updateMode)
+    } else if (typeof media.addListener === 'function') {
+      media.addListener(updateMode)
+    }
+
+    document.getElementById('moon-icon').addEventListener('click', () => {
+      toggleLightMode()
+    })
+    document.getElementById('sun-icon').addEventListener('click', () => {
+      toggleDarkMode()
+    })
+
+
+    // theme icon init
+    if (isDark()) {
+      document.getElementById('moon-icon').style.display = 'block'
+    } else {
+      document.getElementById('sun-icon').style.display = 'block'
+    }
+  })
+</script>
+
+
+<meta name="generator" content="Hexo 6.2.0"></head>
+<body>
+  <script>
+    (function() {
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+      const setting = localStorage.getItem('hexo-color-scheme') || 'auto'
+      if (setting === 'dark' || (prefersDark && setting !== 'light'))
+        document.documentElement.classList.toggle('dark', true)
+    })()
+  </script>
+
+  <div id="app">
+    <header class="header">
+  <a href="/" class="logo" focusable="false">
+    <img src="/images/logo.svg" alt="Hexo" />
+  </a>
+  <nav class="nav">
+    <div class="spacer"></div>
+    <div class="right">
+      <div class="menu">
+        
+          <a class="item" href="/archives">Posts</a>
+          
+          <a class="item" href="/category">Categories</a>
+          
+          <a class="item" href="/tag">Tags</a>
+          
+      </div>
+      <div class="links">
+        
+          
+            <a title="Github" target="_blank" rel="noopener" href="https://github.com/xbmlz" class="link-item">
+              <span class="iconify" data-icon="ri:github-line"></span>
+            </a>
+          
+            <a title="ZhiHu" href="" class="link-item">
+              <span class="iconify" data-icon="ri:zhihu-line"></span>
+            </a>
+          
+            <a title="Twitter" href="" class="link-item">
+              <span class="iconify" data-icon="ri:twitter-line"></span>
+            </a>
+          
+            <a title="Weibo" href="" class="link-item">
+              <span class="iconify" data-icon="ri:weibo-line"></span>
+            </a>
+          
+        
+      </div>
+      <a class="toggleDark" id="dark-mode">
+        <span class="iconify" data-icon="ri:sun-line" id="sun-icon" style="display: none"></span>
+        <span class="iconify" data-icon="ri:moon-line" id="moon-icon" style="display: none"></span>
+      </a>
+    </div>
+  </nav>
+</header>
+
+    <main class="container">
+      
+
+  <div class="post-toc">
+  <div class="tocbot-list">
+  </div>
+  <div class="tocbot-list-menu">
+    <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+    <a onclick="go_top()">Back to top</a>
+    <a onclick="go_bottom()">Go to bottom</a>
+  </div>
+</div>
+<script>
+  var tocbot_timer;
+  var DEPTH_MAX = 6; // 为 6 时展开所有
+  var tocbot_default_config = {
+    tocSelector: '.tocbot-list',
+    contentSelector: '.post-content',
+    headingSelector: 'h1, h2, h3, h4, h5',
+    orderedList: false,
+    scrollSmooth: true,
+    onClick: extend_click,
+  };
+  function extend_click() {
+    clearTimeout(tocbot_timer);
+    tocbot_timer = setTimeout(function () {
+      tocbot.refresh(obj_merge(tocbot_default_config, {
+        hasInnerContainers: true
+      }));
+    }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+  }
+  function expand_toc() {
+    var b = document.querySelector('.tocbot-toc-expand');
+    var expanded = b.getAttribute('data-expanded');
+    expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+    tocbot.refresh(obj_merge(tocbot_default_config, {
+      collapseDepth: expanded ? 1 : DEPTH_MAX
+    }));
+    b.innerText = expanded ? 'Expand all' : 'Collapse all';
+  }
+  function go_top() {
+    window.scrollTo(0, 0);
+  }
+  function go_bottom() {
+    window.scrollTo(0, document.body.scrollHeight);
+  }
+  function obj_merge(target, source) {
+    for (var item in source) {
+      if (source.hasOwnProperty(item)) {
+        target[item] = source[item];
+      }
+    }
+    return target;
+  }
+  document.ready(function () {
+    tocbot.init(obj_merge(tocbot_default_config, {
+      collapseDepth: 1
+    }));
+  });
+</script>
+
+
+<div class="post">
+  <div class="post-header">
+    <h1 class="post-title">MathJax Test</h1>
+    <p class="post-meta">2022-07-20 08:53:56</p>
+  </div>
+  <article>
+    <div class="post-content">
+      <h2 id="行内公式与块公式"><a href="#行内公式与块公式" class="headerlink" title="行内公式与块公式"></a>行内公式与块公式</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$f(x)=ax+b$ 这是行内公式.</span><br><span class="line">$$f(x)=ax+b$$ 这是块公式，单独占一行.</span><br></pre></td></tr></table></figure>
+<p>$f(x)&#x3D;ax+b$ 这是行内公式.<br>$$f(x)&#x3D;ax+b$$ 这是块公式，单独占一行.</p>
+<h2 id="上标与下标"><a href="#上标与下标" class="headerlink" title="上标与下标"></a>上标与下标</h2><p>使用 ^ 表示上标，使用 _ 表示下标，如果上下标的内容多于一个字符，可以使用大括号括起来：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$$f(x) = a<span class="emphasis">_1x^n + a_</span>2x^&#123;n-1&#125; + a<span class="emphasis">_3x^&#123;n-2&#125;$$</span></span><br></pre></td></tr></table></figure>
+
+<p>显示效果：</p>
+<p>$$f(x) &#x3D; a_1x^n + a_2x^{n-1} + a_3x^{n-2}$$</p>
+<p>如果左右两边都有上下标可以使用 \sideset 语法：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$$\sideset&#123;^n<span class="emphasis">_k&#125;&#123;^x_</span>y&#125;a$$</span><br></pre></td></tr></table></figure>
+
+<p>显示效果：</p>
+<p>$$\sideset{^n_k}{^x_y}a$$</p>
+<h2 id="括号"><a href="#括号" class="headerlink" title="括号"></a>括号</h2><p>在 markdown 语法中，, $, {, }, _都是有特殊含义的，所以需要加\转义。小括号与方括号可以使用原始的() [] 大括号需要转义\也可以使用\lbrace和 \rbrace</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$$ \\&#123;x<span class="emphasis">*y\\&#125; $$  --注：大括号在markdown中已有一次转义，在mathjax中还要再转一次，所以为两个斜杠</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">$$\lbrace x*</span>y \rbrace$$</span><br></pre></td></tr></table></figure>
+
+<p>显示效果：</p>
+<p>$$ \{x*y\} $$</p>
+<p>$$\lbrace x*y \rbrace$$</p>
+<p>原始符号不会随着公式大小自动缩放，需要使用 \left 和 \right 来实现自动缩放：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$$\left \lbrace \sum<span class="emphasis">_&#123;i=0&#125;^n i^3 = \frac&#123;(n^2+n)(n+6)&#125;&#123;9&#125; \right \rbrace$$</span></span><br></pre></td></tr></table></figure>
+
+<p>显示效果：</p>
+<p>$$\left \lbrace \sum_{i&#x3D;0}^n i^3 &#x3D; \frac{(n^2+n)(n+6)}{9} \right \rbrace$$</p>
+<p>不使用\left 和 \right的效果：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$$ \lbrace \sum<span class="emphasis">_&#123;i=0&#125;^n i^3 = \frac&#123;(n^2+n)(n+6)&#125;&#123;9&#125;  \rbrace$$</span></span><br></pre></td></tr></table></figure>
+
+<p>显示效果：</p>
+<p>$$ \lbrace \sum_{i&#x3D;0}^n i^3 &#x3D; \frac{(n^2+n)(n+6)}{9}  \rbrace$$</p>
+<h2 id="分数与开方"><a href="#分数与开方" class="headerlink" title="分数与开方"></a>分数与开方</h2><p>可以使用\frac 或者 \over 实现分数的显示：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$\frac xy$</span><br><span class="line">$ x+3 \over y+5 $</span><br></pre></td></tr></table></figure>
+
+<p>显示为 $\frac xy$ 和 $ x+3 \over y+5 $</p>
+<p>开方使用\sqrt:</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ \sqrt&#123;x^5&#125; $</span><br><span class="line">$ \sqrt[3]&#123;\frac xy&#125; $</span><br></pre></td></tr></table></figure>
+
+<p>显示为 $ \sqrt{x^5} $ 和 $ \sqrt[3]{\frac xy} $</p>
+<h2 id="求和与积分"><a href="#求和与积分" class="headerlink" title="求和与积分"></a>求和与积分</h2><p>求和使用\sum,可加上下标，积分使用\int可加上下限，双重积分用\iint</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ \sum<span class="emphasis">_&#123;i=0&#125;^n $</span></span><br><span class="line"><span class="emphasis">$ \int_</span>1^\infty $</span><br><span class="line">$ \iint<span class="emphasis">_1^\infty $</span></span><br></pre></td></tr></table></figure>
+
+<p>显示为 $ \sum_{i&#x3D;0}^n $ 和 $ \int_1^\infty $ 以及 $ \iint_1^\infty $</p>
+<h2 id="极限"><a href="#极限" class="headerlink" title="极限"></a>极限</h2><p>极限使用\lim:</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ \lim<span class="emphasis">_&#123;x \to 0&#125; $</span></span><br></pre></td></tr></table></figure>
+
+<p>显示为: $ \lim_{x \to 0} $</p>
+<h2 id="表格与矩阵"><a href="#表格与矩阵" class="headerlink" title="表格与矩阵"></a>表格与矩阵</h2><p>表格样式lcr表示居中，|加入一条竖线，\hline表示行间横线，列之间用&amp;分隔，行之间用\分隔：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$$\begin&#123;array&#125;&#123;c|lcr&#125;</span><br><span class="line">n &amp; \text&#123;Left&#125; &amp; \text&#123;Center&#125; &amp; \text&#123;Right&#125; \\\\</span><br><span class="line">\hline</span><br><span class="line">1 &amp; 1.97 &amp; 5 &amp; 12 \\\\</span><br><span class="line">2 &amp; -11 &amp; 19 &amp; -80 \\\\</span><br><span class="line">3 &amp; 70 &amp; 209 &amp; 1+i \\\\</span><br><span class="line">\end&#123;array&#125;$$</span><br></pre></td></tr></table></figure>
+
+<p>显示效果：</p>
+<p>$$\begin{array}{c|lcr}<br>n &amp; \text{Left} &amp; \text{Center} &amp; \text{Right} \\<br>\hline<br>1 &amp; 1.97 &amp; 5 &amp; 12 \\<br>2 &amp; -11 &amp; 19 &amp; -80 \\<br>3 &amp; 70 &amp; 209 &amp; 1+i \\<br>\end{array}$$</p>
+<h2 id="矩阵"><a href="#矩阵" class="headerlink" title="矩阵"></a>矩阵</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">$$\left[</span><br><span class="line">\begin&#123;matrix&#125;</span><br><span class="line">V<span class="emphasis">_A \\\\</span></span><br><span class="line"><span class="emphasis">V_</span>B \\\\</span><br><span class="line">V<span class="emphasis">_C \\\\</span></span><br><span class="line"><span class="emphasis">\end&#123;matrix&#125;</span></span><br><span class="line"><span class="emphasis">\right] =</span></span><br><span class="line"><span class="emphasis">\left[</span></span><br><span class="line"><span class="emphasis">\begin&#123;matrix&#125;</span></span><br><span class="line"><span class="emphasis">1 &amp; 0 &amp; L \\\\</span></span><br><span class="line"><span class="emphasis">-cosψ &amp; sinψ &amp; L \\\\</span></span><br><span class="line"><span class="emphasis">-cosψ &amp; -sinψ &amp; L</span></span><br><span class="line"><span class="emphasis">\end&#123;matrix&#125;</span></span><br><span class="line"><span class="emphasis">\right]</span></span><br><span class="line"><span class="emphasis">\left[</span></span><br><span class="line"><span class="emphasis">\begin&#123;matrix&#125;</span></span><br><span class="line"><span class="emphasis">V_</span>x \\\\</span><br><span class="line">V<span class="emphasis">_y \\\\</span></span><br><span class="line"><span class="emphasis">W \\\\</span></span><br><span class="line"><span class="emphasis">\end&#123;matrix&#125;</span></span><br><span class="line"><span class="emphasis">\right] $$</span></span><br></pre></td></tr></table></figure>
+
+<p>显示效果:</p>
+<p>$$\left[<br>\begin{matrix}<br>V_A \\<br>V_B \\<br>V_C \\<br>\end{matrix}<br>\right] &#x3D;<br>\left[<br>\begin{matrix}<br>1 &amp; 0 &amp; L \\<br>-cosψ &amp; sinψ &amp; L \\<br>-cosψ &amp; -sinψ &amp; L<br>\end{matrix}<br>\right]<br>\left[<br>\begin{matrix}<br>V_x \\<br>V_y \\<br>W \\<br>\end{matrix}<br>\right] $$</p>
+<hr>
+
+<p>综合测试：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$$\frac&#123;\partial u&#125;&#123;\partial t&#125;</span><br><span class="line">= h^2 \left( \frac&#123;\partial^2 u&#125;&#123;\partial x^2&#125; +</span><br><span class="line">\frac&#123;\partial^2 u&#125;&#123;\partial y^2&#125; +</span><br><span class="line">\frac&#123;\partial^2 u&#125;&#123;\partial z^2&#125;\right)$$</span><br><span class="line"></span><br><span class="line">$$ \lbrace \sum<span class="emphasis">_&#123;i=0&#125;^n i^3 = \frac&#123;(n^2+n)(n+6)&#125;&#123;9&#125;  \rbrace$$</span></span><br></pre></td></tr></table></figure>
+<p>显示效果:</p>
+<p>$$\frac{\partial u}{\partial t}<br>&#x3D; h^2 \left( \frac{\partial^2 u}{\partial x^2} +<br>\frac{\partial^2 u}{\partial y^2} +<br>\frac{\partial^2 u}{\partial z^2}\right)$$</p>
+<p>$$ \lbrace \sum_{i&#x3D;0}^n i^3 &#x3D; \frac{(n^2+n)(n+6)}{9}  \rbrace$$</p>
+
+    </div>
+  </article>
+  <div class="post-footer">
+    <a href="javascript:window.history.back();">
+      cd ..
+    </a>
+    <br>
+    <a href="/">
+      cd /
+    </a>
+  </div>
+  <div class="post-license">
+    <span>
+      <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" style="color: inherit;">
+        CC BY-NC-SA 4.0
+      </a>
+      2021-PRESENT © xbmlz
+    </span>
+    <div></div>
+  </div>
+  <!-- 
+<div id="disqusjs"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs@3.0/dist/browser/styles/disqusjs.css">
+<script id="js-disqusjs" src="https://cdn.jsdelivr.net/npm/disqusjs@3.0/dist/browser/disqusjs.es2015.umd.min.js"></script>
+<script>
+  document.getElementById('js-disqusjs').addEventListener('load', function () {
+    const disqusjs = new DisqusJS({
+      shortname: 'hexo-theme-maple',
+      api: 'https://disqus.com/api/',
+      admin: 'disqus_dbfUNh6DjP',
+      apikey: 'F8Js8W3WLwXc20bYiKGLS9qTCL1qeq33cPjWFzat1HYLMkH0V9mdUg9JBHpXSBYw',
+    })
+    // DisqusJS 1.3.0 在初始化实例后评论列表已经开始渲染到页面上，DisqusJS 3.0.0 还需要额外调用 render() 方法：
+    disqusjs.render(document.getElementById('disqusjs')); // render() 方法需要传入 DisqusJS 的容器
+
+    // DisqusJS 3.0.0 新增了销毁实例的 destroy() 方法，你可以在 PJAX 跳转时直接调用它：
+    // disqusjs.destroy();
+    // 关于 PJAX 站点使用，请参考前文「SPA 与 PJAX 站点注意事项」
+});
+</script>
+
+ -->
+</div>
+
+    </main>
+    <footer class="footer">
+  <div class="copyright">
+    <span>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/xbmlz/hexo-theme-maple" target="_blank">Maple</a></span>
+  </div>
+</footer>
+
+  </div>
+  
+</body>
+
+</html>

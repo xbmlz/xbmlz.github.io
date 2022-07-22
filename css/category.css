@@ -1,0 +1,30 @@
+.categories {
+  margin: auto;
+  max-width: global-max-width;
+}
+.categories .category-list {
+  font-size: 1.2rem;
+  list-style: none;
+  margin: 1.5rem 0;
+  padding: 0;
+}
+.categories .category-list .category-item {
+  margin: 1rem 0;
+  padding: 0;
+}
+.categories .category-list .category-item .category-item-link {
+  border-bottom: 1px solid #ccc;
+  cursor: pointer;
+  outline: 0;
+  text-decoration: none;
+  overflow-wrap: break-word;
+}
+.categories .category-list .category-item .category-item-link,
+.categories .category-list .category-item .category-item-count {
+  color: var(--fg);
+  opacity: 0.6;
+}
+.categories .category-list .category-item .category-item-link:hover,
+.categories .category-list .category-item .category-item-count:hover {
+  opacity: 1;
+}
