@@ -120,6 +120,13 @@
 .post-content:last-child {
   margin-bottom: 0;
 }
+.post-content .fancybox-img {
+  border: none;
+}
+.post-content .fancybox-img:hover {
+  opacity: none;
+  border: none;
+}
 .post-content h1 {
   color: var(--fg-deeper);
   font-weight: 800;
