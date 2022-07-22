@@ -1,9 +1,8 @@
 ---
 title: MathJax Test
-date: 2022-07-20 08:53:56
+date: 2022-07-21 08:53:56
 tags:
 - markdown
-- math
 categories:
 - markdown
 ---

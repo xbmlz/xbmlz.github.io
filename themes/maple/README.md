@@ -9,11 +9,11 @@ concise but not simple hexo theme
 <br>
 
 <p align='center'>
-<a href="">Live Demo</a>
+<a href="https://xbmlz.github.io">Live Demo</a>
 </p>
 
 <p align='center'>
-<b>English</b> | <a href="https://github.com/xbmlz/maple/blob/main/README.zh-CN.md">简体中文</a>
+<b>English</b> | <a href="https://github.com/xbmlz/hexo-theme-maple/blob/main/README.zh-CN.md">简体中文</a>
 
 </p>
 
@@ -27,14 +27,38 @@ concise but not simple hexo theme
 - 💹 Baidu/Google Analytics
 - ⚗️ [MathJax Support](http://docs.mathjax.org/en/latest/)
 - ⚡️ [Mermaid Support](https://mermaid-js.github.io/mermaid)
+- 🖼️ [Fancybox Support](https://fancyapps.com/docs/ui/fancybox)
 
 ## Installation
 
-The simplest way to install is to clone the entire repository:
+Local git install:
 
 ```bash
 cd your-blog/themes
-git clone https://github.com/theme-next/hexo-theme-next themes/next
+git clone https://github.com/xbmlz/hexo-theme-maple.git themes/maple
+```
+
+npm install:
+
+```bash
+npm i hexo-theme-maple
+```
+
+## Enable
+
+Modify `theme` setting in `_config.yml` to `maple`.
+
+```text
+_config.yml
+- theme: some-theme
++ theme: maple
+```
+
+## Update
+
+```bash
+cd themes/maple
+git pull
 ```
 
 ## Configuration
@@ -47,7 +71,7 @@ nav:
   Tags: /tag
 
 # favicon
-favicon: /favicon.png
+favicon: /favicon.ico
 
 # logo
 logo: /images/logo.svg
@@ -55,18 +79,32 @@ logo: /images/logo.svg
 # links
 links:
   Github: https://github.com/xbmlz
-  ZhiHu:
-  Twitter:
-  Weibo:
+  # ZhiHu:
+  # Twitter:
+  # Weibo:
 
+# analytics
+google_analytics:
+baidu_analytics:
 
-# stylesheets loaded in the <head>
-stylesheets:
-  - /css/style.css
+# mathjax
+fancybox: true
 
-scripts:
-  - /js/index.js
-  - /js/iconify.min.js
+# mathjax
+mathjax: true
+
+# mermaid
+mermaid:
+  enable: true
+  # Available themes: default | dark | forest | neutral
+  theme: default
+
+# disqusjs
+disqusjs:
+  enable: false
+  api:
+  apikey:
+  shortname:
 ```
 ## Screenshot
 
