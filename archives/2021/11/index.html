@@ -76,7 +76,7 @@
 <script>
   $(document).ready(() => {
     NProgress.configure({
-      showSpinner: true,
+      showSpinner: false,
     });
     NProgress.start();
     $("#nprogress .bar").css({
@@ -106,15 +106,18 @@
 
 <meta name="generator" content="Hexo 6.3.0"></head>
 <body class="font-sans bg-white dark:bg-zinc-900 text-gray-700 dark:text-gray-200">
-  <header class="fixed w-full px-6 py-1 z-10 backdrop-blur-xl backdrop-saturate-150 border-b border-black/5">
+  <header class="fixed w-full px-5 py-1 z-10 backdrop-blur-xl backdrop-saturate-150 border-b border-black/5">
   <div class="max-auto">
-    <nav class="flex items-center gap-3 text-base">
+    <nav class="flex items-center text-base">
       <a href="/" class="group">
         <h2 class="font-medium tracking-tighterp text-l p-2">
           <img class="w-5 mr-2 inline-block transition-transform group-hover:rotate-[30deg]" src="/images/logo.svg" alt="Maple.notes" />
           Maple.notes
         </h2>
       </a>
+      <div id="header-title" class="opacity-0 md:ml-2 md:mt-[0.1rem] text-black/50 text-xs font-medium whitespace-nowrap overflow-hidden overflow-ellipsis">
+        Categories
+      </div>
       <div class="flex-1"></div>
       <div class="flex items-center justify-center gap-3 sm:hidden">
         <a class="w-5 h-5" title="theme">
