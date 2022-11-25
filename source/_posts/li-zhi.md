@@ -6,7 +6,7 @@ tags:
 categories:
 - music
 - 李志
-excerpt: 南京市民李先生
+excerpt: 南京市民李先生私藏
 ---
 
 <table>

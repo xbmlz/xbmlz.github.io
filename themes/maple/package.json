@@ -8,5 +8,12 @@
     "theme",
     "maple"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "files": [
+    "languages",
+    "layout",
+    "scripts",
+    "source",
+    "_config.yml"
+  ]
 }
