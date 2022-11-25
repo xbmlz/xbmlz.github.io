@@ -83,7 +83,7 @@
       background: "#de7441",
     });
     $("#nprogress .peg").css({
-      "box-shadow": "0 0 10px #de7441, 0 0 15px #de7441",
+      "box-shadow": "0 0 2px #de7441, 0 0 4px #de7441",
     });
     $("#nprogress .spinner-icon").css({
       "border-top-color": "#de7441",
@@ -116,7 +116,18 @@
         </h2>
       </a>
       <div class="flex-1"></div>
-      <div class="flex items-center gap-3 hidden md:flex">
+      <div class="flex items-center justify-center gap-3 sm:hidden">
+        <a class="w-5 h-5" title="theme">
+          <iconify-icon width="20" icon="ri:sun-line" id="toggle-dark"></iconify-icon>
+        </a>
+        <span class="w-5 h-5" aria-hidden="true" role="img" id="open-menu">
+          <iconify-icon width="20" icon="carbon:menu" ></iconify-icon>
+        </span>
+        <span class="w-5 h-5 hidden" aria-hidden="true" role="img" id="close-menu">
+          <iconify-icon  width="20" icon="carbon:close" ></iconify-icon>
+        </span>
+      </div>
+      <div class="flex items-center gap-3 hidden sm:flex">
         
           <a href="/archives">Posts</a>
         
@@ -146,6 +157,18 @@
     </nav>
   </div>
 </header>
+<div id="menu-panel" class="h-0 overflow-hidden sm:hidden fixed left-0 right-0 top-12 bottom-0 z-10">
+  <div id="menu-content" class="relative z-20 bg-white/80 px-6 sm:px-8 py-2 backdrop-blur-xl -translate-y-full transition-transform duration-300">
+    <ul class="nav flex flex-col sm:flex-row text-sm font-medium">
+      
+        <li class="nav-portfolio sm:mx-2 border-b sm:border-0 border-black/5 last:border-0 hover:text-main">
+          <a href="/archives" class="flex h-12 sm:h-auto items-center">Posts</a>
+        </li>
+      
+    </ul>
+  </div>
+  <div class="mask bg-black/20 absolute inset-0"></div>
+</div>
 
   <main class="p-12">
     
@@ -179,7 +202,7 @@
       <section class="text-gray-400 my-1">
         <p class="line-clamp-4">
           
-            南京市民李先生
+            南京市民李先生私藏
           
         </p>
         <p class="line-clamp-4">
