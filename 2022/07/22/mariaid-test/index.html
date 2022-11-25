@@ -13,91 +13,161 @@
   <meta name="author" content="xbmlz">
 
 
+  <meta name="subtitle" content="知不可乎骤得, 托遗响于悲风">
 
 
 
-<title>Mariaid Test | Hexo</title>
+
+<title>Mariaid Test | Maple.notes</title>
 
 
 
     <link rel="icon" href="/favicon.png">
 
 
-
-<link rel="stylesheet" href="/css/style.css">
-
-
-<link rel="stylesheet" href="/lib/tocbot/tocbot.css">
+<link rel="stylesheet" href="https://unpkg.com/nprogress@0.2.0/nprogress.css">
 
 
-<link rel="stylesheet" href="/lib/fancybox/fancybox.min.css">
+<link rel="stylesheet" href="/css/main.css">
 
 
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs@3.0/dist/browser/styles/disqusjs.css">
+<script src="/js/jquery-3.4.1.min.js"></script>
 
+<script>
+  (function () {
+    const prefersDark =
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const setting = localStorage.getItem("hexo-color-scheme") || "auto";
+    if (setting === "dark" || (prefersDark && setting !== "light"))
+      document.documentElement.classList.toggle("dark", true);
+  })();
 
+  window.onload = function () {
+    // init iconify icon
+    const isDark = document.documentElement.classList.contains("dark");
 
+    if (isDark) {
+      document
+        .getElementById("toggle-dark")
+        .setAttribute("icon", "ri:moon-line");
+    } else {
+      document
+        .getElementById("toggle-dark")
+        .setAttribute("icon", "ri:sun-line");
+    }
 
-<meta name="generator" content="Hexo 6.2.0"></head>
-<body>
-  <div id="app">
-    <header class="header">
-  <a href="/" class="logo" focusable="false">
-    <img src="/images/logo.svg" alt="Hexo" />
-  </a>
-  <nav class="nav">
-    <div class="spacer"></div>
-    <div class="right">
-      <div class="menu">
+    const toggleDark = () => {
+      const darkMode = document.documentElement.classList.toggle("dark");
+      localStorage.setItem("hexo-color-scheme", darkMode ? "dark" : "light");
+      document
+        .getElementById("toggle-dark")
+        .setAttribute("icon", darkMode ? "ri:moon-line" : "ri:sun-line");
+    };
+
+    document
+      .getElementById("toggle-dark")
+      .addEventListener("click", toggleDark);
+  };
+</script>
+
+<script src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script>
+<script>
+  $(document).ready(() => {
+    NProgress.configure({
+      showSpinner: true,
+    });
+    NProgress.start();
+    $("#nprogress .bar").css({
+      background: "#de7441",
+    });
+    $("#nprogress .peg").css({
+      "box-shadow": "0 0 10px #de7441, 0 0 15px #de7441",
+    });
+    $("#nprogress .spinner-icon").css({
+      "border-top-color": "#de7441",
+      "border-left-color": "#de7441",
+    });
+    setTimeout(function () {
+      NProgress.done();
+      $(".fade").removeClass("out");
+    }, 800);
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.1/dist/iconify-icon.min.js"></script>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+  }
+</script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body class="font-sans bg-white dark:bg-zinc-900 text-gray-700 dark:text-gray-200">
+  <header class="fixed w-full px-6 py-1 z-10 backdrop-blur-xl backdrop-saturate-150 border-b border-black/5">
+  <div class="max-auto">
+    <nav class="flex items-center gap-3 text-base">
+      <a href="/" class="group">
+        <h2 class="font-medium tracking-tighterp text-l p-2">
+          <img class="w-5 mr-2 inline-block transition-transform group-hover:rotate-[30deg]" src="/images/logo.svg" alt="Maple.notes" />
+          Maple.notes
+        </h2>
+      </a>
+      <div class="flex-1"></div>
+      <div class="flex items-center gap-3 hidden md:flex">
         
-          <a class="item" href="/archives">Posts</a>
-          
-          <a class="item" href="/category">Categories</a>
-          
-          <a class="item" href="/tag">Tags</a>
-          
-      </div>
-      <div class="links">
+          <a href="/archives">Posts</a>
+        
         
           
-            <a title="Github" target="_blank" rel="noopener" href="https://github.com/xbmlz" class="link-item">
-              <span class="iconify" data-icon="ri:github-line"></span>
+            <a class="w-5 h-5" title="Github" target="_blank" rel="noopener" href="https://github.com/xbmlz">
+              <iconify-icon width="20" icon="ri:github-line"></iconify-icon>
+            </a>
+          
+            <a class="w-5 h-5" title="ZhiHu" target="_blank" rel="noopener" href="https://github.com/xbmlz">
+              <iconify-icon width="20" icon="ri:zhihu-line"></iconify-icon>
+            </a>
+          
+            <a class="w-5 h-5" title="Twitter" target="_blank" rel="noopener" href="https://github.com/xbmlz">
+              <iconify-icon width="20" icon="ri:twitter-line"></iconify-icon>
+            </a>
+          
+            <a class="w-5 h-5" title="Weibo" target="_blank" rel="noopener" href="https://github.com/xbmlz">
+              <iconify-icon width="20" icon="ri:weibo-line"></iconify-icon>
             </a>
           
         
+        <a class="w-5 h-5" title="theme">
+          <iconify-icon width="20" icon="ri:sun-line" id="toggle-dark"></iconify-icon>
+        </a>
       </div>
-      <a class="toggleDark" id="dark-mode">
-        <span class="iconify" data-icon="ri:sun-line" id="sun-icon" style="display: none"></span>
-        <span class="iconify" data-icon="ri:moon-line" id="moon-icon" style="display: none"></span>
-      </a>
-    </div>
-  </nav>
+    </nav>
+  </div>
 </header>
 
-    <main class="container">
-      
-
-  <div class="post-toc">
-  <div class="tocbot-list">
-  </div>
-  <div class="tocbot-list-menu">
-    <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
-    <a onclick="go_top()">Back to top</a>
-    <a onclick="go_bottom()">Go to bottom</a>
-  </div>
-</div>
-
-
-
-<div class="post">
-  <div class="post-header">
-    <h1 class="post-title">Mariaid Test</h1>
-    <p class="post-meta">2022-07-22 13:44:48</p>
-  </div>
-  <div class="post-content">
-    <article>
-      <h2 id="Flowchart"><a href="#Flowchart" class="headerlink" title="Flowchart"></a>Flowchart</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">graph TD</span><br><span class="line">A[Hard] --&gt;|Text| B(Round)</span><br><span class="line">B --&gt; C&#123;Decision&#125;</span><br><span class="line">C --&gt;|One| D[Result 1]</span><br><span class="line">C --&gt;|Two| E[Result 2]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+  <main class="p-12">
+    <article class="px-6 max-w-prose mx-auto md:px-0">
+  <!-- header -->
+  <header class="overflow-hidden pt-6 pb-6 md:pt-12">
+    <div class="pt-4 md:pt-6">
+      <h1 class="text-[2rem] font-bold leading-snug mb-4 md:mb-6 md:text-[2.6rem]">
+        Mariaid Test
+      </h1>
+      <p class="mb-6">
+        Mariaid Test
+      </p>
+      <div>
+        <section class="flex items-center gap-3 text-sm">
+          <time>2022-07-22 13:44:48</time>
+        </section>
+      </div>
+    </div>
+  </header>
+  <!-- content -->
+  <article class="mt-10 prose dark:prose-invert post-content">
+    <h2 id="Flowchart"><a href="#Flowchart" class="headerlink" title="Flowchart"></a>Flowchart</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">graph TD</span><br><span class="line">A[Hard] --&gt;|Text| B(Round)</span><br><span class="line">B --&gt; C&#123;Decision&#125;</span><br><span class="line">C --&gt;|One| D[Result 1]</span><br><span class="line">C --&gt;|Two| E[Result 2]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <pre class="mermaid">graph TD
 A[Hard] -->|Text| B(Round)
@@ -264,205 +334,55 @@ test_entity - satisfies -> test_req</pre>
       UpdateRelStyle(SystemC, customerA, $textColor="red", $lineColor="red", $offsetX="-50", $offsetY="20")
       
       UpdateLayoutConfig($c4ShapeInRow="3", $c4BoundaryInRow="1")</pre>
-    </article>
-  </div>
-  <div class="post-footer">
-    <a href="javascript:window.history.back();">
-      cd ..
-    </a>
-    <br>
-    <a href="/">
-      cd /
-    </a>
-  </div>
-  <div class="post-license">
-    <span>
-      <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" style="color: inherit;">
-        CC BY-NC-SA 4.0
-      </a>
-      2021-PRESENT © xbmlz
+  </article>
+  <!-- tag -->
+  <div class="mt-12 pt-6 border-t border-gray-200">
+    <span class="bg-gray-100 dark:bg-gray-700 px-2 py-1 text-sm rounded-md transition-colors hover:bg-gray-200">
+      
+        
+          <a href="/tags/markdown/">markdown</a>
+        
+      
     </span>
-    <div></div>
   </div>
-  <div class="post-comment">
-    <div id="disqusjs"></div>
-  </div>
-</div>
+  <!-- comment -->
+  <div class="article-comments mt-12">
+    <script src="https://giscus.app/client.js"
+        data-repo="xbmlz/maple-giscus"
+        data-repo-id="R_kgDOIgC6Zg"
+        data-category="General"
+        data-category-id="DIC_kwDOIgC6Zs4CSwIE"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="preferred_color_scheme"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        async>
+</script>
 
-    </main>
-    <footer class="footer">
-  <div class="copyright">
+  </div>
+</article>
+
+  </main>
+  <footer class="flex h-40 items-center justify-center text-gray-400 text-sm">
+  <div>
     <span>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/xbmlz/hexo-theme-maple" target="_blank">Maple</a></span>
   </div>
 </footer>
 
-  </div>
-  <script>
-  (function() {
-    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
-    const setting = localStorage.getItem('hexo-color-scheme') || 'auto'
-    if (setting === 'dark' || (prefersDark && setting !== 'light'))
-      document.documentElement.classList.toggle('dark', true)
-  })()
-</script>
-
-
+  
+<!-- 
 <script src="/js/jquery-3.4.1.min.js"></script>
-
+ -->
 
 <script src="/js/index.js"></script>
 
 
 
-<script src="/js/iconify.min.js"></script>
-
-
-<script>
-  window.onload = () => {
-    let media = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)')
-    let isDark = () => {
-      const setting = localStorage.getItem('hexo-color-scheme') || 'auto'
-      if (setting === 'dark' || (media.matches && setting !== 'light')) {
-        return true
-      } else{
-        return false
-      }
-    }
-    // 切换为深色模式
-    let toggleDarkMode = () => {
-      document.documentElement.classList.toggle('dark', true)
-      document.getElementById('moon-icon').style.display = 'block'
-      document.getElementById('sun-icon').style.display = 'none'
-      setDarkMode('dark')
-    }
-    // 切换为浅色模式
-    let toggleLightMode = () => {
-      document.documentElement.classList.toggle('dark', false)
-      document.getElementById('moon-icon').style.display = 'none'
-      document.getElementById('sun-icon').style.display = 'block'
-      setDarkMode('light')
-    }
-    let setDarkMode = (scheme) => {
-      const darkMode = media.matches ? 'dark' : 'light'
-      if (darkMode !== scheme) {
-        localStorage.setItem('hexo-color-scheme', scheme)
-      } else{
-        localStorage.setItem('hexo-color-scheme', 'auto')
-      }
-    }
-    // 切换为自动模式
-    let updateMode = (e) => {
-      const setting = localStorage.getItem('hexo-color-scheme') || 'auto'
-      console.log(setting, e.matches)
-      if (setting === 'auto') {
-        if (e.matches) {
-          toggleDarkMode()
-        } else {
-          toggleLightMode()
-        }
-      }
-    }
-
-    // let media = getMedia()
-    if (typeof media.addEventListener === 'function') {
-      media.addEventListener('change', updateMode)
-    } else if (typeof media.addListener === 'function') {
-      media.addListener(updateMode)
-    }
-
-    if (isDark()) {
-      document.getElementById('moon-icon').style.display = 'block'
-    } else {
-      document.getElementById('sun-icon').style.display = 'block'
-    }
-
-    document.getElementById('moon-icon').addEventListener('click', () => {
-      toggleLightMode()
-    })
-    document.getElementById('sun-icon').addEventListener('click', () => {
-      toggleDarkMode()
-    })
-  }
-</script>
-
-
-
-<script src="/lib/tocbot/tocbot.min.js"></script>
-
-<script>
-  var tocbot_timer;
-  var DEPTH_MAX = 6; // 为 6 时展开所有
-  var tocbot_default_config = {
-    tocSelector: '.tocbot-list',
-    contentSelector: '.post-content',
-    headingSelector: 'h1, h2, h3, h4, h5',
-    orderedList: false,
-    scrollSmooth: true,
-    onClick: extend_click,
-  };
-  function extend_click() {
-    clearTimeout(tocbot_timer);
-    tocbot_timer = setTimeout(function () {
-      tocbot.refresh(obj_merge(tocbot_default_config, {
-        hasInnerContainers: true
-      }));
-    }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
-  }
-  function expand_toc() {
-    var b = document.querySelector('.tocbot-toc-expand');
-    var expanded = b.getAttribute('data-expanded');
-    expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
-    tocbot.refresh(obj_merge(tocbot_default_config, {
-      collapseDepth: expanded ? 1 : DEPTH_MAX
-    }));
-    b.innerText = expanded ? 'Expand all' : 'Collapse all';
-  }
-  function go_top() {
-    window.scrollTo(0, 0);
-  }
-  function go_bottom() {
-    window.scrollTo(0, document.body.scrollHeight);
-  }
-  function obj_merge(target, source) {
-    for (var item in source) {
-      if (source.hasOwnProperty(item)) {
-        target[item] = source[item];
-      }
-    }
-    return target;
-  }
-  $(document).ready(() => {
-    tocbot.init(obj_merge(tocbot_default_config, {
-      collapseDepth: 1
-    }));
-  });
-</script>
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/disqusjs@3.0/dist/browser/disqusjs.es2015.umd.min.js"></script>
-<script>
-  $(document).ready(() => {
-    const disqusjs = new DisqusJS({
-      api       : 'https://disqus.com/api/' || 'https://disqus.com/api/',
-      apikey    : 'F8Js8W3WLwXc20bYiKGLS9qTCL1qeq33cPjWFzat1HYLMkH0V9mdUg9JBHpXSBYw',
-      shortname : 'hexo-theme-maple',
-      url       : 'http://xbmlz.github.io/2022/07/22/mariaid-test/',
-      identifier: '2022/07/22/mariaid-test/',
-      title     : 'Mariaid Test',
-    })
-    // DisqusJS 1.3.0 在初始化实例后评论列表已经开始渲染到页面上，DisqusJS 3.0.0 还需要额外调用 render() 方法：
-    disqusjs.render(document.getElementById('disqusjs')); // render() 方法需要传入 DisqusJS 的容器
-
-    // DisqusJS 3.0.0 新增了销毁实例的 destroy() 方法，你可以在 PJAX 跳转时直接调用它：
-    // disqusjs.destroy();
-    // 关于 PJAX 站点使用，请参考前文「SPA 与 PJAX 站点注意事项」
-  })
-</script>
-
-
-
-
+<!-- 
 <script async src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
@@ -495,9 +415,9 @@ test_entity - satisfies -> test_req</pre>
   });
 </script>
 
+ -->
 
-
-
+<!-- 
 <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
 <script>
   $(document).ready(() => {
@@ -512,9 +432,9 @@ test_entity - satisfies -> test_req</pre>
   });
 </script>
 
+ -->
 
-
-
+<!-- 
 <script src="/lib/fancybox/fancybox.umd.js"></script>
 
 <script>
@@ -536,7 +456,7 @@ test_entity - satisfies -> test_req</pre>
     })
   })
 </script>
-
+ -->
 
 
 </body>
