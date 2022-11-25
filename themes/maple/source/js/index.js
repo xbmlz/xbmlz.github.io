@@ -23,4 +23,19 @@ $(document).ready(function () {
     $("#open-menu").css("display", "block");
     $("#close-menu").css("display", "none");
   });
+
+  // 监听文章标题消失时，在header中显示文章标题
+  var observer = new IntersectionObserver(
+    function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.intersectionRatio > 0) {
+          $("#header-title").css("display", "none").css("opacity", "0");
+        } else {
+          $("#header-title").css("display", "block").css("opacity", "1");
+        }
+      });
+    }
+    // { threshold: [0, 0.25, 0.5, 0.75, 1] }
+  );
+  observer.observe(document.querySelector("#article-title"));
 });
