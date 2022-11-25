@@ -1,28 +1,28 @@
-<header class="header">
-  <a href="<%- config.root %>" class="logo" focusable="false">
-    <img src="<%- theme.logo %>" alt="<%- config.title %>" />
-  </a>
-  <nav class="nav">
-    <div class="spacer"></div>
-    <div class="right">
-      <div class="menu">
+<header class="fixed w-full px-6 py-1 z-10 backdrop-blur-xl backdrop-saturate-150 border-b border-black/5">
+  <div class="max-auto">
+    <nav class="flex items-center gap-3 text-base">
+      <a href="<%- config.root %>" class="group">
+        <h2 class="font-medium tracking-tighterp text-l p-2">
+          <img class="w-5 mr-2 inline-block transition-transform group-hover:rotate-[30deg]" src="<%- theme.logo %>" alt="<%- config.title %>" />
+          <%= config.title %>
+        </h2>
+      </a>
+      <div class="flex-1"></div>
+      <div class="flex items-center gap-3 hidden md:flex">
         <% for (var i in theme.nav){ %>
-          <a class="item" href="<%- url_for(theme.nav[i]) %>"><%= i %></a>
-          <% } %>
-      </div>
-      <div class="links">
+          <a href="<%- url_for(theme.nav[i]) %>"><%= i %></a>
+        <% } %>
         <% if (theme.links !== undefined) { %>
           <% for (var key in theme.links) { %>
-            <a title="<%- key %>" href="<%= theme.links[key] %>" class="link-item">
-              <span class="iconify" data-icon="ri:<%- key.toLowerCase() %>-line"></span>
+            <a class="w-5 h-5" title="<%- key %>" href="<%= theme.links[key] %>">
+              <iconify-icon width="20" icon="ri:<%- key.toLowerCase() %>-line"></iconify-icon>
             </a>
           <% } %>
         <% } %>
+        <a class="w-5 h-5" title="theme">
+          <iconify-icon width="20" icon="ri:sun-line" id="toggle-dark"></iconify-icon>
+        </a>
       </div>
-      <a class="toggleDark" id="dark-mode">
-        <span class="iconify" data-icon="ri:sun-line" id="sun-icon" style="display: none"></span>
-        <span class="iconify" data-icon="ri:moon-line" id="moon-icon" style="display: none"></span>
-      </a>
-    </div>
-  </nav>
+    </nav>
+  </div>
 </header>

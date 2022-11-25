@@ -5,6 +5,8 @@ tags:
 - music
 categories:
 - music
+- 李志
+excerpt: 南京市民李先生
 ---
 
 <table>
@@ -29,7 +31,6 @@ categories:
             musicName = musicInfo[8].replace('.mp3', '')
             musicAlbum = musicInfo[7]
             musicUrl = musicList[i]
-            console.log(musicName, musicAlbum, musicUrl)
             $('#music-list').append(`
                 <tr>
                     <td>${musicName}</td>

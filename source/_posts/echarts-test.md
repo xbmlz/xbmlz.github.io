@@ -1,7 +1,9 @@
 ---
 title: Echarts Test
 date: 2022-07-25 14:00:50
-tags:
+tags: plugin
+categories: plugin
+excerpt: Echarts Test
 ---
 ## 折线图
 

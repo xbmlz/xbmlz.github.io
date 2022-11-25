@@ -1,8 +1,7 @@
 # Header
 nav:
   Posts: /archives
-  Categories: /category
-  Tags: /tag
+
 
 # favicon
 favicon: /favicon.png

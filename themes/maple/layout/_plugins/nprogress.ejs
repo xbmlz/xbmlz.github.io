@@ -1,0 +1,23 @@
+<script src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script>
+<script>
+  $(document).ready(() => {
+    NProgress.configure({
+      showSpinner: true,
+    });
+    NProgress.start();
+    $("#nprogress .bar").css({
+      background: "#de7441",
+    });
+    $("#nprogress .peg").css({
+      "box-shadow": "0 0 10px #de7441, 0 0 15px #de7441",
+    });
+    $("#nprogress .spinner-icon").css({
+      "border-top-color": "#de7441",
+      "border-left-color": "#de7441",
+    });
+    setTimeout(function () {
+      NProgress.done();
+      $(".fade").removeClass("out");
+    }, 800);
+  });
+</script>

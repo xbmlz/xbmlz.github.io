@@ -37,12 +37,17 @@ if (is_archive()) {
     <link rel="icon" href="<%- url_for(theme.favicon) %>">
 <% } %>
 
-<%- css('css/style') %>
-<%- css('lib/tocbot/tocbot.css') %>
-<%- css('lib/fancybox/fancybox.min.css') %>
+<link rel="stylesheet" href="https://unpkg.com/nprogress@0.2.0/nprogress.css">
 
-<% if (theme.disqusjs.enable){ %>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs@3.0/dist/browser/styles/disqusjs.css">
-<% } %>
+<%- css('css/main') %>
 
-
+<%- js('js/jquery-3.4.1.min.js') %>
+<%- partial('_plugins/theme') %>
+<%- partial('_plugins/nprogress') %>
+<script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.1/dist/iconify-icon.min.js"></script>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+  }
+</script>

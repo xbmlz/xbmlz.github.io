@@ -1,8 +1,6 @@
 # Header
 nav:
   Posts: /archives
-  Categories: /category
-  Tags: /tag
 
 # favicon
 favicon: /favicon.png
@@ -13,9 +11,9 @@ logo: /images/logo.svg
 # links
 links:
   Github: https://github.com/xbmlz
-  # ZhiHu:
-  # Twitter:
-  # Weibo:
+  ZhiHu: https://github.com/xbmlz
+  Twitter: https://github.com/xbmlz
+  Weibo: https://github.com/xbmlz
 
 # analytics
 google_analytics:
