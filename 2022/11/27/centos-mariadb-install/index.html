@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <meta name="author" content="xbmlz">
+
+
+  <meta name="subtitle" content="忙碌把时光缩短, 苦难把岁月拉长">
+
+
+
+
+<title>CentOS MariaDB 一键安装脚本 | 记昨日书</title>
+
+
+
+<link rel="icon" href="/favicon.png">
+
+
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/nprogress/nprogress.css">
+
+
+<link rel="stylesheet" href="/lib/fancybox/fancybox.min.css">
+
+
+
+<script src="/lib/jquery.min.js"></script>
+
+
+<script src="/lib/iconify-icon.min.js"></script>
+
+
+<script src="https://cdn.tailwindcss.com?plugins=typography,line-clamp"></script>
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+  }
+</script>
+
+
+<script src="/lib/nprogress/nprogress.js"></script>
+
+<script>
+  $(document).ready(() => {
+    NProgress.configure({
+      showSpinner: false,
+    });
+    NProgress.start();
+    $("#nprogress .bar").css({
+      background: "#de7441",
+    });
+    $("#nprogress .peg").css({
+      "box-shadow": "0 0 2px #de7441, 0 0 4px #de7441",
+    });
+    $("#nprogress .spinner-icon").css({
+      "border-top-color": "#de7441",
+      "border-left-color": "#de7441",
+    });
+    setTimeout(function () {
+      NProgress.done();
+      $(".fade").removeClass("out");
+    }, 800);
+  });
+</script>
+
+<script>
+  (function () {
+    const prefersDark =
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const setting = localStorage.getItem("hexo-color-scheme") || "auto";
+    if (setting === "dark" || (prefersDark && setting !== "light"))
+      document.documentElement.classList.toggle("dark", true);
+  })();
+  window.onload = function () {
+    // init iconify icon
+    const isDark = document.documentElement.classList.contains("dark");
+    if (isDark) {
+      $("#toggle-dark").attr("icon", "ri:moon-line");
+    } else {
+      $("#toggle-dark").attr("icon", "ri:sun-line");
+    }
+
+    const toggleDark = () => {
+      console.log("toggle dark");
+      const darkMode = document.documentElement.classList.toggle("dark");
+      localStorage.setItem("hexo-color-scheme", darkMode ? "dark" : "light");
+      $("#toggle-dark").attr("icon", darkMode ? "ri:moon-line" : "ri:sun-line");
+    };
+
+    $("#toggle-dark").click(toggleDark);
+  };
+</script>
+
+
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body class="font-sans bg-white dark:bg-zinc-900 text-gray-700 dark:text-gray-200">
+  <header class="fixed w-full px-5 py-1 z-10 backdrop-blur-xl backdrop-saturate-150 border-b border-black/5">
+  <div class="max-auto">
+    <nav class="flex items-center text-base">
+      <a href="/" class="group">
+        <h2 class="font-medium tracking-tighterp text-l p-2">
+          <img class="w-5 mr-2 inline-block transition-transform group-hover:rotate-[30deg]" src="/images/logo.svg" alt="记昨日书" />
+          记昨日书
+        </h2>
+      </a>
+      <div id="header-title" class="opacity-0 md:ml-2 md:mt-[0.1rem] text-xs font-medium whitespace-nowrap overflow-hidden overflow-ellipsis">
+        Categories
+      </div>
+      <div class="flex-1"></div>
+      <div class="flex items-center gap-3">
+        
+          <a class="hidden sm:flex" href="/archives">Posts</a>
+        
+          <a class="hidden sm:flex" href="/category">Categories</a>
+        
+          <a class="hidden sm:flex" href="/tag">Tags</a>
+        
+        
+          
+            <a class="w-5 h-5 hidden sm:flex" title="Github" target="_blank" rel="noopener" href="https://github.com/xbmlz">
+              <iconify-icon width="20" icon="ri:github-line"></iconify-icon>
+            </a>
+          
+            <a class="w-5 h-5 hidden sm:flex" title="ZhiHu" target="_blank" rel="noopener" href="https://github.com/xbmlz">
+              <iconify-icon width="20" icon="ri:zhihu-line"></iconify-icon>
+            </a>
+          
+            <a class="w-5 h-5 hidden sm:flex" title="Twitter" target="_blank" rel="noopener" href="https://github.com/xbmlz">
+              <iconify-icon width="20" icon="ri:twitter-line"></iconify-icon>
+            </a>
+          
+            <a class="w-5 h-5 hidden sm:flex" title="Weibo" target="_blank" rel="noopener" href="https://github.com/xbmlz">
+              <iconify-icon width="20" icon="ri:weibo-line"></iconify-icon>
+            </a>
+          
+        
+        <a class="w-5 h-5" title="toggle theme">
+          <iconify-icon width="20" icon="ri:sun-line" id="toggle-dark"></iconify-icon>
+        </a>
+      </div>
+      <div class="flex items-center justify-center gap-3 ml-3 sm:hidden">
+        <span class="w-5 h-5" aria-hidden="true" role="img" id="open-menu">
+          <iconify-icon width="20" icon="carbon:menu" ></iconify-icon>
+        </span>
+        <span class="w-5 h-5 hidden" aria-hidden="true" role="img" id="close-menu">
+          <iconify-icon  width="20" icon="carbon:close" ></iconify-icon>
+        </span>
+      </div>
+    </nav>
+  </div>
+</header>
+<div id="menu-panel" class="h-0 overflow-hidden sm:hidden fixed left-0 right-0 top-12 bottom-0 z-10">
+  <div id="menu-content" class="relative z-20 bg-white/80 px-6 sm:px-8 py-2 backdrop-blur-xl -translate-y-full transition-transform duration-300">
+    <ul class="nav flex flex-col sm:flex-row text-sm font-medium">
+      
+        <li class="nav-portfolio sm:mx-2 border-b sm:border-0 border-black/5 last:border-0 hover:text-main">
+          <a href="/archives" class="flex h-12 sm:h-auto items-center">Posts</a>
+        </li>
+      
+        <li class="nav-portfolio sm:mx-2 border-b sm:border-0 border-black/5 last:border-0 hover:text-main">
+          <a href="/category" class="flex h-12 sm:h-auto items-center">Categories</a>
+        </li>
+      
+        <li class="nav-portfolio sm:mx-2 border-b sm:border-0 border-black/5 last:border-0 hover:text-main">
+          <a href="/tag" class="flex h-12 sm:h-auto items-center">Tags</a>
+        </li>
+      
+    </ul>
+  </div>
+  <div class="mask bg-black/20 absolute inset-0"></div>
+</div>
+
+  <main class="p-12">
+    <article class="px-6 max-w-prose mx-auto md:px-0">
+  <!-- header -->
+  <header class="overflow-hidden pt-6 pb-6 md:pt-12">
+    <div class="pt-4 md:pt-6">
+      <h1 id="article-title" class="text-[2rem] font-bold leading-snug mb-4 md:mb-6 md:text-[2.6rem]">
+        CentOS MariaDB 一键安装脚本
+      </h1>
+      <p class="mb-6">
+        
+      </p>
+      <div>
+        <section class="flex items-center gap-3 text-sm">
+          <time>2022-11-26 17:47:42</time>
+          <span class="text-gray-400">·</span>
+          <span>1 min</span>
+          <span class="text-gray-400">·</span>
+          <span>348 words</span>
+        </section>
+      </div>
+    </div>
+  </header>
+  <!-- content -->
+  <article class="mt-10 prose dark:prose-invert post-content">
+    <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line">MARIADB_DIR=/usr/local/mariadb</span><br><span class="line">DATA_DIR=/data/mariadb</span><br><span class="line">MARIADB_VER=10.3.37</span><br><span class="line">ROOT_PASSWORD=123456</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装依赖</span></span><br><span class="line">yum install -y wget</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建目录</span></span><br><span class="line"><span class="built_in">mkdir</span> -p <span class="variable">$&#123;MARIADB_DIR&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建mysql的用户做为mariadb的运行用户</span></span><br><span class="line">useradd -r mysql -s /sbin/nologin</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下载mariadb</span></span><br><span class="line"><span class="built_in">cd</span> /usr/local/src</span><br><span class="line">wget https://mirrors.tuna.tsinghua.edu.cn/mariadb/mariadb-<span class="variable">$&#123;MARIADB_VER&#125;</span>/bintar-linux-systemd-x86_64/mariadb-<span class="variable">$&#123;MARIADB_VER&#125;</span>-linux-systemd-x86_64.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解压</span></span><br><span class="line">tar -zxvf mariadb-<span class="variable">$&#123;MARIADB_VER&#125;</span>-linux-systemd-x86_64.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 移动到指定目录</span></span><br><span class="line"><span class="built_in">mv</span> mariadb-<span class="variable">$&#123;MARIADB_VER&#125;</span>-linux-systemd-x86_64 <span class="variable">$&#123;MARIADB_DIR&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建软连接</span></span><br><span class="line"><span class="built_in">ln</span> -s <span class="variable">$&#123;MARIADB_DIR&#125;</span> /usr/local/mysql</span><br><span class="line"></span><br><span class="line"><span class="comment"># 授权目录</span></span><br><span class="line"><span class="built_in">chown</span> -R mysql.mysql /usr/local/mysql/</span><br><span class="line"><span class="built_in">chown</span> -R mysql.mysql <span class="variable">$&#123;DATA_DIR&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建配置文件</span></span><br><span class="line"><span class="built_in">cat</span> &gt; /etc/my.cnf &lt;&lt; <span class="string">EOF</span></span><br><span class="line"><span class="string">[client]</span></span><br><span class="line"><span class="string">port = 3306</span></span><br><span class="line"><span class="string">socket = /tmp/mysql.sock</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[mysqld]</span></span><br><span class="line"><span class="string">port = 3306</span></span><br><span class="line"><span class="string">socket = /tmp/mysql.sock</span></span><br><span class="line"><span class="string">datadir = $&#123;DATA_DIR&#125;</span></span><br><span class="line"><span class="string">binlog_cache_size = 256K</span></span><br><span class="line"><span class="string">thread_stack = 512K</span></span><br><span class="line"><span class="string">join_buffer_size = 8192K</span></span><br><span class="line"><span class="string">query_cache_type = 1</span></span><br><span class="line"><span class="string">max_heap_table_size = 2048M</span></span><br><span class="line"><span class="string">default_storage_engine = InnoDB</span></span><br><span class="line"><span class="string">performance_schema_max_table_instances = 400</span></span><br><span class="line"><span class="string">table_definition_cache = 400</span></span><br><span class="line"><span class="string">skip-external-locking</span></span><br><span class="line"><span class="string">key_buffer_size = 1024M</span></span><br><span class="line"><span class="string">max_allowed_packet = 100G</span></span><br><span class="line"><span class="string">table_open_cache = 2048</span></span><br><span class="line"><span class="string">sort_buffer_size = 4096K</span></span><br><span class="line"><span class="string">net_buffer_length = 4K</span></span><br><span class="line"><span class="string">read_buffer_size = 4096K</span></span><br><span class="line"><span class="string">read_rnd_buffer_size = 2048K</span></span><br><span class="line"><span class="string">myisam_sort_buffer_size = 16M</span></span><br><span class="line"><span class="string">thread_cache_size = 256</span></span><br><span class="line"><span class="string">query_cache_size = 384M</span></span><br><span class="line"><span class="string">tmp_table_size = 2048M</span></span><br><span class="line"><span class="string">sql-mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">explicit_defaults_for_timestamp = true</span></span><br><span class="line"><span class="string">#skip-name-resolve</span></span><br><span class="line"><span class="string">max_connections = 500</span></span><br><span class="line"><span class="string">max_connect_errors = 100</span></span><br><span class="line"><span class="string">open_files_limit = 65535</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">log-bin=mysql-bin</span></span><br><span class="line"><span class="string">binlog_format=mixed</span></span><br><span class="line"><span class="string">server-id = 1</span></span><br><span class="line"><span class="string">expire_logs_days = 10</span></span><br><span class="line"><span class="string">slow_query_log=1</span></span><br><span class="line"><span class="string">slow-query-log-file=$&#123;DATA_DIR&#125;/mysql-slow.log</span></span><br><span class="line"><span class="string">long_query_time=3</span></span><br><span class="line"><span class="string">log_bin_trust_function_creators = 1</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">innodb_data_home_dir = $&#123;DATA_DIR&#125;</span></span><br><span class="line"><span class="string">innodb_data_file_path = ibdata1:10M:autoextend</span></span><br><span class="line"><span class="string">innodb_log_group_home_dir = $&#123;DATA_DIR&#125;</span></span><br><span class="line"><span class="string">innodb_buffer_pool_size = 4096M</span></span><br><span class="line"><span class="string">innodb_log_file_size = 128M</span></span><br><span class="line"><span class="string">innodb_log_buffer_size = 32M</span></span><br><span class="line"><span class="string">innodb_flush_log_at_trx_commit = 1</span></span><br><span class="line"><span class="string">innodb_lock_wait_timeout = 50</span></span><br><span class="line"><span class="string">innodb_max_dirty_pages_pct = 90</span></span><br><span class="line"><span class="string">innodb_read_io_threads = 2</span></span><br><span class="line"><span class="string">innodb_write_io_threads = 2</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[mysqldump]</span></span><br><span class="line"><span class="string">quick</span></span><br><span class="line"><span class="string">max_allowed_packet = 500M</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[mysql]</span></span><br><span class="line"><span class="string">no-auto-rehash</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[myisamchk]</span></span><br><span class="line"><span class="string">key_buffer_size = 64M</span></span><br><span class="line"><span class="string">sort_buffer_size = 1M</span></span><br><span class="line"><span class="string">read_buffer = 2M</span></span><br><span class="line"><span class="string">write_buffer = 2M</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[mysqlhotcopy]</span></span><br><span class="line"><span class="string">interactive-timeout</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">EOF</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 初始化数据库</span></span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$&#123;MARIADB_DIR&#125;</span></span><br><span class="line">./scripts/mysql_install_db --user=mysql --datadir=<span class="variable">$&#123;DATA_DIR&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置开机启动</span></span><br><span class="line"><span class="built_in">cp</span> support-files/mysql.server /etc/init.d/mysqld</span><br><span class="line"><span class="built_in">chmod</span> +x /etc/init.d/mysqld</span><br><span class="line">chkconfig --add mysqld</span><br><span class="line">chkconfig mysqld on</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动服务</span></span><br><span class="line">service mysqld start</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置密码</span></span><br><span class="line"><span class="variable">$&#123;MARIADB_DIR&#125;</span>/bin/mysqladmin -u root password <span class="variable">$&#123;ROOT_PASSWORD&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置环境变量</span></span><br><span class="line"><span class="built_in">cat</span> &gt;&gt; /etc/profile &lt;&lt; <span class="string">EOF</span></span><br><span class="line"><span class="string">export PATH=\$PATH:/usr/local/mysql/bin</span></span><br><span class="line"><span class="string">EOF</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使环境变量生效</span></span><br><span class="line"><span class="built_in">source</span> /etc/profile</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+  </article>
+  <!-- tag -->
+  <div class="mt-12 pt-6 border-t border-gray-200">
+    <span class="bg-gray-100 dark:bg-gray-700 px-2 py-1 text-sm rounded-md transition-colors hover:bg-gray-200">
+      
+        
+          <a href="/tags/%E5%BC%80%E5%8F%91/">开发</a>
+        
+          <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+        
+      
+    </span>
+  </div>
+  <!-- comment -->
+  <div class="article-comments mt-12">
+    
+<script src="https://giscus.app/client.js"
+        data-repo="xbmlz/maple-giscus"
+        data-repo-id="R_kgDOIgC6Zg"
+        data-category="General"
+        data-category-id="DIC_kwDOIgC6Zs4CSwIE"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="preferred_color_scheme"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+  </div>
+</article>
+
+  </main>
+  <footer class="flex flex-col h-40 items-center justify-center text-gray-400 text-sm">
+  <!-- busuanzi -->
+  
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- Busuanzi Analytics -->
+<div class="flex items-center gap-2">
+  <span>Visitor Count</span>
+  <span id="busuanzi_value_site_uv"></span>
+  <span>Totalview</span>
+  <span id="busuanzi_value_site_pv"></span>
+</div>
+<!-- End Busuanzi Analytics -->
+
+
+  <!-- copyright -->
+  <div class="flex items-center gap-2">
+    <span>© 2022</span>
+    <iconify-icon width="18" icon="emojione-monotone:maple-leaf" ></iconify-icon>
+    <a href="https://github.com/xbmlz" target="_blank" rel="noopener noreferrer">xbmlz</a>
+  </div>
+  <!-- powered by -->
+  <div class="flex items-center gap-2">
+    <span>Powered by</span>
+    <a href="https://hexo.io/" target="_blank" rel="noopener noreferrer">Hexo</a>
+    <span>&</span>
+    <a href="https://github.com/xbmlz/hexo-theme-maple" target="_blank" rel="noopener noreferrer">Maple</a>
+  </div>
+
+</footer>
+
+  <iconify-icon class="fixed right-4 bottom-10 z-100 opacity-0" width="24" icon="ion:arrow-up-c" id="go-up"></iconify-icon>
+  
+<script src="/js/index.js"></script>
+
+
+
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+  });
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>
+  $(document).ready(() => {
+    const maraidConfig = {
+      theme: "default",
+      logLevel: 3,
+      flowchart: { curve: "linear" },
+      gantt: { axisFormat: "%m/%d/%Y" },
+      sequence: { actorMargin: 50 },
+    };
+    mermaid.initialize(maraidConfig);
+  });
+</script>
+
+
+
+<script src="/lib/fancybox/fancybox.umd.min.js"></script>
+
+<script>
+  $(document).ready(() => {
+    $('.post-content').each(function(i){
+      $(this).find('img').each(function(){
+        if ($(this).parent().hasClass('fancybox') || $(this).parent().is('a')) return;
+        var alt = this.alt;
+        if (alt) $(this).after('<span class="fancybox-alt">' + alt + '</span>');
+        $(this).wrap('<a class="fancybox-img" href="' + this.src + '" data-fancybox=\"gallery\" data-caption="' + alt + '"></a>')
+      });
+      $(this).find('.fancybox').each(function(){
+        $(this).attr('rel', 'article' + i);
+      });
+    });
+
+    Fancybox.bind('[data-fancybox="gallery"]', {
+        // options
+    })
+  })
+</script>
+
+
+</body>
+
+</html>
