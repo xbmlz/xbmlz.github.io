@@ -40,7 +40,12 @@ html.dark {
   border-collapse: collapse;
 }
 .post-content figure.highlight .gutter {
+  width: 10px;
   color: var(--hight-gutter);
+  padding: 0;
+}
+.post-content figure.highlight .code {
+  padding: 0;
 }
 .post-content figure.highlight pre {
   background: var(--highlight-background);
