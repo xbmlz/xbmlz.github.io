@@ -30,6 +30,9 @@ mathjax: true
 # echarts
 echarts: true
 
+# busuanzi
+busuanzi: true
+
 # mermaid
 mermaid:
   enable: true
@@ -44,4 +47,6 @@ giscus:
   category: General
   category_id: DIC_kwDOIgC6Zs4CSwIE
   mapping: pathname
+
+
 
