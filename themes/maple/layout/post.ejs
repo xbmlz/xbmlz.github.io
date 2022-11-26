@@ -10,7 +10,11 @@
       </p>
       <div>
         <section class="flex items-center gap-3 text-sm">
-          <time><%- date(page.date, "YYYY-MM-DD HH:mm:ss") %></time>
+          <time><%- date(page.updated, "YYYY-MM-DD HH:mm:ss") %></time>
+          <span class="text-gray-400">·</span>
+          <span><%= min2read(page.content) %> min</span>
+          <span class="text-gray-400">·</span>
+          <span><%= wordcount(page.content) %> words</span>
         </section>
       </div>
     </div>

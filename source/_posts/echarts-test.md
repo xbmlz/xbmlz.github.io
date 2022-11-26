@@ -3,7 +3,7 @@ title: Echarts Test
 date: 2022-07-25 14:00:50
 tags: plugin
 categories: plugin
-excerpt: Echarts Test
+excerpt: 测试Echarts是否成功渲染
 ---
 ## 折线图
 

@@ -5,7 +5,7 @@ tags:
 - markdown
 categories:
 - markdown
-excerpt: MathJax Test
+excerpt: 测试MathJax语法
 ---
 
 ## 行内公式与块公式
