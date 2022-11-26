@@ -21,57 +21,36 @@
 
 
 
-    <link rel="icon" href="/favicon.png">
+<link rel="icon" href="/favicon.png">
 
-
-<link rel="stylesheet" href="https://unpkg.com/nprogress@0.2.0/nprogress.css">
 
 
 <link rel="stylesheet" href="/css/main.css">
 
 
+<link rel="stylesheet" href="/lib/nprogress/nprogress.css">
 
-<script src="/js/jquery-3.4.1.min.js"></script>
 
+<link rel="stylesheet" href="/lib/fancybox/fancybox.min.css">
+
+
+
+<script src="/lib/jquery.min.js"></script>
+
+
+<script src="/lib/iconify-icon.min.js"></script>
+
+
+<script src="https://cdn.tailwindcss.com?plugins=typography,line-clamp"></script>
 <script>
-  (function () {
-    const prefersDark =
-      window.matchMedia &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const setting = localStorage.getItem("hexo-color-scheme") || "auto";
-    if (setting === "dark" || (prefersDark && setting !== "light"))
-      document.documentElement.classList.toggle("dark", true);
-  })();
-
-  window.onload = function () {
-    // init iconify icon
-    const isDark = document.documentElement.classList.contains("dark");
-
-    if (isDark) {
-      document
-        .getElementById("toggle-dark")
-        .setAttribute("icon", "ri:moon-line");
-    } else {
-      document
-        .getElementById("toggle-dark")
-        .setAttribute("icon", "ri:sun-line");
-    }
-
-    const toggleDark = () => {
-      const darkMode = document.documentElement.classList.toggle("dark");
-      localStorage.setItem("hexo-color-scheme", darkMode ? "dark" : "light");
-      document
-        .getElementById("toggle-dark")
-        .setAttribute("icon", darkMode ? "ri:moon-line" : "ri:sun-line");
-    };
-
-    document
-      .getElementById("toggle-dark")
-      .addEventListener("click", toggleDark);
-  };
+  tailwind.config = {
+    darkMode: 'class',
+  }
 </script>
 
-<script src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script>
+
+<script src="/lib/nprogress/nprogress.js"></script>
+
 <script>
   $(document).ready(() => {
     NProgress.configure({
@@ -95,13 +74,37 @@
   });
 </script>
 
-<script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.1/dist/iconify-icon.min.js"></script>
-<script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
 <script>
-  tailwind.config = {
-    darkMode: 'class',
-  }
+  (function () {
+    const prefersDark =
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const setting = localStorage.getItem("hexo-color-scheme") || "auto";
+    if (setting === "dark" || (prefersDark && setting !== "light"))
+      document.documentElement.classList.toggle("dark", true);
+  })();
+  window.onload = function () {
+    // init iconify icon
+    const isDark = document.documentElement.classList.contains("dark");
+    if (isDark) {
+      $("#toggle-dark").attr("icon", "ri:moon-line");
+    } else {
+      $("#toggle-dark").attr("icon", "ri:sun-line");
+    }
+
+    const toggleDark = () => {
+      console.log("toggle dark");
+      const darkMode = document.documentElement.classList.toggle("dark");
+      localStorage.setItem("hexo-color-scheme", darkMode ? "dark" : "light");
+      $("#toggle-dark").attr("icon", darkMode ? "ri:moon-line" : "ri:sun-line");
+    };
+
+    $("#toggle-dark").click(toggleDark);
+  };
 </script>
+
+
+
 
 <meta name="generator" content="Hexo 6.3.0"></head>
 <body class="font-sans bg-white dark:bg-zinc-900 text-gray-700 dark:text-gray-200">
@@ -118,43 +121,44 @@
         Categories
       </div>
       <div class="flex-1"></div>
-      <div class="flex items-center justify-center gap-3 sm:hidden">
-        <a class="w-5 h-5" title="theme">
+      <div class="flex items-center gap-3">
+        
+          <a class="hidden sm:flex" href="/archives">Posts</a>
+        
+          <a class="hidden sm:flex" href="/category">Categories</a>
+        
+          <a class="hidden sm:flex" href="/tag">Tags</a>
+        
+        
+          
+            <a class="w-5 h-5 hidden sm:flex" title="Github" target="_blank" rel="noopener" href="https://github.com/xbmlz">
+              <iconify-icon width="20" icon="ri:github-line"></iconify-icon>
+            </a>
+          
+            <a class="w-5 h-5 hidden sm:flex" title="ZhiHu" target="_blank" rel="noopener" href="https://github.com/xbmlz">
+              <iconify-icon width="20" icon="ri:zhihu-line"></iconify-icon>
+            </a>
+          
+            <a class="w-5 h-5 hidden sm:flex" title="Twitter" target="_blank" rel="noopener" href="https://github.com/xbmlz">
+              <iconify-icon width="20" icon="ri:twitter-line"></iconify-icon>
+            </a>
+          
+            <a class="w-5 h-5 hidden sm:flex" title="Weibo" target="_blank" rel="noopener" href="https://github.com/xbmlz">
+              <iconify-icon width="20" icon="ri:weibo-line"></iconify-icon>
+            </a>
+          
+        
+        <a class="w-5 h-5" title="toggle theme">
           <iconify-icon width="20" icon="ri:sun-line" id="toggle-dark"></iconify-icon>
         </a>
+      </div>
+      <div class="flex items-center justify-center gap-3 ml-3 sm:hidden">
         <span class="w-5 h-5" aria-hidden="true" role="img" id="open-menu">
           <iconify-icon width="20" icon="carbon:menu" ></iconify-icon>
         </span>
         <span class="w-5 h-5 hidden" aria-hidden="true" role="img" id="close-menu">
           <iconify-icon  width="20" icon="carbon:close" ></iconify-icon>
         </span>
-      </div>
-      <div class="flex items-center gap-3 hidden sm:flex">
-        
-          <a href="/archives">Posts</a>
-        
-        
-          
-            <a class="w-5 h-5" title="Github" target="_blank" rel="noopener" href="https://github.com/xbmlz">
-              <iconify-icon width="20" icon="ri:github-line"></iconify-icon>
-            </a>
-          
-            <a class="w-5 h-5" title="ZhiHu" target="_blank" rel="noopener" href="https://github.com/xbmlz">
-              <iconify-icon width="20" icon="ri:zhihu-line"></iconify-icon>
-            </a>
-          
-            <a class="w-5 h-5" title="Twitter" target="_blank" rel="noopener" href="https://github.com/xbmlz">
-              <iconify-icon width="20" icon="ri:twitter-line"></iconify-icon>
-            </a>
-          
-            <a class="w-5 h-5" title="Weibo" target="_blank" rel="noopener" href="https://github.com/xbmlz">
-              <iconify-icon width="20" icon="ri:weibo-line"></iconify-icon>
-            </a>
-          
-        
-        <a class="w-5 h-5" title="theme">
-          <iconify-icon width="20" icon="ri:sun-line" id="toggle-dark"></iconify-icon>
-        </a>
       </div>
     </nav>
   </div>
@@ -165,6 +169,14 @@
       
         <li class="nav-portfolio sm:mx-2 border-b sm:border-0 border-black/5 last:border-0 hover:text-main">
           <a href="/archives" class="flex h-12 sm:h-auto items-center">Posts</a>
+        </li>
+      
+        <li class="nav-portfolio sm:mx-2 border-b sm:border-0 border-black/5 last:border-0 hover:text-main">
+          <a href="/category" class="flex h-12 sm:h-auto items-center">Categories</a>
+        </li>
+      
+        <li class="nav-portfolio sm:mx-2 border-b sm:border-0 border-black/5 last:border-0 hover:text-main">
+          <a href="/tag" class="flex h-12 sm:h-auto items-center">Tags</a>
         </li>
       
     </ul>
@@ -313,23 +325,38 @@
 </section>
 
   </main>
-  <footer class="flex h-40 items-center justify-center text-gray-400 text-sm">
-  <div>
-    <span>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/xbmlz/hexo-theme-maple" target="_blank">Maple</a></span>
+  <footer class="flex flex-col h-40 items-center justify-center text-gray-400 text-sm">
+  <!-- busuanzi -->
+  
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- Busuanzi Analytics -->
+<div class="flex items-center gap-2">
+  <span>Visitor Count</span>
+  <span id="busuanzi_value_site_uv"></span>
+  <span>Totalview</span>
+  <span id="busuanzi_value_site_pv"></span>
+</div>
+<!-- End Busuanzi Analytics -->
+
+
+  <!-- copyright -->
+  <div class="flex items-center gap-2">
+    <span>© 2022</span>
+    <iconify-icon width="18" icon="emojione-monotone:maple-leaf" ></iconify-icon>
+    <a href="https://github.com/xbmlz" target="_blank" rel="noopener noreferrer">xbmlz</a>
   </div>
+  <!-- powered by -->
+  <div class="flex items-center gap-2">
+    <span>Powered by</span>
+    <a href="https://hexo.io/" target="_blank" rel="noopener noreferrer">Hexo</a>
+    <span>&</span>
+    <a href="https://github.com/xbmlz/hexo-theme-maple" target="_blank" rel="noopener noreferrer">Maple</a>
+  </div>
+
 </footer>
 
   <iconify-icon class="fixed right-4 bottom-10 z-100 opacity-0" width="24" icon="ion:arrow-up-c" id="go-up"></iconify-icon>
   
-<!-- 
-<script src="/js/jquery-3.4.1.min.js"></script>
- -->
-
-<script src="/js/index.js"></script>
-
-
-
-<!-- 
 <script async src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
@@ -362,9 +389,8 @@
   });
 </script>
 
- -->
 
-<!-- 
+
 <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
 <script>
   $(document).ready(() => {
@@ -379,10 +405,9 @@
   });
 </script>
 
- -->
 
-<!-- 
-<script src="/lib/fancybox/fancybox.umd.js"></script>
+
+<script src="/lib/fancybox/fancybox.umd.min.js"></script>
 
 <script>
   $(document).ready(() => {
@@ -403,7 +428,6 @@
     })
   })
 </script>
- -->
 
 
 </body>

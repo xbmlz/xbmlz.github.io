@@ -30,14 +30,14 @@ $(document).ready(function () {
       entries.forEach(function (entry) {
         if (entry.intersectionRatio > 0) {
           $("#header-title")
-          .css("opacity", "0")
-          .css("transform", "translate(0, -100%)")
-          .css("transition", "all 0.3s");
+            .css("opacity", "0")
+            .css("transform", "translate(0, -100%)")
+            .css("transition", "all 0.3s");
         } else {
           $("#header-title")
-          .css("opacity", "1")
-          .css("transform", "translate(0, 0)")
-          .css("transition", "all 0.3s");
+            .css("opacity", "1")
+            .css("transform", "translate(0, 0)")
+            .css("transition", "all 0.3s");
         }
       });
     }
