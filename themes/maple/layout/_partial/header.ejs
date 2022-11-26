@@ -11,31 +11,28 @@
         <%- page.title %>
       </div>
       <div class="flex-1"></div>
-      <div class="flex items-center justify-center gap-3 sm:hidden">
-        <a class="w-5 h-5" title="theme">
+      <div class="flex items-center gap-3">
+        <% for (var i in theme.nav){ %>
+          <a class="hidden sm:flex" href="<%- url_for(theme.nav[i]) %>"><%= i %></a>
+        <% } %>
+        <% if (theme.links !== undefined) { %>
+          <% for (var key in theme.links) { %>
+            <a class="w-5 h-5 hidden sm:flex" title="<%- key %>" href="<%= theme.links[key] %>">
+              <iconify-icon width="20" icon="ri:<%- key.toLowerCase() %>-line"></iconify-icon>
+            </a>
+          <% } %>
+        <% } %>
+        <a class="w-5 h-5" title="toggle theme">
           <iconify-icon width="20" icon="ri:sun-line" id="toggle-dark"></iconify-icon>
         </a>
+      </div>
+      <div class="flex items-center justify-center gap-3 ml-3 sm:hidden">
         <span class="w-5 h-5" aria-hidden="true" role="img" id="open-menu">
           <iconify-icon width="20" icon="carbon:menu" ></iconify-icon>
         </span>
         <span class="w-5 h-5 hidden" aria-hidden="true" role="img" id="close-menu">
           <iconify-icon  width="20" icon="carbon:close" ></iconify-icon>
         </span>
-      </div>
-      <div class="flex items-center gap-3 hidden sm:flex">
-        <% for (var i in theme.nav){ %>
-          <a href="<%- url_for(theme.nav[i]) %>"><%= i %></a>
-        <% } %>
-        <% if (theme.links !== undefined) { %>
-          <% for (var key in theme.links) { %>
-            <a class="w-5 h-5" title="<%- key %>" href="<%= theme.links[key] %>">
-              <iconify-icon width="20" icon="ri:<%- key.toLowerCase() %>-line"></iconify-icon>
-            </a>
-          <% } %>
-        <% } %>
-        <a class="w-5 h-5" title="theme">
-          <iconify-icon width="20" icon="ri:sun-line" id="toggle-dark"></iconify-icon>
-        </a>
       </div>
     </nav>
   </div>
