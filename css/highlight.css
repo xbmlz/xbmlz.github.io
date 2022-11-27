@@ -24,14 +24,14 @@ html.dark {
   --prism-property: #dd8e6e;
   --prism-decorator: #bd8f8f;
 }
-.post-content figure.highlight {
+figure.highlight {
   padding: 0 0.5em;
   margin: 0.5em 0;
   border-radius: 0.3em;
   overflow: auto;
   position: relative;
 }
-.post-content figure.highlight table {
+figure.highlight table {
   position: relative;
   margin: 0;
   padding: 0;
@@ -39,53 +39,54 @@ html.dark {
   width: 100%;
   border-collapse: collapse;
 }
-.post-content figure.highlight .gutter {
-  width: 10px;
-  color: var(--hight-gutter);
+figure.highlight .gutter {
+  display: none;
+}
+figure.highlight .code {
   padding: 0;
 }
-.post-content figure.highlight .code {
-  padding: 0;
+figure.highlight .code .line {
+  color: var(--highlight-foreground);
 }
-.post-content figure.highlight pre {
+figure.highlight pre {
   background: var(--highlight-background);
   margin: 0;
 }
-.post-content pre {
+pre {
   padding: 10px;
   overflow: auto;
   background: var(--highlight-background);
   color: var(--highlight-foreground);
   font-family: Menlo, Monaco, Consolas, Courier New, monospace;
 }
-.post-content pre code {
+pre code {
   padding: 0;
 }
-.post-content pre .comment {
+pre .comment {
   color: var(--highlight-comment);
 }
-.post-content pre .string {
+pre .string {
   color: var(--highlight-string);
 }
-.post-content pre .keyword,
-.post-content pre .doctag {
+pre .keyword,
+pre .doctag {
   color: var(--highlight-keyword);
 }
-.post-content pre .class_ {
+pre .class_ {
   color: var(--highlight-class);
 }
-.post-content pre .function_ {
+pre .function_ {
   color: var(--highlight-function);
 }
-.post-content pre .tag>.name {
+pre .tag>.name {
   color: var(--prism-builtin);
 }
-.post-content pre .attr {
+pre .attr {
   color: var(--prism-property);
 }
-.post-content pre .meta {
+pre .meta {
   color: var(--prism-decorator);
 }
-.post-content pre .params {
+pre .params {
   color: var(--prism-decorator);
 }
