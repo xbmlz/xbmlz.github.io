@@ -34,6 +34,9 @@
 <link rel="stylesheet" href="/lib/fancybox/fancybox.min.css">
 
 
+<link rel="stylesheet" href="/lib/tocbot/tocbot.min.css">
+
+
 
 <script src="/lib/jquery.min.js"></script>
 
@@ -185,7 +188,9 @@
 </div>
 
   <main class="p-12">
-    <article class="px-6 max-w-prose mx-auto md:px-0">
+    <!-- toc -->
+
+<section class="px-6 max-w-prose mx-auto md:px-0">
   <!-- header -->
   <header class="overflow-hidden pt-6 pb-6 md:pt-12">
     <div class="pt-4 md:pt-6">
@@ -197,7 +202,7 @@
       </p>
       <div>
         <section class="flex items-center gap-3 text-sm">
-          <time>2022-11-27 07:59:48</time>
+          <time>2022-11-27 09:11:12</time>
           <span class="text-gray-400">·</span>
           <span>1 min</span>
           <span class="text-gray-400">·</span>
@@ -207,7 +212,7 @@
     </div>
   </header>
   <!-- content -->
-  <article class="mt-10 prose dark:prose-invert post-content">
+  <article class="post-content mt-10 prose dark:prose-invert post-content">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
 <div id="aplayer"></div>
 <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
@@ -272,7 +277,7 @@ const ap = new APlayer({
 
 
   </div>
-</article>
+</section>
 
   </main>
   <footer class="flex flex-col h-40 items-center justify-center text-gray-400 text-sm">
@@ -386,6 +391,26 @@ const ap = new APlayer({
     })
   })
 </script>
+
+<!-- tocbot begin -->
+
+<script src="/lib/tocbot/tocbot.min.js"></script>
+
+<script>
+  $(document).ready(() => {
+      tocbot.init({
+        // Where to render the table of contents.
+        tocSelector: '.post-toc',
+        // Where to grab the headings to build the table of contents.
+        contentSelector: '.post-content',
+        // Which headings to grab inside of the contentSelector element.
+        headingSelector: 'h1, h2, h3',
+        // For headings inside relative or absolute positioned containers within content.
+        hasInnerContainers: true,
+    });
+  })
+</script>
+<!-- tocbot end -->
 
 
 </body>

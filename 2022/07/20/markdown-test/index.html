@@ -34,6 +34,9 @@
 <link rel="stylesheet" href="/lib/fancybox/fancybox.min.css">
 
 
+<link rel="stylesheet" href="/lib/tocbot/tocbot.min.css">
+
+
 
 <script src="/lib/jquery.min.js"></script>
 
@@ -185,7 +188,13 @@
 </div>
 
   <main class="p-12">
-    <article class="px-6 max-w-prose mx-auto md:px-0">
+    <!-- toc -->
+
+  <!-- tocbot -->
+<nav class="post-toc toc text-sm w-48 relative top-32 right-0 opacity-70 hidden lg:block" style="position: fixed !important;"></nav>
+
+
+<section class="px-6 max-w-prose mx-auto md:px-0">
   <!-- header -->
   <header class="overflow-hidden pt-6 pb-6 md:pt-12">
     <div class="pt-4 md:pt-6">
@@ -197,7 +206,7 @@
       </p>
       <div>
         <section class="flex items-center gap-3 text-sm">
-          <time>2022-11-27 07:59:48</time>
+          <time>2022-11-27 09:11:12</time>
           <span class="text-gray-400">·</span>
           <span>2 min</span>
           <span class="text-gray-400">·</span>
@@ -207,7 +216,7 @@
     </div>
   </header>
   <!-- content -->
-  <article class="mt-10 prose dark:prose-invert post-content">
+  <article class="post-content mt-10 prose dark:prose-invert post-content">
     <h2 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h2><p>不同数量的<code>#</code>可以完成不同的标题，如下：</p>
 <h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><h2 id="字体"><a href="#字体" class="headerlink" title="字体"></a>字体</h2><p>粗体、斜体、粗体和斜体，删除线，需要在文字前后加不同的标记符号。如下：</p>
 <p><strong>这个是粗体</strong></p>
@@ -336,7 +345,7 @@
 
 
   </div>
-</article>
+</section>
 
   </main>
   <footer class="flex flex-col h-40 items-center justify-center text-gray-400 text-sm">
@@ -450,6 +459,26 @@
     })
   })
 </script>
+
+<!-- tocbot begin -->
+
+<script src="/lib/tocbot/tocbot.min.js"></script>
+
+<script>
+  $(document).ready(() => {
+      tocbot.init({
+        // Where to render the table of contents.
+        tocSelector: '.post-toc',
+        // Where to grab the headings to build the table of contents.
+        contentSelector: '.post-content',
+        // Which headings to grab inside of the contentSelector element.
+        headingSelector: 'h1, h2, h3',
+        // For headings inside relative or absolute positioned containers within content.
+        hasInnerContainers: true,
+    });
+  })
+</script>
+<!-- tocbot end -->
 
 
 </body>

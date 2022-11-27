@@ -34,6 +34,9 @@
 <link rel="stylesheet" href="/lib/fancybox/fancybox.min.css">
 
 
+<link rel="stylesheet" href="/lib/tocbot/tocbot.min.css">
+
+
 
 <script src="/lib/jquery.min.js"></script>
 
@@ -185,7 +188,13 @@
 </div>
 
   <main class="p-12">
-    <article class="px-6 max-w-prose mx-auto md:px-0">
+    <!-- toc -->
+
+  <!-- tocbot -->
+<nav class="post-toc toc text-sm w-48 relative top-32 right-0 opacity-70 hidden lg:block" style="position: fixed !important;"></nav>
+
+
+<section class="px-6 max-w-prose mx-auto md:px-0">
   <!-- header -->
   <header class="overflow-hidden pt-6 pb-6 md:pt-12">
     <div class="pt-4 md:pt-6">
@@ -197,7 +206,7 @@
       </p>
       <div>
         <section class="flex items-center gap-3 text-sm">
-          <time>2022-11-27 07:59:48</time>
+          <time>2022-11-27 09:11:12</time>
           <span class="text-gray-400">·</span>
           <span>6 min</span>
           <span class="text-gray-400">·</span>
@@ -207,7 +216,7 @@
     </div>
   </header>
   <!-- content -->
-  <article class="mt-10 prose dark:prose-invert post-content">
+  <article class="post-content mt-10 prose dark:prose-invert post-content">
     <h2 id="Flowchart"><a href="#Flowchart" class="headerlink" title="Flowchart"></a>Flowchart</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">graph TD</span><br><span class="line">A[Hard] --&gt;|Text| B(Round)</span><br><span class="line">B --&gt; C&#123;Decision&#125;</span><br><span class="line">C --&gt;|One| D[Result 1]</span><br><span class="line">C --&gt;|Two| E[Result 2]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <pre class="mermaid">graph TD
@@ -426,7 +435,7 @@ test_entity - satisfies -> test_req</pre>
 
 
   </div>
-</article>
+</section>
 
   </main>
   <footer class="flex flex-col h-40 items-center justify-center text-gray-400 text-sm">
@@ -540,6 +549,26 @@ test_entity - satisfies -> test_req</pre>
     })
   })
 </script>
+
+<!-- tocbot begin -->
+
+<script src="/lib/tocbot/tocbot.min.js"></script>
+
+<script>
+  $(document).ready(() => {
+      tocbot.init({
+        // Where to render the table of contents.
+        tocSelector: '.post-toc',
+        // Where to grab the headings to build the table of contents.
+        contentSelector: '.post-content',
+        // Which headings to grab inside of the contentSelector element.
+        headingSelector: 'h1, h2, h3',
+        // For headings inside relative or absolute positioned containers within content.
+        hasInnerContainers: true,
+    });
+  })
+</script>
+<!-- tocbot end -->
 
 
 </body>
