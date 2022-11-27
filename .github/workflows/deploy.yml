@@ -21,6 +21,10 @@ jobs:
         npm install
         hexo clean
         hexo generate
+    
+    - name: Add CNAME file 
+      run: |
+        echo 'https://blog.xbmlz.com' > public/CNAME
 
     - name: Deploy 🚀
       uses: peaceiris/actions-gh-pages@v3
