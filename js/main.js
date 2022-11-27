@@ -1,6 +1,5 @@
-// open-menu
-$(document).ready(function () {
-  // 移动端导航
+// mobile menu
+function registerMobileMenu() {
   $("#open-menu").click(function () {
     // set height auto
     $("#menu-panel").css("height", "auto");
@@ -24,9 +23,12 @@ $(document).ready(function () {
     $("#open-menu").css("display", "block");
     $("#close-menu").css("display", "none");
   });
+}
 
+// header page title
+function registerHeaderPageTitle() {
   // 监听文章标题消失时，在header中显示文章标题
-  var observer = new IntersectionObserver(
+  const observer = new IntersectionObserver(
     function (entries) {
       entries.forEach(function (entry) {
         if (entry.intersectionRatio > 0) {
@@ -45,28 +47,30 @@ $(document).ready(function () {
     // { threshold: [0, 0.25, 0.5, 0.75, 1] }
   );
   observer.observe(document.querySelector("#article-title"));
+}
 
-  // go up show
+// go top
+function registerGoTop() {
   $(window).scroll(function () {
     if ($(window).scrollTop() > 200) {
-      // 添加动画过度
-      $("#go-up")
+      $("#go-top")
         .css("opacity", "1")
         .css("transform", "translateX(0) rotate(0)")
         .css("transition", "all 0.3s");
     } else {
-      $("#go-up")
+      $("#go-top")
         .css("opacity", "0")
         .css("transform", "translateX(50px) rotate(180deg)")
         .css("transition", "all 0.3s");
     }
   });
-  // go up
-  $("#go-up").click(function () {
+  $("#go-top").click(function () {
     $("html,body").animate({ scrollTop: 0 }, 500);
   });
+}
 
-  // code copy 在 figure.highlight 中添加复制按钮
+// copy code
+function registerCopyCode() {
   $("figure.highlight").each(function () {
     const copyIcon = $(
       "<iconify-icon id='copy-icon' width='20' icon='carbon:copy'></iconify-icon>"
@@ -133,4 +137,11 @@ $(document).ready(function () {
       }
     });
   });
+}
+
+$(document).ready(function () {
+  registerMobileMenu();
+  registerHeaderPageTitle();
+  registerGoTop();
+  registerCopyCode();
 });
