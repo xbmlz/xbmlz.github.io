@@ -1,4 +1,8 @@
-<article class="px-6 max-w-prose mx-auto md:px-0">
+<!-- toc -->
+<% if (toc(page.content).length !== 0) { %>
+  <%- partial('_partial/toc') %>
+<% } %>
+<section class="px-6 max-w-prose mx-auto md:px-0">
   <!-- header -->
   <header class="overflow-hidden pt-6 pb-6 md:pt-12">
     <div class="pt-4 md:pt-6">
@@ -20,7 +24,7 @@
     </div>
   </header>
   <!-- content -->
-  <article class="mt-10 prose dark:prose-invert post-content">
+  <article class="post-content mt-10 prose dark:prose-invert post-content">
     <%- page.content %>
   </article>
   <!-- tag -->
@@ -56,4 +60,4 @@
   <div class="article-comments mt-12">
     <%- partial('_plugins/giscus') %>
   </div>
-</article>
+</section>
