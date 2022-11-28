@@ -28,25 +28,21 @@ function registerMobileMenu() {
 // header page title
 function registerHeaderPageTitle() {
   // 监听文章标题消失时，在header中显示文章标题
-  const observer = new IntersectionObserver(
-    function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.intersectionRatio > 0) {
-          $("#header-title")
-            .css("opacity", "0")
-            .css("transform", "translate(0, -100%)")
-            .css("transition", "all 0.3s");
-        } else {
-          $("#header-title")
-            .css("opacity", "1")
-            .css("transform", "translate(0, 0)")
-            .css("transition", "all 0.3s");
-        }
-      });
+  new IntersectionObserver((entries) => {
+    if (entries[0].intersectionRatio <= 0) {
+      $("#header-title")
+        .css("opacity", "1")
+        .css("transform", "translate(0, 0)")
+        .css("transition", "all 0.3s");
+    } else {
+      $("#header-title")
+        .css("opacity", "0")
+        .css("transform", "translate(0, -100%)")
+        .css("transition", "all 0.3s");
     }
-    // { threshold: [0, 0.25, 0.5, 0.75, 1] }
-  );
-  observer.observe(document.querySelector("#article-title"));
+  }).observe($("#article-title")[0], {
+    threshold: 0,
+  });
 }
 
 // go top
