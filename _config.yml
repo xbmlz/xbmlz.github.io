@@ -13,8 +13,8 @@ timezone: ''
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: http://xbmlz.github.io
-permalink: :year/:month/:day/:title/
+url: https://blog.chenxc.me
+permalink: :title/
 permalink_defaults:
 pretty_urls:
   trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
@@ -102,4 +102,15 @@ theme: maple
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
-  type: ''
+  type: 'baidu_url_submitter'
+
+# sitemap
+sitemap:
+  path: sitemap.xml
+baidusitemap:
+  path: baidusitemap.xml
+baidu_url_submit:
+  count: 100
+  host: https://www.zhibdr.com
+  token: 414de38fVwHvxWpL
+  path: baidu_urls.txt
