@@ -17,7 +17,7 @@
 
 
 
-<title>Echarts Test | 记昨日书</title>
+<title>MathJax Test | 记昨日书</title>
 
 
 
@@ -109,7 +109,7 @@
 
 
 
-<meta name="generator" content="Hexo 6.3.0"></head>
+<meta name="generator" content="Hexo 6.2.0"></head>
 <body class="font-sans bg-white dark:bg-zinc-900 text-gray-700 dark:text-gray-200">
   <header class="fixed w-full px-5 py-1 z-10 backdrop-blur-xl backdrop-saturate-150 border-b border-black/5">
   <div class="max-auto">
@@ -121,7 +121,7 @@
         </h2>
       </a>
       <div id="header-title" class="opacity-0 md:ml-2 md:mt-[0.1rem] text-xs font-medium whitespace-nowrap overflow-hidden overflow-ellipsis">
-        Categories
+        
       </div>
       <div class="flex-1"></div>
       <div class="flex items-center gap-3">
@@ -199,305 +199,92 @@
   <header class="overflow-hidden pt-6 pb-6 md:pt-12">
     <div class="pt-4 md:pt-6">
       <h1 id="article-title" class="text-[2rem] font-bold leading-snug mb-4 md:mb-6 md:text-[2.6rem]">
-        Echarts Test
+        MathJax Test
       </h1>
       <p class="mb-6">
-        测试Echarts是否成功渲染
+        测试MathJax语法
       </p>
       <div>
         <section class="flex items-center gap-3 text-sm">
-          <time>2022-11-28 04:29:32</time>
+          <time>2022-12-01 07:04:42</time>
           <span class="text-gray-400">·</span>
-          <span>3 min</span>
+          <span>4 min</span>
           <span class="text-gray-400">·</span>
-          <span>583 words</span>
+          <span>897 words</span>
         </section>
       </div>
     </div>
   </header>
   <!-- content -->
   <article class="post-content mt-10 prose dark:prose-invert post-content">
-    <h2 id="折线图"><a href="#折线图" class="headerlink" title="折线图"></a>折线图</h2>
-  <div id="echarts-3326" style="width: 85%; height: 400px; margin: 0 auto"></div>
-  <script src="https://cdn.jsdelivr.net/npm/echarts@5.3.3/dist/echarts.min.js"></script>
-  <script>
-    var myChart = echarts.init(document.getElementById('echarts-3326'));
-    var option = {
-  xAxis: {
-    type: 'category',
-    data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-  },
-  yAxis: {
-    type: 'value'
-  },
-  series: [
-    {
-      data: [150, 230, 224, 218, 135, 147, 260],
-      type: 'line'
-    }
-  ]
-};
-    myChart.setOption(option);
-  </script>
-  
+    <h2 id="行内公式与块公式"><a href="#行内公式与块公式" class="headerlink" title="行内公式与块公式"></a>行内公式与块公式</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$f(x)=ax+b$ 这是行内公式.</span><br><span class="line">$$f(x)=ax+b$$ 这是块公式，单独占一行.</span><br></pre></td></tr></table></figure>
+<p>$f(x)&#x3D;ax+b$ 这是行内公式.<br>$$f(x)&#x3D;ax+b$$ 这是块公式，单独占一行.</p>
+<h2 id="上标与下标"><a href="#上标与下标" class="headerlink" title="上标与下标"></a>上标与下标</h2><p>使用 ^ 表示上标，使用 _ 表示下标，如果上下标的内容多于一个字符，可以使用大括号括起来：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$$f(x) = a<span class="emphasis">_1x^n + a_</span>2x^&#123;n-1&#125; + a<span class="emphasis">_3x^&#123;n-2&#125;$$</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="柱状图"><a href="#柱状图" class="headerlink" title="柱状图"></a>柱状图</h2>
-  <div id="echarts-7773" style="width: 85%; height: 400px; margin: 0 auto"></div>
-  <script src="https://cdn.jsdelivr.net/npm/echarts@5.3.3/dist/echarts.min.js"></script>
-  <script>
-    var myChart = echarts.init(document.getElementById('echarts-7773'));
-    var option = {
-  xAxis: {
-    type: 'category',
-    data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-  },
-  yAxis: {
-    type: 'value'
-  },
-  series: [
-    {
-      data: [120, 200, 150, 80, 70, 110, 130],
-      type: 'bar',
-      showBackground: true,
-      backgroundStyle: {
-        color: 'rgba(180, 180, 180, 0.2)'
-      }
-    }
-  ]
-};
-    myChart.setOption(option);
-  </script>
-  
+<p>显示效果：</p>
+<p>$$f(x) &#x3D; a_1x^n + a_2x^{n-1} + a_3x^{n-2}$$</p>
+<p>如果左右两边都有上下标可以使用 \sideset 语法：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$$\sideset&#123;^n<span class="emphasis">_k&#125;&#123;^x_</span>y&#125;a$$</span><br></pre></td></tr></table></figure>
 
-<h2 id="饼图"><a href="#饼图" class="headerlink" title="饼图"></a>饼图</h2>
-  <div id="echarts-7941" style="width: 85%; height: 400px; margin: 0 auto"></div>
-  <script src="https://cdn.jsdelivr.net/npm/echarts@5.3.3/dist/echarts.min.js"></script>
-  <script>
-    var myChart = echarts.init(document.getElementById('echarts-7941'));
-    var option = {
-  title: {
-    text: 'Referer of a Website',
-    subtext: 'Fake Data',
-    left: 'center'
-  },
-  tooltip: {
-    trigger: 'item'
-  },
-  legend: {
-    orient: 'vertical',
-    left: 'left'
-  },
-  series: [
-    {
-      name: 'Access From',
-      type: 'pie',
-      radius: '50%',
-      data: [
-        { value: 1048, name: 'Search Engine' },
-        { value: 735, name: 'Direct' },
-        { value: 580, name: 'Email' },
-        { value: 484, name: 'Union Ads' },
-        { value: 300, name: 'Video Ads' }
-      ],
-      emphasis: {
-        itemStyle: {
-          shadowBlur: 10,
-          shadowOffsetX: 0,
-          shadowColor: 'rgba(0, 0, 0, 0.5)'
-        }
-      }
-    }
-  ]
-};
-    myChart.setOption(option);
-  </script>
-  
+<p>显示效果：</p>
+<p>$$\sideset{^n_k}{^x_y}a$$</p>
+<h2 id="括号"><a href="#括号" class="headerlink" title="括号"></a>括号</h2><p>在 markdown 语法中，, $, {, }, _都是有特殊含义的，所以需要加\转义。小括号与方括号可以使用原始的() [] 大括号需要转义\也可以使用\lbrace和 \rbrace</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$$ \\&#123;x<span class="emphasis">*y\\&#125; $$  --注：大括号在markdown中已有一次转义，在mathjax中还要再转一次，所以为两个斜杠</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">$$\lbrace x*</span>y \rbrace$$</span><br></pre></td></tr></table></figure>
 
-<h2 id="散点图"><a href="#散点图" class="headerlink" title="散点图"></a>散点图</h2>
-  <div id="echarts-4411" style="width: 85%; height: 400px; margin: 0 auto"></div>
-  <script src="https://cdn.jsdelivr.net/npm/echarts@5.3.3/dist/echarts.min.js"></script>
-  <script>
-    var myChart = echarts.init(document.getElementById('echarts-4411'));
-    var option = {
-  xAxis: {},
-  yAxis: {},
-  series: [
-    {
-      symbolSize: 20,
-      data: [
-        [10.0, 8.04],
-        [8.07, 6.95],
-        [13.0, 7.58],
-        [9.05, 8.81],
-        [11.0, 8.33],
-        [14.0, 7.66],
-        [13.4, 6.81],
-        [10.0, 6.33],
-        [14.0, 8.96],
-        [12.5, 6.82],
-        [9.15, 7.2],
-        [11.5, 7.2],
-        [3.03, 4.23],
-        [12.2, 7.83],
-        [2.02, 4.47],
-        [1.05, 3.33],
-        [4.05, 4.96],
-        [6.03, 7.24],
-        [12.0, 6.26],
-        [12.0, 8.84],
-        [7.08, 5.82],
-        [5.02, 5.68]
-      ],
-      type: 'scatter'
-    }
-  ]
-};
-    myChart.setOption(option);
-  </script>
-  
+<p>显示效果：</p>
+<p>$$ \{x*y\} $$</p>
+<p>$$\lbrace x*y \rbrace$$</p>
+<p>原始符号不会随着公式大小自动缩放，需要使用 \left 和 \right 来实现自动缩放：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$$\left \lbrace \sum<span class="emphasis">_&#123;i=0&#125;^n i^3 = \frac&#123;(n^2+n)(n+6)&#125;&#123;9&#125; \right \rbrace$$</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="雷达图"><a href="#雷达图" class="headerlink" title="雷达图"></a>雷达图</h2>
-  <div id="echarts-8509" style="width: 85%; height: 400px; margin: 0 auto"></div>
-  <script src="https://cdn.jsdelivr.net/npm/echarts@5.3.3/dist/echarts.min.js"></script>
-  <script>
-    var myChart = echarts.init(document.getElementById('echarts-8509'));
-    var option = {
-  title: {
-    text: 'Basic Radar Chart'
-  },
-  legend: {
-    data: ['Allocated Budget', 'Actual Spending']
-  },
-  radar: {
-    // shape: 'circle',
-    indicator: [
-      { name: 'Sales', max: 6500 },
-      { name: 'Administration', max: 16000 },
-      { name: 'Information Technology', max: 30000 },
-      { name: 'Customer Support', max: 38000 },
-      { name: 'Development', max: 52000 },
-      { name: 'Marketing', max: 25000 }
-    ]
-  },
-  series: [
-    {
-      name: 'Budget vs spending',
-      type: 'radar',
-      data: [
-        {
-          value: [4200, 3000, 20000, 35000, 50000, 18000],
-          name: 'Allocated Budget'
-        },
-        {
-          value: [5000, 14000, 28000, 26000, 42000, 21000],
-          name: 'Actual Spending'
-        }
-      ]
-    }
-  ]
-};
-    myChart.setOption(option);
-  </script>
-  
+<p>显示效果：</p>
+<p>$$\left \lbrace \sum_{i&#x3D;0}^n i^3 &#x3D; \frac{(n^2+n)(n+6)}{9} \right \rbrace$$</p>
+<p>不使用\left 和 \right的效果：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$$ \lbrace \sum<span class="emphasis">_&#123;i=0&#125;^n i^3 = \frac&#123;(n^2+n)(n+6)&#125;&#123;9&#125;  \rbrace$$</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="盒须图"><a href="#盒须图" class="headerlink" title="盒须图"></a>盒须图</h2>
-  <div id="echarts-435" style="width: 85%; height: 400px; margin: 0 auto"></div>
-  <script src="https://cdn.jsdelivr.net/npm/echarts@5.3.3/dist/echarts.min.js"></script>
-  <script>
-    var myChart = echarts.init(document.getElementById('echarts-435'));
-    var option = {
-  title: [
-    {
-      text: 'Michelson-Morley Experiment',
-      left: 'center'
-    },
-    {
-      text: 'upper: Q3 + 1.5 * IQR \nlower: Q1 - 1.5 * IQR',
-      borderColor: '#999',
-      borderWidth: 1,
-      textStyle: {
-        fontWeight: 'normal',
-        fontSize: 14,
-        lineHeight: 20
-      },
-      left: '10%',
-      top: '90%'
-    }
-  ],
-  dataset: [
-    {
-      // prettier-ignore
-      source: [
-                [850, 740, 900, 1070, 930, 850, 950, 980, 980, 880, 1000, 980, 930, 650, 760, 810, 1000, 1000, 960, 960],
-                [960, 940, 960, 940, 880, 800, 850, 880, 900, 840, 830, 790, 810, 880, 880, 830, 800, 790, 760, 800],
-                [880, 880, 880, 860, 720, 720, 620, 860, 970, 950, 880, 910, 850, 870, 840, 840, 850, 840, 840, 840],
-                [890, 810, 810, 820, 800, 770, 760, 740, 750, 760, 910, 920, 890, 860, 880, 720, 840, 850, 850, 780],
-                [890, 840, 780, 810, 760, 810, 790, 810, 820, 850, 870, 870, 810, 740, 810, 940, 950, 800, 810, 870]
-            ]
-    },
-    {
-      transform: {
-        type: 'boxplot',
-        config: { itemNameFormatter: 'expr {value}' }
-      }
-    },
-    {
-      fromDatasetIndex: 1,
-      fromTransformResult: 1
-    }
-  ],
-  tooltip: {
-    trigger: 'item',
-    axisPointer: {
-      type: 'shadow'
-    }
-  },
-  grid: {
-    left: '10%',
-    right: '10%',
-    bottom: '15%'
-  },
-  xAxis: {
-    type: 'category',
-    boundaryGap: true,
-    nameGap: 30,
-    splitArea: {
-      show: false
-    },
-    splitLine: {
-      show: false
-    }
-  },
-  yAxis: {
-    type: 'value',
-    name: 'km/s minus 299,000',
-    splitArea: {
-      show: true
-    }
-  },
-  series: [
-    {
-      name: 'boxplot',
-      type: 'boxplot',
-      datasetIndex: 1
-    },
-    {
-      name: 'outlier',
-      type: 'scatter',
-      datasetIndex: 2
-    }
-  ]
-};
-    myChart.setOption(option);
-  </script>
-  
+<p>显示效果：</p>
+<p>$$ \lbrace \sum_{i&#x3D;0}^n i^3 &#x3D; \frac{(n^2+n)(n+6)}{9}  \rbrace$$</p>
+<h2 id="分数与开方"><a href="#分数与开方" class="headerlink" title="分数与开方"></a>分数与开方</h2><p>可以使用\frac 或者 \over 实现分数的显示：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$\frac xy$</span><br><span class="line">$ x+3 \over y+5 $</span><br></pre></td></tr></table></figure>
+
+<p>显示为 $\frac xy$ 和 $ x+3 \over y+5 $</p>
+<p>开方使用\sqrt:</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ \sqrt&#123;x^5&#125; $</span><br><span class="line">$ \sqrt[3]&#123;\frac xy&#125; $</span><br></pre></td></tr></table></figure>
+
+<p>显示为 $ \sqrt{x^5} $ 和 $ \sqrt[3]{\frac xy} $</p>
+<h2 id="求和与积分"><a href="#求和与积分" class="headerlink" title="求和与积分"></a>求和与积分</h2><p>求和使用\sum,可加上下标，积分使用\int可加上下限，双重积分用\iint</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ \sum<span class="emphasis">_&#123;i=0&#125;^n $</span></span><br><span class="line"><span class="emphasis">$ \int_</span>1^\infty $</span><br><span class="line">$ \iint<span class="emphasis">_1^\infty $</span></span><br></pre></td></tr></table></figure>
+
+<p>显示为 $ \sum_{i&#x3D;0}^n $ 和 $ \int_1^\infty $ 以及 $ \iint_1^\infty $</p>
+<h2 id="极限"><a href="#极限" class="headerlink" title="极限"></a>极限</h2><p>极限使用\lim:</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ \lim<span class="emphasis">_&#123;x \to 0&#125; $</span></span><br></pre></td></tr></table></figure>
+
+<p>显示为: $ \lim_{x \to 0} $</p>
+<h2 id="表格与矩阵"><a href="#表格与矩阵" class="headerlink" title="表格与矩阵"></a>表格与矩阵</h2><p>表格样式lcr表示居中，|加入一条竖线，\hline表示行间横线，列之间用&amp;分隔，行之间用\分隔：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$$\begin&#123;array&#125;&#123;c|lcr&#125;</span><br><span class="line">n &amp; \text&#123;Left&#125; &amp; \text&#123;Center&#125; &amp; \text&#123;Right&#125; \\\\</span><br><span class="line">\hline</span><br><span class="line">1 &amp; 1.97 &amp; 5 &amp; 12 \\\\</span><br><span class="line">2 &amp; -11 &amp; 19 &amp; -80 \\\\</span><br><span class="line">3 &amp; 70 &amp; 209 &amp; 1+i \\\\</span><br><span class="line">\end&#123;array&#125;$$</span><br></pre></td></tr></table></figure>
+
+<p>显示效果：</p>
+<p>$$\begin{array}{c|lcr}<br>n &amp; \text{Left} &amp; \text{Center} &amp; \text{Right} \\<br>\hline<br>1 &amp; 1.97 &amp; 5 &amp; 12 \\<br>2 &amp; -11 &amp; 19 &amp; -80 \\<br>3 &amp; 70 &amp; 209 &amp; 1+i \\<br>\end{array}$$</p>
+<h2 id="矩阵"><a href="#矩阵" class="headerlink" title="矩阵"></a>矩阵</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">$$\left[</span><br><span class="line">\begin&#123;matrix&#125;</span><br><span class="line">V<span class="emphasis">_A \\\\</span></span><br><span class="line"><span class="emphasis">V_</span>B \\\\</span><br><span class="line">V<span class="emphasis">_C \\\\</span></span><br><span class="line"><span class="emphasis">\end&#123;matrix&#125;</span></span><br><span class="line"><span class="emphasis">\right] =</span></span><br><span class="line"><span class="emphasis">\left[</span></span><br><span class="line"><span class="emphasis">\begin&#123;matrix&#125;</span></span><br><span class="line"><span class="emphasis">1 &amp; 0 &amp; L \\\\</span></span><br><span class="line"><span class="emphasis">-cosψ &amp; sinψ &amp; L \\\\</span></span><br><span class="line"><span class="emphasis">-cosψ &amp; -sinψ &amp; L</span></span><br><span class="line"><span class="emphasis">\end&#123;matrix&#125;</span></span><br><span class="line"><span class="emphasis">\right]</span></span><br><span class="line"><span class="emphasis">\left[</span></span><br><span class="line"><span class="emphasis">\begin&#123;matrix&#125;</span></span><br><span class="line"><span class="emphasis">V_</span>x \\\\</span><br><span class="line">V<span class="emphasis">_y \\\\</span></span><br><span class="line"><span class="emphasis">W \\\\</span></span><br><span class="line"><span class="emphasis">\end&#123;matrix&#125;</span></span><br><span class="line"><span class="emphasis">\right] $$</span></span><br></pre></td></tr></table></figure>
+
+<p>显示效果:</p>
+<p>$$\left[<br>\begin{matrix}<br>V_A \\<br>V_B \\<br>V_C \\<br>\end{matrix}<br>\right] &#x3D;<br>\left[<br>\begin{matrix}<br>1 &amp; 0 &amp; L \\<br>-cosψ &amp; sinψ &amp; L \\<br>-cosψ &amp; -sinψ &amp; L<br>\end{matrix}<br>\right]<br>\left[<br>\begin{matrix}<br>V_x \\<br>V_y \\<br>W \\<br>\end{matrix}<br>\right] $$</p>
+<hr>
+
+<p>综合测试：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$$\frac&#123;\partial u&#125;&#123;\partial t&#125;</span><br><span class="line">= h^2 \left( \frac&#123;\partial^2 u&#125;&#123;\partial x^2&#125; +</span><br><span class="line">\frac&#123;\partial^2 u&#125;&#123;\partial y^2&#125; +</span><br><span class="line">\frac&#123;\partial^2 u&#125;&#123;\partial z^2&#125;\right)$$</span><br><span class="line"></span><br><span class="line">$$ \lbrace \sum<span class="emphasis">_&#123;i=0&#125;^n i^3 = \frac&#123;(n^2+n)(n+6)&#125;&#123;9&#125;  \rbrace$$</span></span><br></pre></td></tr></table></figure>
+<p>显示效果:</p>
+<p>$$\frac{\partial u}{\partial t}<br>&#x3D; h^2 \left( \frac{\partial^2 u}{\partial x^2} +<br>\frac{\partial^2 u}{\partial y^2} +<br>\frac{\partial^2 u}{\partial z^2}\right)$$</p>
+<p>$$ \lbrace \sum_{i&#x3D;0}^n i^3 &#x3D; \frac{(n^2+n)(n+6)}{9}  \rbrace$$</p>
+
   </article>
   <!-- tag -->
   <div class="mt-12 pt-6 border-t border-gray-200">
     
       
         <span class="bg-gray-100 dark:bg-gray-700 px-2 py-1 m-1 text-sm rounded-md transition-colors hover:bg-gray-200">
-          <a href="/tags/plugin/">plugin</a>
+          <a href="/tags/markdown/">markdown</a>
         </span>
       
     
@@ -506,16 +293,16 @@
   <div class="flex justify-between mt-12 pt-6 border-t border-gray-200">
     <div>
       
-        <a href="/2022/08/22/li-zhi/" class="text-sm text-gray-400 hover:text-gray-500 flex justify-center">
+        <a href="/mariaid-test/" class="text-sm text-gray-400 hover:text-gray-500 flex justify-center">
           <iconify-icon width="20" icon="ri:arrow-left-s-line" data-inline="false"></iconify-icon>
-          南京市民李先生
+          Mariaid Test
         </a>
       
     </div>
     <div>
       
-        <a href="/2022/07/22/mariaid-test/" class="text-sm text-gray-400 hover:text-gray-500 flex justify-center">
-          Mariaid Test
+        <a href="/markdown-test/" class="text-sm text-gray-400 hover:text-gray-500 flex justify-center">
+          Markdown Test
           <iconify-icon width="20" icon="ri:arrow-right-s-line" data-inline="false"></iconify-icon>
         </a>
       

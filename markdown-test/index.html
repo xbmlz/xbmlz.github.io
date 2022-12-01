@@ -17,7 +17,7 @@
 
 
 
-<title>MathJax Test | 记昨日书</title>
+<title>Markdown Test | 记昨日书</title>
 
 
 
@@ -109,7 +109,7 @@
 
 
 
-<meta name="generator" content="Hexo 6.3.0"></head>
+<meta name="generator" content="Hexo 6.2.0"></head>
 <body class="font-sans bg-white dark:bg-zinc-900 text-gray-700 dark:text-gray-200">
   <header class="fixed w-full px-5 py-1 z-10 backdrop-blur-xl backdrop-saturate-150 border-b border-black/5">
   <div class="max-auto">
@@ -121,7 +121,7 @@
         </h2>
       </a>
       <div id="header-title" class="opacity-0 md:ml-2 md:mt-[0.1rem] text-xs font-medium whitespace-nowrap overflow-hidden overflow-ellipsis">
-        Categories
+        
       </div>
       <div class="flex-1"></div>
       <div class="flex items-center gap-3">
@@ -199,84 +199,105 @@
   <header class="overflow-hidden pt-6 pb-6 md:pt-12">
     <div class="pt-4 md:pt-6">
       <h1 id="article-title" class="text-[2rem] font-bold leading-snug mb-4 md:mb-6 md:text-[2.6rem]">
-        MathJax Test
+        Markdown Test
       </h1>
       <p class="mb-6">
-        测试MathJax语法
+        测试markdown语法
       </p>
       <div>
         <section class="flex items-center gap-3 text-sm">
-          <time>2022-11-28 04:29:32</time>
+          <time>2022-12-01 07:04:42</time>
           <span class="text-gray-400">·</span>
-          <span>4 min</span>
+          <span>2 min</span>
           <span class="text-gray-400">·</span>
-          <span>897 words</span>
+          <span>732 words</span>
         </section>
       </div>
     </div>
   </header>
   <!-- content -->
   <article class="post-content mt-10 prose dark:prose-invert post-content">
-    <h2 id="行内公式与块公式"><a href="#行内公式与块公式" class="headerlink" title="行内公式与块公式"></a>行内公式与块公式</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$f(x)=ax+b$ 这是行内公式.</span><br><span class="line">$$f(x)=ax+b$$ 这是块公式，单独占一行.</span><br></pre></td></tr></table></figure>
-<p>$f(x)&#x3D;ax+b$ 这是行内公式.<br>$$f(x)&#x3D;ax+b$$ 这是块公式，单独占一行.</p>
-<h2 id="上标与下标"><a href="#上标与下标" class="headerlink" title="上标与下标"></a>上标与下标</h2><p>使用 ^ 表示上标，使用 _ 表示下标，如果上下标的内容多于一个字符，可以使用大括号括起来：</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$$f(x) = a<span class="emphasis">_1x^n + a_</span>2x^&#123;n-1&#125; + a<span class="emphasis">_3x^&#123;n-2&#125;$$</span></span><br></pre></td></tr></table></figure>
-
-<p>显示效果：</p>
-<p>$$f(x) &#x3D; a_1x^n + a_2x^{n-1} + a_3x^{n-2}$$</p>
-<p>如果左右两边都有上下标可以使用 \sideset 语法：</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$$\sideset&#123;^n<span class="emphasis">_k&#125;&#123;^x_</span>y&#125;a$$</span><br></pre></td></tr></table></figure>
-
-<p>显示效果：</p>
-<p>$$\sideset{^n_k}{^x_y}a$$</p>
-<h2 id="括号"><a href="#括号" class="headerlink" title="括号"></a>括号</h2><p>在 markdown 语法中，, $, {, }, _都是有特殊含义的，所以需要加\转义。小括号与方括号可以使用原始的() [] 大括号需要转义\也可以使用\lbrace和 \rbrace</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$$ \\&#123;x<span class="emphasis">*y\\&#125; $$  --注：大括号在markdown中已有一次转义，在mathjax中还要再转一次，所以为两个斜杠</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">$$\lbrace x*</span>y \rbrace$$</span><br></pre></td></tr></table></figure>
-
-<p>显示效果：</p>
-<p>$$ \{x*y\} $$</p>
-<p>$$\lbrace x*y \rbrace$$</p>
-<p>原始符号不会随着公式大小自动缩放，需要使用 \left 和 \right 来实现自动缩放：</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$$\left \lbrace \sum<span class="emphasis">_&#123;i=0&#125;^n i^3 = \frac&#123;(n^2+n)(n+6)&#125;&#123;9&#125; \right \rbrace$$</span></span><br></pre></td></tr></table></figure>
-
-<p>显示效果：</p>
-<p>$$\left \lbrace \sum_{i&#x3D;0}^n i^3 &#x3D; \frac{(n^2+n)(n+6)}{9} \right \rbrace$$</p>
-<p>不使用\left 和 \right的效果：</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$$ \lbrace \sum<span class="emphasis">_&#123;i=0&#125;^n i^3 = \frac&#123;(n^2+n)(n+6)&#125;&#123;9&#125;  \rbrace$$</span></span><br></pre></td></tr></table></figure>
-
-<p>显示效果：</p>
-<p>$$ \lbrace \sum_{i&#x3D;0}^n i^3 &#x3D; \frac{(n^2+n)(n+6)}{9}  \rbrace$$</p>
-<h2 id="分数与开方"><a href="#分数与开方" class="headerlink" title="分数与开方"></a>分数与开方</h2><p>可以使用\frac 或者 \over 实现分数的显示：</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$\frac xy$</span><br><span class="line">$ x+3 \over y+5 $</span><br></pre></td></tr></table></figure>
-
-<p>显示为 $\frac xy$ 和 $ x+3 \over y+5 $</p>
-<p>开方使用\sqrt:</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ \sqrt&#123;x^5&#125; $</span><br><span class="line">$ \sqrt[3]&#123;\frac xy&#125; $</span><br></pre></td></tr></table></figure>
-
-<p>显示为 $ \sqrt{x^5} $ 和 $ \sqrt[3]{\frac xy} $</p>
-<h2 id="求和与积分"><a href="#求和与积分" class="headerlink" title="求和与积分"></a>求和与积分</h2><p>求和使用\sum,可加上下标，积分使用\int可加上下限，双重积分用\iint</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ \sum<span class="emphasis">_&#123;i=0&#125;^n $</span></span><br><span class="line"><span class="emphasis">$ \int_</span>1^\infty $</span><br><span class="line">$ \iint<span class="emphasis">_1^\infty $</span></span><br></pre></td></tr></table></figure>
-
-<p>显示为 $ \sum_{i&#x3D;0}^n $ 和 $ \int_1^\infty $ 以及 $ \iint_1^\infty $</p>
-<h2 id="极限"><a href="#极限" class="headerlink" title="极限"></a>极限</h2><p>极限使用\lim:</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ \lim<span class="emphasis">_&#123;x \to 0&#125; $</span></span><br></pre></td></tr></table></figure>
-
-<p>显示为: $ \lim_{x \to 0} $</p>
-<h2 id="表格与矩阵"><a href="#表格与矩阵" class="headerlink" title="表格与矩阵"></a>表格与矩阵</h2><p>表格样式lcr表示居中，|加入一条竖线，\hline表示行间横线，列之间用&amp;分隔，行之间用\分隔：</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$$\begin&#123;array&#125;&#123;c|lcr&#125;</span><br><span class="line">n &amp; \text&#123;Left&#125; &amp; \text&#123;Center&#125; &amp; \text&#123;Right&#125; \\\\</span><br><span class="line">\hline</span><br><span class="line">1 &amp; 1.97 &amp; 5 &amp; 12 \\\\</span><br><span class="line">2 &amp; -11 &amp; 19 &amp; -80 \\\\</span><br><span class="line">3 &amp; 70 &amp; 209 &amp; 1+i \\\\</span><br><span class="line">\end&#123;array&#125;$$</span><br></pre></td></tr></table></figure>
-
-<p>显示效果：</p>
-<p>$$\begin{array}{c|lcr}<br>n &amp; \text{Left} &amp; \text{Center} &amp; \text{Right} \\<br>\hline<br>1 &amp; 1.97 &amp; 5 &amp; 12 \\<br>2 &amp; -11 &amp; 19 &amp; -80 \\<br>3 &amp; 70 &amp; 209 &amp; 1+i \\<br>\end{array}$$</p>
-<h2 id="矩阵"><a href="#矩阵" class="headerlink" title="矩阵"></a>矩阵</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">$$\left[</span><br><span class="line">\begin&#123;matrix&#125;</span><br><span class="line">V<span class="emphasis">_A \\\\</span></span><br><span class="line"><span class="emphasis">V_</span>B \\\\</span><br><span class="line">V<span class="emphasis">_C \\\\</span></span><br><span class="line"><span class="emphasis">\end&#123;matrix&#125;</span></span><br><span class="line"><span class="emphasis">\right] =</span></span><br><span class="line"><span class="emphasis">\left[</span></span><br><span class="line"><span class="emphasis">\begin&#123;matrix&#125;</span></span><br><span class="line"><span class="emphasis">1 &amp; 0 &amp; L \\\\</span></span><br><span class="line"><span class="emphasis">-cosψ &amp; sinψ &amp; L \\\\</span></span><br><span class="line"><span class="emphasis">-cosψ &amp; -sinψ &amp; L</span></span><br><span class="line"><span class="emphasis">\end&#123;matrix&#125;</span></span><br><span class="line"><span class="emphasis">\right]</span></span><br><span class="line"><span class="emphasis">\left[</span></span><br><span class="line"><span class="emphasis">\begin&#123;matrix&#125;</span></span><br><span class="line"><span class="emphasis">V_</span>x \\\\</span><br><span class="line">V<span class="emphasis">_y \\\\</span></span><br><span class="line"><span class="emphasis">W \\\\</span></span><br><span class="line"><span class="emphasis">\end&#123;matrix&#125;</span></span><br><span class="line"><span class="emphasis">\right] $$</span></span><br></pre></td></tr></table></figure>
-
-<p>显示效果:</p>
-<p>$$\left[<br>\begin{matrix}<br>V_A \\<br>V_B \\<br>V_C \\<br>\end{matrix}<br>\right] &#x3D;<br>\left[<br>\begin{matrix}<br>1 &amp; 0 &amp; L \\<br>-cosψ &amp; sinψ &amp; L \\<br>-cosψ &amp; -sinψ &amp; L<br>\end{matrix}<br>\right]<br>\left[<br>\begin{matrix}<br>V_x \\<br>V_y \\<br>W \\<br>\end{matrix}<br>\right] $$</p>
+    <h2 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h2><p>不同数量的<code>#</code>可以完成不同的标题，如下：</p>
+<h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><h2 id="字体"><a href="#字体" class="headerlink" title="字体"></a>字体</h2><p>粗体、斜体、粗体和斜体，删除线，需要在文字前后加不同的标记符号。如下：</p>
+<p><strong>这个是粗体</strong></p>
+<p><em>这个是斜体</em></p>
+<p><em><strong>这个是粗体加斜体</strong></em></p>
+<p><del>这里想用删除线</del></p>
+<p>注：如果想给字体换颜色、字体或者居中显示，需要使用内嵌HTML来实现。</p>
+<h2 id="无序列表"><a href="#无序列表" class="headerlink" title="无序列表"></a>无序列表</h2><p>无序列表的使用，在符号<code>-</code>后加空格使用。如下：</p>
+<ul>
+<li>无序列表 1</li>
+<li>无序列表 2</li>
+<li>无序列表 3</li>
+</ul>
+<p>如果要控制列表的层级，则需要在符号<code>-</code>前使用空格。如下：</p>
+<ul>
+<li>无序列表 1</li>
+<li>无序列表 2<ul>
+<li>无序列表 2.1</li>
+<li>无序列表 2.2<ul>
+<li>无序列表 2.1.1</li>
+<li>无序列表 2.1.2</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="有序列表"><a href="#有序列表" class="headerlink" title="有序列表"></a>有序列表</h2><p>有序列表的使用，在数字及符号<code>.</code>后加空格后输入内容，如下：</p>
+<ol>
+<li>有序列表 1</li>
+<li>有序列表 2</li>
+<li>有序列表 3</li>
+</ol>
+<h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><p>引用的格式是在符号<code>&gt;</code>后面书写文字。如下：</p>
+<blockquote>
+<p>读一本好书，就是在和高尚的人谈话。 ——歌德</p>
+</blockquote>
+<blockquote>
+<p>雇用制度对工人不利，但工人根本无力摆脱这个制度。 ——阮一峰</p>
+</blockquote>
+<h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><p>微信公众号仅支持公众号文章链接，即域名为<code>https://mp.weixin.qq.com/</code>的合法链接。使用方法如下所示：</p>
+<p>对于该论述，欢迎读者查阅之前发过的文章，<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/s5IhxV2ooX3JN_X416nidA">你是《未来世界的幸存者》么？</a><br><a id="jump_8"></a></p>
+<h2 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h2><p>插入图片，格式如下：</p>
+<p><img src="https://www.nginx.cn/wp-content/uploads/2020/03/qrcode_for_gh_82cf87d482f0_258.jpg" alt="这里写图片描述"></p>
+<p>支持 jpg、png、gif、svg 等图片格式，<strong>其中 svg 文件仅可在微信公众平台中使用</strong>，svg 文件示例如下：</p>
+<p><img src="https://markdown.com.cn/images/i-am-svg.svg"></p>
+<p>支持图片<strong>拖拽和截图粘贴</strong>到编辑器中。</p>
+<p>注：支持图片 <em><strong>拖拽和截图粘贴</strong></em> 到编辑器中，仅支持 https 的图片，图片粘贴到微信时会自动上传微信服务器。</p>
+<h2 id="分割线"><a href="#分割线" class="headerlink" title="分割线"></a>分割线</h2><p>可以在一行中用三个以上的减号来建立一个分隔线，同时需要在分隔线的上面空一行。如下：</p>
 <hr>
-
-<p>综合测试：</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$$\frac&#123;\partial u&#125;&#123;\partial t&#125;</span><br><span class="line">= h^2 \left( \frac&#123;\partial^2 u&#125;&#123;\partial x^2&#125; +</span><br><span class="line">\frac&#123;\partial^2 u&#125;&#123;\partial y^2&#125; +</span><br><span class="line">\frac&#123;\partial^2 u&#125;&#123;\partial z^2&#125;\right)$$</span><br><span class="line"></span><br><span class="line">$$ \lbrace \sum<span class="emphasis">_&#123;i=0&#125;^n i^3 = \frac&#123;(n^2+n)(n+6)&#125;&#123;9&#125;  \rbrace$$</span></span><br></pre></td></tr></table></figure>
-<p>显示效果:</p>
-<p>$$\frac{\partial u}{\partial t}<br>&#x3D; h^2 \left( \frac{\partial^2 u}{\partial x^2} +<br>\frac{\partial^2 u}{\partial y^2} +<br>\frac{\partial^2 u}{\partial z^2}\right)$$</p>
-<p>$$ \lbrace \sum_{i&#x3D;0}^n i^3 &#x3D; \frac{(n^2+n)(n+6)}{9}  \rbrace$$</p>
+<h2 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h2><p>可以使用冒号来定义表格的对齐方式，如下：</p>
+<table>
+<thead>
+<tr>
+<th align="left">姓名</th>
+<th align="center">年龄</th>
+<th align="right">工作</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">小可爱</td>
+<td align="center">18</td>
+<td align="right">吃可爱多</td>
+</tr>
+<tr>
+<td align="left">小小勇敢</td>
+<td align="center">20</td>
+<td align="right">爬棵勇敢树</td>
+</tr>
+<tr>
+<td align="left">小小小机智</td>
+<td align="center">22</td>
+<td align="right">看一本机智书</td>
+</tr>
+</tbody></table>
+<h2 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h2><blockquote>
+<p>支持平台：微信代码主题仅支持微信公众号！其他主题无限制。</p>
+</blockquote>
+<p>如果在一个行内需要引用代码，只要用反引号引起来就好，如下：</p>
+<p>Use the <code>printf()</code> function.</p>
+<p>在需要高亮的代码块的前一行及后一行使用三个反引号，同时<strong>第一行反引号后面表示代码块所使用的语言</strong>，如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// FileName: HelloWorld.java</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HelloWorld</span> &#123;</span><br><span class="line">  <span class="comment">// Java 入口程序，程序从此入口</span></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;Hello,World!&quot;</span>); <span class="comment">// 向控制台打印一条语句</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
   </article>
   <!-- tag -->
@@ -293,18 +314,13 @@
   <div class="flex justify-between mt-12 pt-6 border-t border-gray-200">
     <div>
       
-        <a href="/2022/07/22/mariaid-test/" class="text-sm text-gray-400 hover:text-gray-500 flex justify-center">
+        <a href="/math-jax-test/" class="text-sm text-gray-400 hover:text-gray-500 flex justify-center">
           <iconify-icon width="20" icon="ri:arrow-left-s-line" data-inline="false"></iconify-icon>
-          Mariaid Test
+          MathJax Test
         </a>
       
     </div>
     <div>
-      
-        <a href="/2022/07/20/markdown-test/" class="text-sm text-gray-400 hover:text-gray-500 flex justify-center">
-          Markdown Test
-          <iconify-icon width="20" icon="ri:arrow-right-s-line" data-inline="false"></iconify-icon>
-        </a>
       
     </div>
   </div>

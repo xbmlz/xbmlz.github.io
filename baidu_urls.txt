@@ -1,0 +1,6 @@
+https://blog.chenxc.me/centos-mariadb-install/
+https://blog.chenxc.me/li-zhi/
+https://blog.chenxc.me/echarts-test/
+https://blog.chenxc.me/mariaid-test/
+https://blog.chenxc.me/math-jax-test/
+https://blog.chenxc.me/markdown-test/
