@@ -40,7 +40,7 @@ external_link:
   exclude: ''
 filename_case: 0
 render_drafts: false
-post_asset_folder: false
+post_asset_folder: true
 relative_link: false
 future: true
 highlight:
@@ -103,6 +103,10 @@ theme: maple
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: 'baidu_url_submitter'
+
+marked:
+  prependRoot: true
+  postAsset: true
 
 # sitemap
 sitemap:
