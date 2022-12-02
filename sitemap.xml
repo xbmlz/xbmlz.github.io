@@ -4,7 +4,7 @@
   <url>
     <loc>https://blog.chenxc.me/centos-mariadb-install/</loc>
     
-    <lastmod>2022-12-01</lastmod>
+    <lastmod>2022-12-02</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -13,7 +13,7 @@
   <url>
     <loc>https://blog.chenxc.me/echarts-test/</loc>
     
-    <lastmod>2022-12-01</lastmod>
+    <lastmod>2022-12-02</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -22,7 +22,7 @@
   <url>
     <loc>https://blog.chenxc.me/li-zhi/</loc>
     
-    <lastmod>2022-12-01</lastmod>
+    <lastmod>2022-12-02</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -31,7 +31,7 @@
   <url>
     <loc>https://blog.chenxc.me/mariaid-test/</loc>
     
-    <lastmod>2022-12-01</lastmod>
+    <lastmod>2022-12-02</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -40,7 +40,7 @@
   <url>
     <loc>https://blog.chenxc.me/markdown-test/</loc>
     
-    <lastmod>2022-12-01</lastmod>
+    <lastmod>2022-12-02</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -49,7 +49,7 @@
   <url>
     <loc>https://blog.chenxc.me/math-jax-test/</loc>
     
-    <lastmod>2022-12-01</lastmod>
+    <lastmod>2022-12-02</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -58,7 +58,7 @@
   <url>
     <loc>https://blog.chenxc.me/baidu_verify_code-vx02UbxaVv.html</loc>
     
-    <lastmod>2022-12-01</lastmod>
+    <lastmod>2022-12-02</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -67,7 +67,7 @@
   <url>
     <loc>https://blog.chenxc.me/google2fd8e573e4e5ca0a.html</loc>
     
-    <lastmod>2022-12-01</lastmod>
+    <lastmod>2022-12-02</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -76,7 +76,7 @@
   <url>
     <loc>https://blog.chenxc.me/category/index.html</loc>
     
-    <lastmod>2022-12-01</lastmod>
+    <lastmod>2022-12-02</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -85,7 +85,7 @@
   <url>
     <loc>https://blog.chenxc.me/tag/index.html</loc>
     
-    <lastmod>2022-12-01</lastmod>
+    <lastmod>2022-12-02</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -94,7 +94,7 @@
 
   <url>
     <loc>https://blog.chenxc.me/</loc>
-    <lastmod>2022-12-01</lastmod>
+    <lastmod>2022-12-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -102,35 +102,35 @@
   
   <url>
     <loc>https://blog.chenxc.me/tags/%E5%BC%80%E5%8F%91/</loc>
-    <lastmod>2022-12-01</lastmod>
+    <lastmod>2022-12-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.chenxc.me/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
-    <lastmod>2022-12-01</lastmod>
+    <lastmod>2022-12-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.chenxc.me/tags/plugin/</loc>
-    <lastmod>2022-12-01</lastmod>
+    <lastmod>2022-12-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.chenxc.me/tags/music/</loc>
-    <lastmod>2022-12-01</lastmod>
+    <lastmod>2022-12-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.chenxc.me/tags/markdown/</loc>
-    <lastmod>2022-12-01</lastmod>
+    <lastmod>2022-12-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -139,35 +139,35 @@
   
   <url>
     <loc>https://blog.chenxc.me/categories/%E5%BC%80%E5%8F%91/</loc>
-    <lastmod>2022-12-01</lastmod>
+    <lastmod>2022-12-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.chenxc.me/categories/plugin/</loc>
-    <lastmod>2022-12-01</lastmod>
+    <lastmod>2022-12-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.chenxc.me/categories/music/</loc>
-    <lastmod>2022-12-01</lastmod>
+    <lastmod>2022-12-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.chenxc.me/categories/markdown/</loc>
-    <lastmod>2022-12-01</lastmod>
+    <lastmod>2022-12-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.chenxc.me/categories/music/%E6%9D%8E%E5%BF%97/</loc>
-    <lastmod>2022-12-01</lastmod>
+    <lastmod>2022-12-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
