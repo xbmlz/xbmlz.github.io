@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <meta name="author" content="xbmlz">
+
+
+  <meta name="subtitle" content="忙碌把时光缩短, 苦难把岁月拉长">
+
+
+
+
+<title>MariaDB 表分区 | 记昨日书</title>
+
+
+
+<link rel="icon" href="/favicon.png">
+
+
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/nprogress/nprogress.css">
+
+
+<link rel="stylesheet" href="/lib/fancybox/fancybox.min.css">
+
+
+<link rel="stylesheet" href="/lib/tocbot/tocbot.min.css">
+
+
+
+<script src="/lib/jquery.min.js"></script>
+
+
+<script src="/lib/iconify-icon.min.js"></script>
+
+
+<script src="https://cdn.tailwindcss.com?plugins=typography,line-clamp"></script>
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+  }
+</script>
+
+
+<script src="/lib/nprogress/nprogress.js"></script>
+
+<script>
+  $(document).ready(() => {
+    NProgress.configure({
+      showSpinner: false,
+    });
+    NProgress.start();
+    $("#nprogress .bar").css({
+      background: "#de7441",
+    });
+    $("#nprogress .peg").css({
+      "box-shadow": "0 0 2px #de7441, 0 0 4px #de7441",
+    });
+    $("#nprogress .spinner-icon").css({
+      "border-top-color": "#de7441",
+      "border-left-color": "#de7441",
+    });
+    setTimeout(function () {
+      NProgress.done();
+      $(".fade").removeClass("out");
+    }, 800);
+  });
+</script>
+
+<script>
+  (function () {
+    const prefersDark =
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const setting = localStorage.getItem("hexo-color-scheme") || "auto";
+    if (setting === "dark" || (prefersDark && setting !== "light"))
+      document.documentElement.classList.toggle("dark", true);
+  })();
+  window.onload = function () {
+    // init iconify icon
+    const isDark = document.documentElement.classList.contains("dark");
+    if (isDark) {
+      $("#toggle-dark").attr("icon", "ri:moon-line");
+    } else {
+      $("#toggle-dark").attr("icon", "ri:sun-line");
+    }
+
+    const toggleDark = () => {
+      console.log("toggle dark");
+      const darkMode = document.documentElement.classList.toggle("dark");
+      localStorage.setItem("hexo-color-scheme", darkMode ? "dark" : "light");
+      $("#toggle-dark").attr("icon", darkMode ? "ri:moon-line" : "ri:sun-line");
+    };
+
+    $("#toggle-dark").click(toggleDark);
+  };
+</script>
+
+
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body class="font-sans bg-white dark:bg-zinc-900 text-gray-700 dark:text-gray-200">
+  <header class="fixed w-full px-5 py-1 z-10 backdrop-blur-xl backdrop-saturate-150 border-b border-black/5">
+  <div class="max-auto">
+    <nav class="flex items-center text-base">
+      <a href="/" class="group">
+        <h2 class="font-medium tracking-tighterp text-l p-2">
+          <img class="w-5 mr-2 inline-block transition-transform group-hover:rotate-[30deg]" src="/images/logo.svg" alt="记昨日书" />
+          记昨日书
+        </h2>
+      </a>
+      <div id="header-title" class="opacity-0 md:ml-2 md:mt-[0.1rem] text-xs font-medium whitespace-nowrap overflow-hidden overflow-ellipsis">
+        Categories
+      </div>
+      <div class="flex-1"></div>
+      <div class="flex items-center gap-3">
+        
+          <a class="hidden sm:flex" href="/archives">Posts</a>
+        
+          <a class="hidden sm:flex" href="/category">Categories</a>
+        
+          <a class="hidden sm:flex" href="/tag">Tags</a>
+        
+        
+          
+            <a class="w-5 h-5 hidden sm:flex" title="Github" target="_blank" rel="noopener" href="https://github.com/xbmlz">
+              <iconify-icon width="20" icon="ri:github-line"></iconify-icon>
+            </a>
+          
+            <a class="w-5 h-5 hidden sm:flex" title="ZhiHu" target="_blank" rel="noopener" href="https://github.com/xbmlz">
+              <iconify-icon width="20" icon="ri:zhihu-line"></iconify-icon>
+            </a>
+          
+            <a class="w-5 h-5 hidden sm:flex" title="Twitter" target="_blank" rel="noopener" href="https://github.com/xbmlz">
+              <iconify-icon width="20" icon="ri:twitter-line"></iconify-icon>
+            </a>
+          
+            <a class="w-5 h-5 hidden sm:flex" title="Weibo" target="_blank" rel="noopener" href="https://github.com/xbmlz">
+              <iconify-icon width="20" icon="ri:weibo-line"></iconify-icon>
+            </a>
+          
+        
+        <a class="w-5 h-5" title="toggle theme">
+          <iconify-icon width="20" icon="ri:sun-line" id="toggle-dark"></iconify-icon>
+        </a>
+      </div>
+      <div class="flex items-center justify-center gap-3 ml-3 sm:hidden">
+        <span class="w-5 h-5" aria-hidden="true" role="img" id="open-menu">
+          <iconify-icon width="20" icon="carbon:menu" ></iconify-icon>
+        </span>
+        <span class="w-5 h-5 hidden" aria-hidden="true" role="img" id="close-menu">
+          <iconify-icon  width="20" icon="carbon:close" ></iconify-icon>
+        </span>
+      </div>
+    </nav>
+  </div>
+</header>
+<div id="menu-panel" class="h-0 overflow-hidden sm:hidden fixed left-0 right-0 top-12 bottom-0 z-10">
+  <div id="menu-content" class="relative z-20 bg-white/80 px-6 sm:px-8 py-2 backdrop-blur-xl -translate-y-full transition-transform duration-300">
+    <ul class="nav flex flex-col sm:flex-row text-sm font-medium">
+      
+        <li class="nav-portfolio sm:mx-2 border-b sm:border-0 border-black/5 last:border-0 hover:text-main">
+          <a href="/archives" class="flex h-12 sm:h-auto items-center">Posts</a>
+        </li>
+      
+        <li class="nav-portfolio sm:mx-2 border-b sm:border-0 border-black/5 last:border-0 hover:text-main">
+          <a href="/category" class="flex h-12 sm:h-auto items-center">Categories</a>
+        </li>
+      
+        <li class="nav-portfolio sm:mx-2 border-b sm:border-0 border-black/5 last:border-0 hover:text-main">
+          <a href="/tag" class="flex h-12 sm:h-auto items-center">Tags</a>
+        </li>
+      
+    </ul>
+  </div>
+  <div class="mask bg-black/20 absolute inset-0"></div>
+</div>
+
+  <main class="p-12">
+    <!-- toc -->
+
+  <!-- tocbot -->
+<nav class="post-toc toc text-sm w-48 relative top-32 right-0 opacity-70 hidden lg:block" style="position: fixed !important;"></nav>
+
+
+<section class="px-6 max-w-prose mx-auto md:px-0">
+  <!-- header -->
+  <header class="overflow-hidden pt-6 pb-6 md:pt-12">
+    <div class="pt-4 md:pt-6">
+      <h1 id="article-title" class="text-[2rem] font-bold leading-snug mb-4 md:mb-6 md:text-[2.6rem]">
+        MariaDB 表分区
+      </h1>
+      <p class="mb-6">
+        
+      </p>
+      <div>
+        <section class="flex items-center gap-3 text-sm">
+          <time>2022-12-02 04:20:04</time>
+          <span class="text-gray-400">·</span>
+          <span>6 min</span>
+          <span class="text-gray-400">·</span>
+          <span>1.5k words</span>
+        </section>
+      </div>
+    </div>
+  </header>
+  <!-- content -->
+  <article class="post-content mt-10 prose dark:prose-invert post-content">
+    <h2 id="InnoDB逻辑存储结构"><a href="#InnoDB逻辑存储结构" class="headerlink" title="InnoDB逻辑存储结构"></a>InnoDB逻辑存储结构</h2><p>首先要先介绍一下InnoDB逻辑存储结构和区的概念，它的所有数据都被逻辑地存放在表空间，表空间又由段，区，页组成。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xbmlz/static/img/202212021202813.png"></p>
+<h3 id="segment（段）"><a href="#segment（段）" class="headerlink" title="segment（段）"></a>segment（段）</h3><p>常见的段有数据段、索引段、回滚段等，在<code>InnoDB</code>存储引擎中，对段的管理都是由引擎自身所完成的</p>
+<h4 id="extent（区）"><a href="#extent（区）" class="headerlink" title="extent（区）"></a>extent（区）</h4><p>  区是由连续的页组成的空间，无论页的大小怎么变，区的大小默认总是为1MB。为了保证区中的页的连续性，<code>InnoDB</code>存储引擎一次从磁盘申请4-5个区，<code>InnoDB</code>页的大小默认为16kb，即一个区一共有64（1MB&#x2F;16kb&#x3D;16）个连续的页。每个段开始，先用32页（page）大小的碎片页来存放数据，在使用完这些页之后才是64个连续页的申请。这样做的目的是，对于一些小表或者是undo类的段，可以开始申请较小的空间，节约磁盘开销。</p>
+<h3 id="page（页）"><a href="#page（页）" class="headerlink" title="page（页）"></a>page（页）</h3><p>  上图的page区域，也可以叫块。页是<code>InnoDB</code>磁盘管理的最小单位。默认大小为16KB，可以通过参数<code>innodb_page_size</code>来设置。常见的页类型有：数据页，undo页，系统页，事务数据页，插入缓冲位图页，插入缓冲空闲列表页，未压缩的二进制大对象页，压缩的二进制大对象页等。</p>
+<h2 id="分区概述"><a href="#分区概述" class="headerlink" title="分区概述"></a>分区概述</h2><p>  这里讲的分区，此“区”非彼“区”，这里讲的分区的意思是指将同一表中不同行的记录分配到不同的物理文件中，几个分区就有几个.idb文件，不是我们刚刚说的区。MySQL在5.1时添加了对水平分区的支持。分区是将一个表或索引分解成多个更小，更可管理的部分。每个区都是独立的，可以独立处理，也可以作为一个更大对象的一部分进行处理。这个是MySQL支持的功能，业务代码无需改动。要知道MySQL是面向OLTP的数据，它不像TIDB等其他DB。那么对于分区的使用应该非常小心，如果不清楚如何使用分区可能会对性能产生负面的影响。</p>
+<p>  MySQL数据库的分区是局部分区索引，一个分区中既存了数据，又放了索引。也就是说，每个区的聚集索引和非聚集索引都放在各自区的（不同的物理文件）。目前MySQL数据库还不支持全局分区。</p>
+<p>无论哪种类型的分区，如果表中存在主键或唯一索引时，分区列必须是唯一索引的一个组成部分。</p>
+<h2 id="分区类型"><a href="#分区类型" class="headerlink" title="分区类型"></a>分区类型</h2><p><img src="https://cdn.jsdelivr.net/gh/xbmlz/static/img/202212021206548.png"></p>
+<p><a target="_blank" rel="noopener" href="https://mariadb.com/kb/en/partitioning-types-overview/">Partitioning Types Overview - MariaDB Knowledge Base</a></p>
+<h4 id="RANGE分区"><a href="#RANGE分区" class="headerlink" title="RANGE分区"></a>RANGE分区</h4><p><code>RANGE</code>分区类型用于为每个分区分配一个由分区表达式生成的值范围。范围必须有序、连续且不重叠。最小值总是包含在第一个范围内。最高值可能包含在最后一个范围内，也可能不包含在最后一个范围内。</p>
+<p>这种分区方法的变体RANGE COLUMNS允许我们使用多个列和更多的数据类型。</p>
+<p><a target="_blank" rel="noopener" href="https://mariadb.com/kb/en/range-partitioning-type/">RANGE Partitioning Type - MariaDB Knowledge Base</a></p>
+<p>创建分区</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> `partition_test`.`range_partition` ( </span><br><span class="line">    `id` <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span> AUTO_INCREMENT,</span><br><span class="line">    `create_time` <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>, </span><br><span class="line">    `num` <span class="type">BIGINT</span> <span class="keyword">NULL</span>,</span><br><span class="line">    <span class="keyword">PRIMARY</span> KEY (`id`, `create_time`)</span><br><span class="line">) </span><br><span class="line"><span class="keyword">PARTITION</span> <span class="keyword">BY</span> <span class="keyword">RANGE</span> (create_time) PARTITIONS <span class="number">3</span> </span><br><span class="line">(</span><br><span class="line">    <span class="keyword">PARTITION</span> part0 <span class="keyword">VALUES</span> LESS THAN (<span class="number">202101</span>),</span><br><span class="line">    <span class="keyword">PARTITION</span> part1 <span class="keyword">VALUES</span> LESS THAN (<span class="number">202102</span>),</span><br><span class="line">    <span class="keyword">PARTITION</span> part2 <span class="keyword">VALUES</span> LESS THAN (<span class="number">202103</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>插入测试数据</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `partition_test`.`range_partition` (`id`, `create_time`, `num`) <span class="keyword">VALUES</span> (<span class="string">&#x27;1&#x27;</span>, <span class="number">202101</span>, <span class="number">500</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `partition_test`.`range_partition` (`id`, `create_time`, `num`) <span class="keyword">VALUES</span> (<span class="string">&#x27;2&#x27;</span>, <span class="number">202102</span>, <span class="number">800</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `partition_test`.`range_partition` (`id`, `create_time`, `num`) <span class="keyword">VALUES</span> (<span class="string">&#x27;3&#x27;</span>, <span class="number">202103</span>, <span class="number">1000</span>);</span><br></pre></td></tr></table></figure>
+
+<p>通过<code>EXPLAIN PARTITION</code>命令发现SQL优化器只需搜对应的区，不会搜索所有分区</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">EXPLAIN PARTITIONS <span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> `partition_test`.`range_partition` <span class="keyword">WHERE</span> create_time <span class="operator">=</span> <span class="number">202101</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/xbmlz/static/img/202212021208190.png"></p>
+<p>如果sql语句有问题，那么会走所有区。会很危险。所以分区表后，select语句必须走分区键</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">EXPLAIN PARTITIONS <span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> `partition_test`.`range_partition` <span class="keyword">WHERE</span> num <span class="operator">&gt;</span> <span class="number">500</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/xbmlz/static/img/202212021208456.png"></p>
+<p>增加分区</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> range_partition <span class="keyword">add</span> <span class="keyword">partition</span> (<span class="keyword">partition</span> part3 <span class="keyword">values</span> LESS THAN (<span class="number">202104</span>));</span><br></pre></td></tr></table></figure>
+
+<p>删除分区</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> range_partition <span class="keyword">drop</span> <span class="keyword">partition</span> part3;</span><br></pre></td></tr></table></figure>
+
+<h4 id="List分区"><a href="#List分区" class="headerlink" title="List分区"></a>List分区</h4><p>类似于按RANGE分区，区别在于LIST分区是基于列值匹配一个离散值集合中的某个值来进行选择</p>
+<p><a target="_blank" rel="noopener" href="https://mariadb.com/kb/en/list-partitioning-type/">LIST Partitioning Type - MariaDB Knowledge Base</a></p>
+<p>创建分区</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> `partition_test`.`list_partition`</span><br><span class="line">( </span><br><span class="line">  `id` <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span> AUTO_INCREMENT, </span><br><span class="line">  `hos_code` <span class="type">BIGINT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>, </span><br><span class="line">  `name` <span class="type">VARCHAR</span> (<span class="number">32</span>) <span class="keyword">NULL</span>, </span><br><span class="line">  <span class="keyword">PRIMARY</span> KEY (`id`, `hos_code`) </span><br><span class="line">) </span><br><span class="line"><span class="keyword">PARTITION</span> <span class="keyword">BY</span> LIST (hos_code) </span><br><span class="line">(</span><br><span class="line">  <span class="keyword">PARTITION</span> part100 <span class="keyword">VALUES</span> <span class="keyword">IN</span> (<span class="number">100</span>),</span><br><span class="line">    <span class="keyword">PARTITION</span> part200 <span class="keyword">VALUES</span> <span class="keyword">IN</span> (<span class="number">200</span>),</span><br><span class="line">    <span class="keyword">PARTITION</span> part300 <span class="keyword">VALUES</span> <span class="keyword">IN</span> (<span class="number">300</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>插入测试数据</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `partition_test`.`list_partition` (`hos_code`, `name`) <span class="keyword">VALUES</span> (<span class="number">100</span>, &quot;张三&quot;);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `partition_test`.`list_partition` (`hos_code`, `name`) <span class="keyword">VALUES</span> (<span class="number">200</span>, &quot;李四&quot;);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `partition_test`.`list_partition` (`hos_code`, `name`) <span class="keyword">VALUES</span> (<span class="number">300</span>, &quot;李四&quot;);</span><br></pre></td></tr></table></figure>
+
+<p>通过<code>EXPLAIN PARTITION</code>命令发现SQL优化器只需搜对应的区，不会搜索所有分区</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">EXPLAIN PARTITIONS <span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> `partition_test`.`list_partition` <span class="keyword">WHERE</span> hos_code <span class="operator">=</span> <span class="number">100</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/xbmlz/static/img/202212021209483.png"></p>
+<p>增加分区</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> list_partition <span class="keyword">add</span> <span class="keyword">partition</span> (<span class="keyword">partition</span> part400 <span class="keyword">values</span> <span class="keyword">in</span> (<span class="number">400</span>));</span><br></pre></td></tr></table></figure>
+
+<p>删除分区</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> list_partition <span class="keyword">drop</span> <span class="keyword">partition</span> part400;</span><br></pre></td></tr></table></figure>
+
+<h4 id="HASH分区"><a href="#HASH分区" class="headerlink" title="HASH分区"></a>HASH分区</h4><p><code>HASH</code>分区是一种分区形式，其中服务器负责放置数据的分区，以确保分区之间的均匀分布。</p>
+<p>它需要一个列值，或者一个基于列值的表达式，该列值是散列的，还需要将表划分到的分区数。</p>
+<p><code>number_of_partitions </code>表达式需要返回一个非常量的确定整数。每次插入和更新都会对其求值，因此过于复杂的表达式可能会导致性能问题</p>
+<p>是一个正整数，指定要将表划分到的分区数。如果省略PARTITIONS子句，则默认分区数为1。</p>
+<p>创建分区</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> `partition_test`.`hash_partition`</span><br><span class="line">( </span><br><span class="line">    `name` <span class="type">VARCHAR</span> (<span class="number">32</span>) <span class="keyword">NULL</span>, </span><br><span class="line">  `birthdate` <span class="type">date</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span></span><br><span class="line">) </span><br><span class="line"><span class="keyword">PARTITION</span> <span class="keyword">BY</span> HASH (<span class="keyword">YEAR</span>(birthdate)) </span><br><span class="line">PARTITIONS <span class="number">4</span>;</span><br></pre></td></tr></table></figure>
+
+<p>插入测试数据</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `partition_test`.`hash_partition` (`name`, `birthdate`) <span class="keyword">VALUES</span> (&quot;张三&quot;, <span class="string">&#x27;2001-01-01&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `partition_test`.`hash_partition` (`name`, `birthdate`) <span class="keyword">VALUES</span> (&quot;李四&quot;, <span class="string">&#x27;2002-02-02&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `partition_test`.`hash_partition` (`name`, `birthdate`) <span class="keyword">VALUES</span> (&quot;王五&quot;, <span class="string">&#x27;2003-03-03&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `partition_test`.`hash_partition` (`name`, `birthdate`) <span class="keyword">VALUES</span> (&quot;赵六&quot;, <span class="string">&#x27;2004-04-04&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>通过<code>EXPLAIN PARTITION</code>命令发现SQL优化器只需搜对应的区，不会搜索所有分区</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">EXPLAIN PARTITIONS <span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> `partition_test`.`hash_partition` <span class="keyword">WHERE</span> birthdate <span class="operator">=</span> <span class="string">&#x27;2001-01-01&#x27;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/xbmlz/static/img/202212021209124.png"></p>
+<p>增加分区</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> hash_partition <span class="keyword">add</span> <span class="keyword">partition</span> (<span class="keyword">partition</span> p4);</span><br></pre></td></tr></table></figure>
+
+<p>删除分区(只能在RANGE或者LIST分区时被删除)</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">PARTITION</span> can <span class="keyword">only</span> be used <span class="keyword">on</span> <span class="keyword">RANGE</span><span class="operator">/</span>LIST partitions</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+  </article>
+  <!-- tag -->
+  <div class="mt-12 pt-6 border-t border-gray-200">
+    
+      
+        <span class="bg-gray-100 dark:bg-gray-700 px-2 py-1 m-1 text-sm rounded-md transition-colors hover:bg-gray-200">
+          <a href="/tags/mariadb/">mariadb</a>
+        </span>
+      
+        <span class="bg-gray-100 dark:bg-gray-700 px-2 py-1 m-1 text-sm rounded-md transition-colors hover:bg-gray-200">
+          <a href="/tags/partition/">partition</a>
+        </span>
+      
+    
+  </div>
+  <!-- prev and next -->
+  <div class="flex justify-between mt-12 pt-6 border-t border-gray-200">
+    <div>
+      
+        <a href="/mariadb-galera-cluster/" class="text-sm text-gray-400 hover:text-gray-500 flex justify-center">
+          <iconify-icon width="20" icon="ri:arrow-left-s-line" data-inline="false"></iconify-icon>
+          MariaDB Galera Cluster 集群部署
+        </a>
+      
+    </div>
+    <div>
+      
+        <a href="/centos-mariadb-install/" class="text-sm text-gray-400 hover:text-gray-500 flex justify-center">
+          CentOS MariaDB 一键安装脚本
+          <iconify-icon width="20" icon="ri:arrow-right-s-line" data-inline="false"></iconify-icon>
+        </a>
+      
+    </div>
+  </div>
+  <!-- comment -->
+  <div class="article-comments mt-12">
+    
+<script src="https://giscus.app/client.js"
+        data-repo="xbmlz/maple-giscus"
+        data-repo-id="R_kgDOIgC6Zg"
+        data-category="General"
+        data-category-id="DIC_kwDOIgC6Zs4CSwIE"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="preferred_color_scheme"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+  </div>
+</section>
+
+  </main>
+  <footer class="flex flex-col h-40 items-center justify-center text-gray-400 text-sm">
+  <!-- busuanzi -->
+  
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- Busuanzi Analytics -->
+<div class="flex items-center gap-2">
+  <span>Visitor Count</span>
+  <span id="busuanzi_value_site_uv"></span>
+  <span>Totalview</span>
+  <span id="busuanzi_value_site_pv"></span>
+</div>
+<!-- End Busuanzi Analytics -->
+
+
+  <!-- copyright -->
+  <div class="flex items-center gap-2">
+    <span>© 2022</span>
+    <iconify-icon width="18" icon="emojione-monotone:maple-leaf" ></iconify-icon>
+    <a href="https://github.com/xbmlz" target="_blank" rel="noopener noreferrer">xbmlz</a>
+  </div>
+  <!-- powered by -->
+  <div class="flex items-center gap-2">
+    <span>Powered by</span>
+    <a href="https://hexo.io/" target="_blank" rel="noopener noreferrer">Hexo</a>
+    <span>&</span>
+    <a href="https://github.com/xbmlz/hexo-theme-maple" target="_blank" rel="noopener noreferrer">Maple</a>
+  </div>
+
+</footer>
+
+  <iconify-icon class="fixed right-4 bottom-10 z-100 opacity-0" width="24" icon="ion:arrow-up-c" id="go-top"></iconify-icon>
+  
+<script src="/lib/clipboard.min.js"></script>
+
+
+
+<script src="/js/main.js"></script>
+
+
+
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+  });
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>
+  $(document).ready(() => {
+    const maraidConfig = {
+      theme: "default",
+      logLevel: 3,
+      flowchart: { curve: "linear" },
+      gantt: { axisFormat: "%m/%d/%Y" },
+      sequence: { actorMargin: 50 },
+    };
+    mermaid.initialize(maraidConfig);
+  });
+</script>
+
+
+
+<script src="/lib/fancybox/fancybox.umd.min.js"></script>
+
+<script>
+  $(document).ready(() => {
+    $('.post-content').each(function(i){
+      $(this).find('img').each(function(){
+        if ($(this).parent().hasClass('fancybox') || $(this).parent().is('a')) return;
+        var alt = this.alt;
+        if (alt) $(this).after('<span class="fancybox-alt">' + alt + '</span>');
+        $(this).wrap('<a class="fancybox-img" href="' + this.src + '" data-fancybox=\"gallery\" data-caption="' + alt + '"></a>')
+      });
+      $(this).find('.fancybox').each(function(){
+        $(this).attr('rel', 'article' + i);
+      });
+    });
+
+    Fancybox.bind('[data-fancybox="gallery"]', {
+        // options
+    })
+  })
+</script>
+
+<!-- tocbot begin -->
+
+<script src="/lib/tocbot/tocbot.min.js"></script>
+
+<script>
+  $(document).ready(() => {
+      tocbot.init({
+        // Where to render the table of contents.
+        tocSelector: '.post-toc',
+        // Where to grab the headings to build the table of contents.
+        contentSelector: '.post-content',
+        // Which headings to grab inside of the contentSelector element.
+        headingSelector: 'h1, h2, h3',
+        // For headings inside relative or absolute positioned containers within content.
+        hasInnerContainers: true,
+    });
+  })
+</script>
+<!-- tocbot end -->
+
+
+</body>
+
+</html>

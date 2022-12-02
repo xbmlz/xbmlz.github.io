@@ -1,3 +1,6 @@
+https://blog.chenxc.me/mariadb-master-slave-sync/
+https://blog.chenxc.me/mariadb-galera-cluster/
+https://blog.chenxc.me/mariadb-partition/
 https://blog.chenxc.me/centos-mariadb-install/
 https://blog.chenxc.me/li-zhi/
 https://blog.chenxc.me/echarts-test/

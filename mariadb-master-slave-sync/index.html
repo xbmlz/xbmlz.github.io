@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <meta name="author" content="xbmlz">
+
+
+  <meta name="subtitle" content="忙碌把时光缩短, 苦难把岁月拉长">
+
+
+
+
+<title>MariaDB 主从同步 | 记昨日书</title>
+
+
+
+<link rel="icon" href="/favicon.png">
+
+
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/nprogress/nprogress.css">
+
+
+<link rel="stylesheet" href="/lib/fancybox/fancybox.min.css">
+
+
+<link rel="stylesheet" href="/lib/tocbot/tocbot.min.css">
+
+
+
+<script src="/lib/jquery.min.js"></script>
+
+
+<script src="/lib/iconify-icon.min.js"></script>
+
+
+<script src="https://cdn.tailwindcss.com?plugins=typography,line-clamp"></script>
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+  }
+</script>
+
+
+<script src="/lib/nprogress/nprogress.js"></script>
+
+<script>
+  $(document).ready(() => {
+    NProgress.configure({
+      showSpinner: false,
+    });
+    NProgress.start();
+    $("#nprogress .bar").css({
+      background: "#de7441",
+    });
+    $("#nprogress .peg").css({
+      "box-shadow": "0 0 2px #de7441, 0 0 4px #de7441",
+    });
+    $("#nprogress .spinner-icon").css({
+      "border-top-color": "#de7441",
+      "border-left-color": "#de7441",
+    });
+    setTimeout(function () {
+      NProgress.done();
+      $(".fade").removeClass("out");
+    }, 800);
+  });
+</script>
+
+<script>
+  (function () {
+    const prefersDark =
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const setting = localStorage.getItem("hexo-color-scheme") || "auto";
+    if (setting === "dark" || (prefersDark && setting !== "light"))
+      document.documentElement.classList.toggle("dark", true);
+  })();
+  window.onload = function () {
+    // init iconify icon
+    const isDark = document.documentElement.classList.contains("dark");
+    if (isDark) {
+      $("#toggle-dark").attr("icon", "ri:moon-line");
+    } else {
+      $("#toggle-dark").attr("icon", "ri:sun-line");
+    }
+
+    const toggleDark = () => {
+      console.log("toggle dark");
+      const darkMode = document.documentElement.classList.toggle("dark");
+      localStorage.setItem("hexo-color-scheme", darkMode ? "dark" : "light");
+      $("#toggle-dark").attr("icon", darkMode ? "ri:moon-line" : "ri:sun-line");
+    };
+
+    $("#toggle-dark").click(toggleDark);
+  };
+</script>
+
+
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body class="font-sans bg-white dark:bg-zinc-900 text-gray-700 dark:text-gray-200">
+  <header class="fixed w-full px-5 py-1 z-10 backdrop-blur-xl backdrop-saturate-150 border-b border-black/5">
+  <div class="max-auto">
+    <nav class="flex items-center text-base">
+      <a href="/" class="group">
+        <h2 class="font-medium tracking-tighterp text-l p-2">
+          <img class="w-5 mr-2 inline-block transition-transform group-hover:rotate-[30deg]" src="/images/logo.svg" alt="记昨日书" />
+          记昨日书
+        </h2>
+      </a>
+      <div id="header-title" class="opacity-0 md:ml-2 md:mt-[0.1rem] text-xs font-medium whitespace-nowrap overflow-hidden overflow-ellipsis">
+        Categories
+      </div>
+      <div class="flex-1"></div>
+      <div class="flex items-center gap-3">
+        
+          <a class="hidden sm:flex" href="/archives">Posts</a>
+        
+          <a class="hidden sm:flex" href="/category">Categories</a>
+        
+          <a class="hidden sm:flex" href="/tag">Tags</a>
+        
+        
+          
+            <a class="w-5 h-5 hidden sm:flex" title="Github" target="_blank" rel="noopener" href="https://github.com/xbmlz">
+              <iconify-icon width="20" icon="ri:github-line"></iconify-icon>
+            </a>
+          
+            <a class="w-5 h-5 hidden sm:flex" title="ZhiHu" target="_blank" rel="noopener" href="https://github.com/xbmlz">
+              <iconify-icon width="20" icon="ri:zhihu-line"></iconify-icon>
+            </a>
+          
+            <a class="w-5 h-5 hidden sm:flex" title="Twitter" target="_blank" rel="noopener" href="https://github.com/xbmlz">
+              <iconify-icon width="20" icon="ri:twitter-line"></iconify-icon>
+            </a>
+          
+            <a class="w-5 h-5 hidden sm:flex" title="Weibo" target="_blank" rel="noopener" href="https://github.com/xbmlz">
+              <iconify-icon width="20" icon="ri:weibo-line"></iconify-icon>
+            </a>
+          
+        
+        <a class="w-5 h-5" title="toggle theme">
+          <iconify-icon width="20" icon="ri:sun-line" id="toggle-dark"></iconify-icon>
+        </a>
+      </div>
+      <div class="flex items-center justify-center gap-3 ml-3 sm:hidden">
+        <span class="w-5 h-5" aria-hidden="true" role="img" id="open-menu">
+          <iconify-icon width="20" icon="carbon:menu" ></iconify-icon>
+        </span>
+        <span class="w-5 h-5 hidden" aria-hidden="true" role="img" id="close-menu">
+          <iconify-icon  width="20" icon="carbon:close" ></iconify-icon>
+        </span>
+      </div>
+    </nav>
+  </div>
+</header>
+<div id="menu-panel" class="h-0 overflow-hidden sm:hidden fixed left-0 right-0 top-12 bottom-0 z-10">
+  <div id="menu-content" class="relative z-20 bg-white/80 px-6 sm:px-8 py-2 backdrop-blur-xl -translate-y-full transition-transform duration-300">
+    <ul class="nav flex flex-col sm:flex-row text-sm font-medium">
+      
+        <li class="nav-portfolio sm:mx-2 border-b sm:border-0 border-black/5 last:border-0 hover:text-main">
+          <a href="/archives" class="flex h-12 sm:h-auto items-center">Posts</a>
+        </li>
+      
+        <li class="nav-portfolio sm:mx-2 border-b sm:border-0 border-black/5 last:border-0 hover:text-main">
+          <a href="/category" class="flex h-12 sm:h-auto items-center">Categories</a>
+        </li>
+      
+        <li class="nav-portfolio sm:mx-2 border-b sm:border-0 border-black/5 last:border-0 hover:text-main">
+          <a href="/tag" class="flex h-12 sm:h-auto items-center">Tags</a>
+        </li>
+      
+    </ul>
+  </div>
+  <div class="mask bg-black/20 absolute inset-0"></div>
+</div>
+
+  <main class="p-12">
+    <!-- toc -->
+
+  <!-- tocbot -->
+<nav class="post-toc toc text-sm w-48 relative top-32 right-0 opacity-70 hidden lg:block" style="position: fixed !important;"></nav>
+
+
+<section class="px-6 max-w-prose mx-auto md:px-0">
+  <!-- header -->
+  <header class="overflow-hidden pt-6 pb-6 md:pt-12">
+    <div class="pt-4 md:pt-6">
+      <h1 id="article-title" class="text-[2rem] font-bold leading-snug mb-4 md:mb-6 md:text-[2.6rem]">
+        MariaDB 主从同步
+      </h1>
+      <p class="mb-6">
+        
+      </p>
+      <div>
+        <section class="flex items-center gap-3 text-sm">
+          <time>2022-12-02 04:20:04</time>
+          <span class="text-gray-400">·</span>
+          <span>4 min</span>
+          <span class="text-gray-400">·</span>
+          <span>885 words</span>
+        </section>
+      </div>
+    </div>
+  </header>
+  <!-- content -->
+  <article class="post-content mt-10 prose dark:prose-invert post-content">
+    <h3 id="1-准备两台服务器"><a href="#1-准备两台服务器" class="headerlink" title="1. 准备两台服务器"></a>1. 准备两台服务器</h3><ul>
+<li>master (主服务器192.168.23.132)</li>
+<li>slave  (从服务器192.168.23.133)</li>
+</ul>
+<h3 id="2-安装MariaDB"><a href="#2-安装MariaDB" class="headerlink" title="2. 安装MariaDB"></a>2. 安装MariaDB</h3><p>注意：此步骤在主、从服务器执行同样的操作即可</p>
+<p>新建安装脚本：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi install-mariadb.sh</span><br></pre></td></tr></table></figure>
+
+<p>加入以下内容:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line">MARIADB_DIR=/usr/local/mariadb</span><br><span class="line">DATA_DIR=/data/mariadb</span><br><span class="line">MARIADB_VER=10.3.27</span><br><span class="line">ROOT_PASSWORD=123456</span><br><span class="line"></span><br><span class="line">yum -y install wget</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建数据存放目录</span></span><br><span class="line"><span class="built_in">mkdir</span> -p <span class="variable">$&#123;DATA_DIR&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建mysql的用户做为mariadb的运行用户</span></span><br><span class="line">useradd -r mysql -s /sbin/nologin</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下载</span></span><br><span class="line"><span class="built_in">cd</span> /usr/local/src</span><br><span class="line">wget https://mirrors.tuna.tsinghua.edu.cn/mariadb/mariadb-<span class="variable">$&#123;MARIADB_VER&#125;</span>/bintar-linux-systemd-x86_64/mariadb-<span class="variable">$&#123;MARIADB_VER&#125;</span>-linux-systemd-x86_64.tar.gz</span><br><span class="line"></span><br><span class="line">tar -zxvf mariadb-<span class="variable">$&#123;MARIADB_VER&#125;</span>-linux-systemd-x86_64.tar.gz </span><br><span class="line"></span><br><span class="line"><span class="built_in">mv</span> mariadb-<span class="variable">$&#123;MARIADB_VER&#125;</span>-linux-systemd-x86_64 <span class="variable">$&#123;MARIADB_DIR&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">ln</span> -s <span class="variable">$&#123;MARIADB_DIR&#125;</span> /usr/local/mysql</span><br><span class="line"></span><br><span class="line"><span class="built_in">chown</span> -R mysql.mysql /usr/local/mysql/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 授权</span></span><br><span class="line"><span class="built_in">chown</span> -R mysql.mysql <span class="variable">$&#123;DATA_DIR&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># my.conf configuration</span></span><br><span class="line"><span class="built_in">cat</span> &gt; /etc/my.cnf &lt;&lt;<span class="string">EOF</span></span><br><span class="line"><span class="string">[mysqld]</span></span><br><span class="line"><span class="string">port            = 3306</span></span><br><span class="line"><span class="string">character-set-server = utf8</span></span><br><span class="line"><span class="string">collation-server = utf8_general_ci</span></span><br><span class="line"><span class="string">datadir = $&#123;DATA_DIR&#125;</span></span><br><span class="line"><span class="string">socket = /tmp/mysql.sock</span></span><br><span class="line"><span class="string">skip-external-locking</span></span><br><span class="line"><span class="string">key_buffer_size = 384M</span></span><br><span class="line"><span class="string">max_allowed_packet = 1M</span></span><br><span class="line"><span class="string">table_open_cache = 512</span></span><br><span class="line"><span class="string">sort_buffer_size = 2M</span></span><br><span class="line"><span class="string">read_buffer_size = 2M</span></span><br><span class="line"><span class="string">read_rnd_buffer_size = 8M</span></span><br><span class="line"><span class="string">myisam_sort_buffer_size = 64M</span></span><br><span class="line"><span class="string">thread_cache_size = 8</span></span><br><span class="line"><span class="string">query_cache_size = 32M</span></span><br><span class="line"><span class="string">EOF</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$&#123;MARIADB_DIR&#125;</span></span><br><span class="line"></span><br><span class="line">./scripts/mysql_install_db --datadir=<span class="variable">$&#123;DATA_DIR&#125;</span> --user=mysql</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置开机自启动</span></span><br><span class="line"><span class="built_in">cp</span> <span class="variable">$&#123;MARIADB_DIR&#125;</span>/support-files/mysql.server /etc/init.d/mysqld</span><br><span class="line"></span><br><span class="line">chkconfig --add mysqld</span><br><span class="line"></span><br><span class="line">chkconfig mysqld on</span><br><span class="line"></span><br><span class="line">service mysqld start</span><br><span class="line"></span><br><span class="line"><span class="variable">$&#123;MARIADB_DIR&#125;</span>/bin/mysql -e <span class="string">&quot;grant all privileges on *.* to root@&#x27;127.0.0.1&#x27; identified by \&quot;<span class="variable">$&#123;ROOT_PASSWORD&#125;</span>\&quot; with grant option;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$&#123;MARIADB_DIR&#125;</span>/bin/mysql -e <span class="string">&quot;grant all privileges on *.* to root@&#x27;localhost&#x27; identified by \&quot;<span class="variable">$&#123;ROOT_PASSWORD&#125;</span>\&quot; with grant option;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$&#123;MARIADB_DIR&#125;</span>/bin/mysql -uroot -p<span class="variable">$&#123;ROOT_PASSWORD&#125;</span> -e <span class="string">&quot;delete from mysql.user where Password=&#x27;&#x27;;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$&#123;MARIADB_DIR&#125;</span>/bin/mysql -uroot -p<span class="variable">$&#123;ROOT_PASSWORD&#125;</span> -e <span class="string">&quot;delete from mysql.db where User=&#x27;&#x27;;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$&#123;MARIADB_DIR&#125;</span>/bin/mysql -uroot -p<span class="variable">$&#123;ROOT_PASSWORD&#125;</span> -e <span class="string">&quot;delete from mysql.proxies_priv where Host!=&#x27;localhost&#x27;;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$&#123;MARIADB_DIR&#125;</span>/bin/mysql -uroot -p<span class="variable">$&#123;ROOT_PASSWORD&#125;</span> -e <span class="string">&quot;drop database test;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加环境变量</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;PATH=/usr/local/mysql/bin:$PATH&#x27;</span> &gt;&gt; /etc/profile.d/mysql.sh</span><br><span class="line"><span class="comment"># 刷新环境变量</span></span><br><span class="line">. /etc/profile.d/mysql.sh</span><br></pre></td></tr></table></figure>
+
+<p>执行安装：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash install-mariadb.sh</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-主库配置-在master服务器操作"><a href="#3-主库配置-在master服务器操作" class="headerlink" title="3. 主库配置(在master服务器操作)"></a>3. 主库配置(在master服务器操作)</h3><p>修改mariadb配置文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/my.cnf</span><br></pre></td></tr></table></figure>
+
+<p>在[mysqld]节点下添加如下配置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#集群配置 - 主服务器</span></span><br><span class="line">server-id = 1 //配置server-id,不能和从库重复</span><br><span class="line">read_only = 0 //0表示可读可写，1表示只读（也可写成on）</span><br><span class="line"><span class="comment"># binlog-do-db = Test //只记录Test库变化,多个库用‘,’分隔</span></span><br><span class="line">binlog-ignore-db = mysql //忽略mysql库变化，多个库用‘,’分隔</span><br><span class="line">log-bin = /var/lib/mysql/master-bin.log</span><br></pre></td></tr></table></figure>
+
+<p>重启mariadb</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service mysqld restart</span><br></pre></td></tr></table></figure>
+
+<p>创建同步数据所需要的用户，并记录文件信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 登录数据库</span></span><br><span class="line">mysql -u root -p</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建 slave 用户</span></span><br><span class="line">CREATE USER <span class="string">&#x27;slave&#x27;</span>@<span class="string">&#x27;%&#x27;</span> IDENTIFIED BY <span class="string">&#x27;123456&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 分配 REPLICATION SLAVE 权限</span></span><br><span class="line">GRANT REPLICATION SLAVE ON *.* TO <span class="string">&#x27;slave&#x27;</span>@<span class="string">&#x27;%&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 刷新权限表</span></span><br><span class="line">FLUSH PRIVILEGES;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启用读锁</span></span><br><span class="line">FLUSH TABLES WITH READ LOCK;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 列出主服务器的状态</span></span><br><span class="line">SHOW MASTER STATUS;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/xbmlz/static/img/202212021217371.png"></p>
+<p>记录文件信息, 从库配会用到</p>
+<ul>
+<li>File: master-bin.000001 </li>
+<li>Position: 329</li>
+</ul>
+<h3 id="4-从库配置-在slave服务器操作"><a href="#4-从库配置-在slave服务器操作" class="headerlink" title="4. 从库配置(在slave服务器操作)"></a>4. 从库配置(在slave服务器操作)</h3><p>修改mariadb配置文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/my.cnf</span><br></pre></td></tr></table></figure>
+
+<p>在[mysqld]节点下添加如下配置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 集群配置 - 从服务器  </span></span><br><span class="line">server-id = 2</span><br><span class="line"><span class="comment"># binlog-do-db = Test //只记录Test库变化,多个库用‘,’分隔</span></span><br><span class="line"><span class="comment"># binlog-ignore-db = mysql</span></span><br><span class="line">read_only = 1 //0表示可读可写，1表示只读（也可写成on）</span><br></pre></td></tr></table></figure>
+
+<p>重启mariadb</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service mysqld restart</span><br></pre></td></tr></table></figure>
+
+<p>登录从服务器mariadb, 修改 SLAVE 配置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 进入数据库</span></span><br><span class="line">mysql -u root -p</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置 SLAVE</span></span><br><span class="line">CHANGE MASTER TO</span><br><span class="line">MASTER_HOST=<span class="string">&#x27;192.168.23.132&#x27;</span>,</span><br><span class="line">MASTER_USER=<span class="string">&#x27;slave&#x27;</span>,</span><br><span class="line">MASTER_PASSWORD=<span class="string">&#x27;123456&#x27;</span>,</span><br><span class="line">MASTER_PORT=3306,</span><br><span class="line">MASTER_LOG_FILE=<span class="string">&#x27;master-bin.000001 &#x27;</span>, <span class="comment"># 主服务器数据库文件名称</span></span><br><span class="line">MASTER_LOG_POS=329, <span class="comment"># 主服务器数据库文件定位                 </span></span><br><span class="line">MASTER_CONNECT_RETRY=10;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动进程</span></span><br><span class="line">start slave;</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 查看进程状态</span></span><br><span class="line">SHOW SLAVE STATUS\G;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="5-解除主服务数据库锁定"><a href="#5-解除主服务数据库锁定" class="headerlink" title="5. 解除主服务数据库锁定"></a>5. 解除主服务数据库锁定</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 登录数据库</span></span><br><span class="line">mysql -u root -p</span><br><span class="line"></span><br><span class="line"><span class="comment"># 主服务器解除读锁</span></span><br><span class="line">UNLOCK TABLES;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 退出会话</span></span><br><span class="line">quit</span><br></pre></td></tr></table></figure>
+  </article>
+  <!-- tag -->
+  <div class="mt-12 pt-6 border-t border-gray-200">
+    
+      
+        <span class="bg-gray-100 dark:bg-gray-700 px-2 py-1 m-1 text-sm rounded-md transition-colors hover:bg-gray-200">
+          <a href="/tags/mariadb/">mariadb</a>
+        </span>
+      
+    
+  </div>
+  <!-- prev and next -->
+  <div class="flex justify-between mt-12 pt-6 border-t border-gray-200">
+    <div>
+      
+    </div>
+    <div>
+      
+        <a href="/mariadb-galera-cluster/" class="text-sm text-gray-400 hover:text-gray-500 flex justify-center">
+          MariaDB Galera Cluster 集群部署
+          <iconify-icon width="20" icon="ri:arrow-right-s-line" data-inline="false"></iconify-icon>
+        </a>
+      
+    </div>
+  </div>
+  <!-- comment -->
+  <div class="article-comments mt-12">
+    
+<script src="https://giscus.app/client.js"
+        data-repo="xbmlz/maple-giscus"
+        data-repo-id="R_kgDOIgC6Zg"
+        data-category="General"
+        data-category-id="DIC_kwDOIgC6Zs4CSwIE"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="preferred_color_scheme"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+  </div>
+</section>
+
+  </main>
+  <footer class="flex flex-col h-40 items-center justify-center text-gray-400 text-sm">
+  <!-- busuanzi -->
+  
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- Busuanzi Analytics -->
+<div class="flex items-center gap-2">
+  <span>Visitor Count</span>
+  <span id="busuanzi_value_site_uv"></span>
+  <span>Totalview</span>
+  <span id="busuanzi_value_site_pv"></span>
+</div>
+<!-- End Busuanzi Analytics -->
+
+
+  <!-- copyright -->
+  <div class="flex items-center gap-2">
+    <span>© 2022</span>
+    <iconify-icon width="18" icon="emojione-monotone:maple-leaf" ></iconify-icon>
+    <a href="https://github.com/xbmlz" target="_blank" rel="noopener noreferrer">xbmlz</a>
+  </div>
+  <!-- powered by -->
+  <div class="flex items-center gap-2">
+    <span>Powered by</span>
+    <a href="https://hexo.io/" target="_blank" rel="noopener noreferrer">Hexo</a>
+    <span>&</span>
+    <a href="https://github.com/xbmlz/hexo-theme-maple" target="_blank" rel="noopener noreferrer">Maple</a>
+  </div>
+
+</footer>
+
+  <iconify-icon class="fixed right-4 bottom-10 z-100 opacity-0" width="24" icon="ion:arrow-up-c" id="go-top"></iconify-icon>
+  
+<script src="/lib/clipboard.min.js"></script>
+
+
+
+<script src="/js/main.js"></script>
+
+
+
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+  });
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>
+  $(document).ready(() => {
+    const maraidConfig = {
+      theme: "default",
+      logLevel: 3,
+      flowchart: { curve: "linear" },
+      gantt: { axisFormat: "%m/%d/%Y" },
+      sequence: { actorMargin: 50 },
+    };
+    mermaid.initialize(maraidConfig);
+  });
+</script>
+
+
+
+<script src="/lib/fancybox/fancybox.umd.min.js"></script>
+
+<script>
+  $(document).ready(() => {
+    $('.post-content').each(function(i){
+      $(this).find('img').each(function(){
+        if ($(this).parent().hasClass('fancybox') || $(this).parent().is('a')) return;
+        var alt = this.alt;
+        if (alt) $(this).after('<span class="fancybox-alt">' + alt + '</span>');
+        $(this).wrap('<a class="fancybox-img" href="' + this.src + '" data-fancybox=\"gallery\" data-caption="' + alt + '"></a>')
+      });
+      $(this).find('.fancybox').each(function(){
+        $(this).attr('rel', 'article' + i);
+      });
+    });
+
+    Fancybox.bind('[data-fancybox="gallery"]', {
+        // options
+    })
+  })
+</script>
+
+<!-- tocbot begin -->
+
+<script src="/lib/tocbot/tocbot.min.js"></script>
+
+<script>
+  $(document).ready(() => {
+      tocbot.init({
+        // Where to render the table of contents.
+        tocSelector: '.post-toc',
+        // Where to grab the headings to build the table of contents.
+        contentSelector: '.post-content',
+        // Which headings to grab inside of the contentSelector element.
+        headingSelector: 'h1, h2, h3',
+        // For headings inside relative or absolute positioned containers within content.
+        hasInnerContainers: true,
+    });
+  })
+</script>
+<!-- tocbot end -->
+
+
+</body>
+
+</html>
