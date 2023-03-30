@@ -11,7 +11,7 @@ excerpt: 南京市民李先生私藏
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
 <div id="aplayer"></div>
 <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/nj-lizhi/song@main/audio/list-v1.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/nj-lizhi/song@main/audio/list-v2.js"></script>
 <script>
 // https://api.i-meto.com/meting/api?server=netease&type=playlist&id=3778678
 const ap = new APlayer({
