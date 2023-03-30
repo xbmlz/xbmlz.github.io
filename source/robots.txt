@@ -12,5 +12,5 @@ Disallow: /fonts/
 Disallow: /vendors/
 Disallow: /lib/
 
-Sitemap: https://blog.chenxc.me/sitemap.xml
-Sitemap: https://blog.chenxc.me/baidusitemap.xml
+Sitemap: https://xbmlz.github.io/sitemap.xml
+Sitemap: https://xbmlz.github.io/baidusitemap.xml
