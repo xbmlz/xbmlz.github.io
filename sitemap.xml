@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://blog.chenxc.me/centos-mariadb-install/</loc>
+    <loc>https://xbmlz.github.io/centos-mariadb-install/</loc>
     
     <lastmod>2023-03-30</lastmod>
     
@@ -11,7 +11,7 @@
   </url>
   
   <url>
-    <loc>https://blog.chenxc.me/echarts-test/</loc>
+    <loc>https://xbmlz.github.io/echarts-test/</loc>
     
     <lastmod>2023-03-30</lastmod>
     
@@ -20,7 +20,7 @@
   </url>
   
   <url>
-    <loc>https://blog.chenxc.me/li-zhi/</loc>
+    <loc>https://xbmlz.github.io/li-zhi/</loc>
     
     <lastmod>2023-03-30</lastmod>
     
@@ -29,7 +29,7 @@
   </url>
   
   <url>
-    <loc>https://blog.chenxc.me/mariadb-galera-cluster/</loc>
+    <loc>https://xbmlz.github.io/mariadb-galera-cluster/</loc>
     
     <lastmod>2023-03-30</lastmod>
     
@@ -38,7 +38,7 @@
   </url>
   
   <url>
-    <loc>https://blog.chenxc.me/mariadb-master-slave-sync/</loc>
+    <loc>https://xbmlz.github.io/mariadb-master-slave-sync/</loc>
     
     <lastmod>2023-03-30</lastmod>
     
@@ -47,7 +47,7 @@
   </url>
   
   <url>
-    <loc>https://blog.chenxc.me/mariadb-partition/</loc>
+    <loc>https://xbmlz.github.io/mariadb-partition/</loc>
     
     <lastmod>2023-03-30</lastmod>
     
@@ -56,7 +56,7 @@
   </url>
   
   <url>
-    <loc>https://blog.chenxc.me/mariaid-test/</loc>
+    <loc>https://xbmlz.github.io/mariaid-test/</loc>
     
     <lastmod>2023-03-30</lastmod>
     
@@ -65,7 +65,7 @@
   </url>
   
   <url>
-    <loc>https://blog.chenxc.me/markdown-test/</loc>
+    <loc>https://xbmlz.github.io/markdown-test/</loc>
     
     <lastmod>2023-03-30</lastmod>
     
@@ -74,7 +74,7 @@
   </url>
   
   <url>
-    <loc>https://blog.chenxc.me/math-jax-test/</loc>
+    <loc>https://xbmlz.github.io/math-jax-test/</loc>
     
     <lastmod>2023-03-30</lastmod>
     
@@ -83,7 +83,7 @@
   </url>
   
   <url>
-    <loc>https://blog.chenxc.me/baidu_verify_code-vx02UbxaVv.html</loc>
+    <loc>https://xbmlz.github.io/baidu_verify_code-vx02UbxaVv.html</loc>
     
     <lastmod>2023-03-30</lastmod>
     
@@ -92,7 +92,7 @@
   </url>
   
   <url>
-    <loc>https://blog.chenxc.me/google2fd8e573e4e5ca0a.html</loc>
+    <loc>https://xbmlz.github.io/google2fd8e573e4e5ca0a.html</loc>
     
     <lastmod>2023-03-30</lastmod>
     
@@ -101,7 +101,7 @@
   </url>
   
   <url>
-    <loc>https://blog.chenxc.me/category/index.html</loc>
+    <loc>https://xbmlz.github.io/category/index.html</loc>
     
     <lastmod>2023-03-30</lastmod>
     
@@ -110,7 +110,7 @@
   </url>
   
   <url>
-    <loc>https://blog.chenxc.me/tag/index.html</loc>
+    <loc>https://xbmlz.github.io/tag/index.html</loc>
     
     <lastmod>2023-03-30</lastmod>
     
@@ -120,7 +120,7 @@
   
 
   <url>
-    <loc>https://blog.chenxc.me/</loc>
+    <loc>https://xbmlz.github.io/</loc>
     <lastmod>2023-03-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
@@ -128,49 +128,49 @@
 
   
   <url>
-    <loc>https://blog.chenxc.me/tags/%E5%BC%80%E5%8F%91/</loc>
+    <loc>https://xbmlz.github.io/tags/%E5%BC%80%E5%8F%91/</loc>
     <lastmod>2023-03-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://blog.chenxc.me/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
+    <loc>https://xbmlz.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
     <lastmod>2023-03-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://blog.chenxc.me/tags/plugin/</loc>
+    <loc>https://xbmlz.github.io/tags/plugin/</loc>
     <lastmod>2023-03-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://blog.chenxc.me/tags/music/</loc>
+    <loc>https://xbmlz.github.io/tags/music/</loc>
     <lastmod>2023-03-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://blog.chenxc.me/tags/mariadb/</loc>
+    <loc>https://xbmlz.github.io/tags/mariadb/</loc>
     <lastmod>2023-03-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://blog.chenxc.me/tags/partition/</loc>
+    <loc>https://xbmlz.github.io/tags/partition/</loc>
     <lastmod>2023-03-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://blog.chenxc.me/tags/markdown/</loc>
+    <loc>https://xbmlz.github.io/tags/markdown/</loc>
     <lastmod>2023-03-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -179,42 +179,42 @@
 
   
   <url>
-    <loc>https://blog.chenxc.me/categories/%E5%BC%80%E5%8F%91/</loc>
+    <loc>https://xbmlz.github.io/categories/%E5%BC%80%E5%8F%91/</loc>
     <lastmod>2023-03-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://blog.chenxc.me/categories/plugin/</loc>
+    <loc>https://xbmlz.github.io/categories/plugin/</loc>
     <lastmod>2023-03-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://blog.chenxc.me/categories/music/</loc>
+    <loc>https://xbmlz.github.io/categories/music/</loc>
     <lastmod>2023-03-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://blog.chenxc.me/categories/database/</loc>
+    <loc>https://xbmlz.github.io/categories/database/</loc>
     <lastmod>2023-03-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://blog.chenxc.me/categories/markdown/</loc>
+    <loc>https://xbmlz.github.io/categories/markdown/</loc>
     <lastmod>2023-03-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://blog.chenxc.me/categories/music/%E6%9D%8E%E5%BF%97/</loc>
+    <loc>https://xbmlz.github.io/categories/music/%E6%9D%8E%E5%BF%97/</loc>
     <lastmod>2023-03-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
