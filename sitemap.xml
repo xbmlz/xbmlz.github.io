@@ -2,108 +2,9 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://xbmlz.github.io/centos-mariadb-install/</loc>
-    
-    <lastmod>2023-03-30</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://xbmlz.github.io/echarts-test/</loc>
-    
-    <lastmod>2023-03-30</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://xbmlz.github.io/li-zhi/</loc>
-    
-    <lastmod>2023-03-30</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://xbmlz.github.io/mariadb-galera-cluster/</loc>
-    
-    <lastmod>2023-03-30</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://xbmlz.github.io/mariadb-master-slave-sync/</loc>
-    
-    <lastmod>2023-03-30</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://xbmlz.github.io/mariadb-partition/</loc>
-    
-    <lastmod>2023-03-30</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://xbmlz.github.io/mariaid-test/</loc>
-    
-    <lastmod>2023-03-30</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://xbmlz.github.io/markdown-test/</loc>
-    
-    <lastmod>2023-03-30</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://xbmlz.github.io/math-jax-test/</loc>
-    
-    <lastmod>2023-03-30</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://xbmlz.github.io/baidu_verify_code-vx02UbxaVv.html</loc>
-    
-    <lastmod>2023-03-30</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://xbmlz.github.io/google2fd8e573e4e5ca0a.html</loc>
     
-    <lastmod>2023-03-30</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://xbmlz.github.io/category/index.html</loc>
-    
-    <lastmod>2023-03-30</lastmod>
+    <lastmod>2023-04-16</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -112,7 +13,106 @@
   <url>
     <loc>https://xbmlz.github.io/tag/index.html</loc>
     
-    <lastmod>2023-03-30</lastmod>
+    <lastmod>2023-04-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://xbmlz.github.io/centos-mariadb-install/</loc>
+    
+    <lastmod>2023-04-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://xbmlz.github.io/echarts-test/</loc>
+    
+    <lastmod>2023-04-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://xbmlz.github.io/li-zhi/</loc>
+    
+    <lastmod>2023-04-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://xbmlz.github.io/mariadb-galera-cluster/</loc>
+    
+    <lastmod>2023-04-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://xbmlz.github.io/mariadb-master-slave-sync/</loc>
+    
+    <lastmod>2023-04-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://xbmlz.github.io/mariadb-partition/</loc>
+    
+    <lastmod>2023-04-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://xbmlz.github.io/mariaid-test/</loc>
+    
+    <lastmod>2023-04-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://xbmlz.github.io/markdown-test/</loc>
+    
+    <lastmod>2023-04-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://xbmlz.github.io/math-jax-test/</loc>
+    
+    <lastmod>2023-04-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://xbmlz.github.io/baidu_verify_code-vx02UbxaVv.html</loc>
+    
+    <lastmod>2023-04-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://xbmlz.github.io/category/index.html</loc>
+    
+    <lastmod>2023-04-16</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -121,7 +121,7 @@
 
   <url>
     <loc>https://xbmlz.github.io/</loc>
-    <lastmod>2023-03-30</lastmod>
+    <lastmod>2023-04-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -129,49 +129,49 @@
   
   <url>
     <loc>https://xbmlz.github.io/tags/%E5%BC%80%E5%8F%91/</loc>
-    <lastmod>2023-03-30</lastmod>
+    <lastmod>2023-04-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://xbmlz.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
-    <lastmod>2023-03-30</lastmod>
+    <lastmod>2023-04-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://xbmlz.github.io/tags/plugin/</loc>
-    <lastmod>2023-03-30</lastmod>
+    <lastmod>2023-04-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://xbmlz.github.io/tags/music/</loc>
-    <lastmod>2023-03-30</lastmod>
+    <lastmod>2023-04-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://xbmlz.github.io/tags/mariadb/</loc>
-    <lastmod>2023-03-30</lastmod>
+    <lastmod>2023-04-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://xbmlz.github.io/tags/partition/</loc>
-    <lastmod>2023-03-30</lastmod>
+    <lastmod>2023-04-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://xbmlz.github.io/tags/markdown/</loc>
-    <lastmod>2023-03-30</lastmod>
+    <lastmod>2023-04-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -180,42 +180,42 @@
   
   <url>
     <loc>https://xbmlz.github.io/categories/%E5%BC%80%E5%8F%91/</loc>
-    <lastmod>2023-03-30</lastmod>
+    <lastmod>2023-04-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://xbmlz.github.io/categories/plugin/</loc>
-    <lastmod>2023-03-30</lastmod>
+    <lastmod>2023-04-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://xbmlz.github.io/categories/music/</loc>
-    <lastmod>2023-03-30</lastmod>
+    <lastmod>2023-04-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://xbmlz.github.io/categories/database/</loc>
-    <lastmod>2023-03-30</lastmod>
+    <lastmod>2023-04-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://xbmlz.github.io/categories/markdown/</loc>
-    <lastmod>2023-03-30</lastmod>
+    <lastmod>2023-04-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://xbmlz.github.io/categories/music/%E6%9D%8E%E5%BF%97/</loc>
-    <lastmod>2023-03-30</lastmod>
+    <lastmod>2023-04-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>

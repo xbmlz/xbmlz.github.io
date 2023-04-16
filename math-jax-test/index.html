@@ -31,12 +31,6 @@
 <link rel="stylesheet" href="/lib/nprogress/nprogress.css">
 
 
-<link rel="stylesheet" href="/lib/fancybox/fancybox.min.css">
-
-
-<link rel="stylesheet" href="/lib/tocbot/tocbot.min.css">
-
-
 
 <script src="/lib/jquery.min.js"></script>
 
@@ -44,11 +38,11 @@
 <script src="/lib/iconify-icon.min.js"></script>
 
 
-<script src="https://cdn.tailwindcss.com?plugins=typography,line-clamp"></script>
+<script src="https://cdn.tailwindcss.com?plugins=typography"></script>
 <script>
   tailwind.config = {
-    darkMode: 'class',
-  }
+    darkMode: "class",
+  };
 </script>
 
 
@@ -85,25 +79,65 @@
     const setting = localStorage.getItem("hexo-color-scheme") || "auto";
     if (setting === "dark" || (prefersDark && setting !== "light"))
       document.documentElement.classList.toggle("dark", true);
+    let isDark = document.documentElement.classList.contains("dark");
   })();
-  window.onload = function () {
-    // init iconify icon
+
+  $(document).ready(function () {
+    // init icon
+    const prefersDark =
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches;
     const isDark = document.documentElement.classList.contains("dark");
-    if (isDark) {
-      $("#toggle-dark").attr("icon", "ri:moon-line");
-    } else {
-      $("#toggle-dark").attr("icon", "ri:sun-line");
+    $("#theme-icon").attr("icon", isDark ? "ri:moon-line" : "ri:sun-line");
+
+    function toggleGiscusTheme() {
+      const isDark = document.documentElement.classList.contains("dark");
+      const giscusFrame = document.querySelector("iframe.giscus-frame");
+      if (giscusFrame) {
+        giscusFrame.contentWindow.postMessage(
+          {
+            giscus: {
+              setConfig: {
+                theme: isDark ? "dark" : "light",
+              },
+            },
+          },
+          "https://giscus.app"
+        );
+      }
     }
 
-    const toggleDark = () => {
-      console.log("toggle dark");
-      const darkMode = document.documentElement.classList.toggle("dark");
-      localStorage.setItem("hexo-color-scheme", darkMode ? "dark" : "light");
-      $("#toggle-dark").attr("icon", darkMode ? "ri:moon-line" : "ri:sun-line");
-    };
 
+    // toggle dark mode
+    function toggleDark() {
+      let isDark = document.documentElement.classList.contains("dark");
+      isDark = !isDark;
+      const setting = localStorage.getItem("hexo-color-scheme") || "auto";
+      document.documentElement.classList.toggle("dark", isDark);
+      $("#theme-icon").attr("icon", isDark ? "ri:moon-line" : "ri:sun-line");
+      if (prefersDark === isDark) {
+        localStorage.setItem("hexo-color-scheme", "auto");
+      } else {
+        localStorage.setItem("hexo-color-scheme", isDark ? "dark" : "light");
+      }
+      toggleGiscusTheme();
+    }
     $("#toggle-dark").click(toggleDark);
-  };
+    // listen dark mode change
+    window
+      .matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", (e) => {
+        const setting = localStorage.getItem("hexo-color-scheme") || "auto";
+        if (setting === "auto") {
+          document.documentElement.classList.toggle("dark", e.matches);
+          $("#theme-icon").attr(
+            "icon",
+            e.matches ? "ri:moon-line" : "ri:sun-line"
+          );
+          toggleGiscusTheme();
+        }
+      });
+  });
 </script>
 
 
@@ -121,7 +155,7 @@
         </h2>
       </a>
       <div id="header-title" class="opacity-0 md:ml-2 md:mt-[0.1rem] text-xs font-medium whitespace-nowrap overflow-hidden overflow-ellipsis">
-        Categories
+        MathJax Test
       </div>
       <div class="flex-1"></div>
       <div class="flex items-center gap-3">
@@ -139,8 +173,8 @@
             </a>
           
         
-        <a class="w-5 h-5" title="toggle theme">
-          <iconify-icon width="20" icon="ri:sun-line" id="toggle-dark"></iconify-icon>
+        <a class="w-5 h-5" title="toggle theme" id="toggle-dark">
+          <iconify-icon width="20" icon="" id="theme-icon"></iconify-icon>
         </a>
       </div>
       <div class="flex items-center justify-center gap-3 ml-3 sm:hidden">
@@ -176,7 +210,14 @@
 </div>
 
   <main class="p-12">
-    <!-- toc -->
+    <!-- css -->
+
+<link rel="stylesheet" href="/lib/fancybox/fancybox.min.css">
+
+
+<link rel="stylesheet" href="/lib/tocbot/tocbot.min.css">
+
+<!-- toc -->
 
   <!-- tocbot -->
 <nav class="post-toc toc text-sm w-48 relative top-32 right-0 opacity-70 hidden lg:block" style="position: fixed !important;"></nav>
@@ -194,7 +235,7 @@
       </p>
       <div>
         <section class="flex items-center gap-3 text-sm">
-          <time>2023-03-30 08:08:17</time>
+          <time>2023-04-16 12:39:39</time>
           <span class="text-gray-400">·</span>
           <span>4 min</span>
           <span class="text-gray-400">·</span>
@@ -299,65 +340,45 @@
   <!-- comment -->
   <div class="article-comments mt-12">
     
-<script src="https://giscus.app/client.js"
-        data-repo="xbmlz/maple-giscus"
-        data-repo-id="R_kgDOIgC6Zg"
-        data-category="General"
-        data-category-id="DIC_kwDOIgC6Zs4CSwIE"
-        data-mapping="pathname"
-        data-strict="0"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="bottom"
-        data-theme="preferred_color_scheme"
-        data-lang="zh-CN"
-        crossorigin="anonymous"
-        async>
+<script
+  src="https://giscus.app/client.js"
+  data-repo="xbmlz/maple-giscus"
+  data-repo-id="R_kgDOIgC6Zg"
+  data-category="General"
+  data-category-id="DIC_kwDOIgC6Zs4CSwIE"
+  data-mapping="pathname"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="bottom"
+  data-theme="preferred_color_scheme"
+  data-lang="zh-CN"
+  crossorigin="anonymous"
+  async
+></script>
+<script>
+  window.onload = function () {
+    const isDark = document.documentElement.classList.contains("dark");
+    const giscusFrame = document.querySelector("iframe.giscus-frame");
+    giscusFrame.contentWindow.postMessage(
+      {
+        giscus: {
+          setConfig: {
+            theme: isDark ? "dark" : "light",
+          },
+        },
+      },
+      "https://giscus.app"
+    );
+  };
 </script>
 
 
   </div>
 </section>
+<!-- js inspect -->
 
-  </main>
-  <footer class="flex flex-col h-40 items-center justify-center text-gray-400 text-sm">
-  <!-- busuanzi -->
-  
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<!-- Busuanzi Analytics -->
-<div class="flex items-center gap-2">
-  <span>Visitor Count</span>
-  <span id="busuanzi_value_site_uv"></span>
-  <span>Totalview</span>
-  <span id="busuanzi_value_site_pv"></span>
-</div>
-<!-- End Busuanzi Analytics -->
-
-
-  <!-- copyright -->
-  <div class="flex items-center gap-2">
-    <span>© 2022</span>
-    <iconify-icon width="18" icon="emojione-monotone:maple-leaf" ></iconify-icon>
-    <a href="https://github.com/xbmlz" target="_blank" rel="noopener noreferrer">xbmlz</a>
-  </div>
-  <!-- powered by -->
-  <div class="flex items-center gap-2">
-    <span>Powered by</span>
-    <a href="https://hexo.io/" target="_blank" rel="noopener noreferrer">Hexo</a>
-    <span>&</span>
-    <a href="https://github.com/xbmlz/hexo-theme-maple" target="_blank" rel="noopener noreferrer">Maple</a>
-  </div>
-
-</footer>
-
-  <iconify-icon class="fixed right-4 bottom-10 z-100 opacity-0" width="24" icon="ion:arrow-up-c" id="go-top"></iconify-icon>
-  
 <script src="/lib/clipboard.min.js"></script>
-
-
-
-<script src="/js/main.js"></script>
-
 
 
 <script async src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
@@ -451,6 +472,42 @@
   })
 </script>
 <!-- tocbot end -->
+
+
+  </main>
+  <footer class="flex flex-col h-40 items-center justify-center text-gray-400 text-sm">
+  <!-- busuanzi -->
+  
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- Busuanzi Analytics -->
+<div class="flex items-center gap-2">
+  <span>Visitor Count</span>
+  <span id="busuanzi_value_site_uv"></span>
+  <span>Totalview</span>
+  <span id="busuanzi_value_site_pv"></span>
+</div>
+<!-- End Busuanzi Analytics -->
+
+
+  <!-- copyright -->
+  <div class="flex items-center gap-2">
+    <span>© 2022</span>
+    <iconify-icon width="18" icon="emojione-monotone:maple-leaf" ></iconify-icon>
+    <a href="https://github.com/xbmlz" target="_blank" rel="noopener noreferrer">xbmlz</a>
+  </div>
+  <!-- powered by -->
+  <div class="flex items-center gap-2">
+    <span>Powered by</span>
+    <a href="https://hexo.io/" target="_blank" rel="noopener noreferrer">Hexo</a>
+    <span>&</span>
+    <a href="https://github.com/xbmlz/hexo-theme-maple" target="_blank" rel="noopener noreferrer">Maple</a>
+  </div>
+
+</footer>
+
+  <iconify-icon class="fixed right-4 bottom-10 z-100 opacity-0" width="24" icon="ion:arrow-up-c" id="go-top"></iconify-icon>
+  
+<script src="/js/main.js"></script>
 
 
 </body>
