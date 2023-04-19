@@ -1,3 +1,4 @@
+https://xbmlz.github.io/k8s-install/
 https://xbmlz.github.io/linux-clash/
 https://xbmlz.github.io/mariadb-master-slave-sync/
 https://xbmlz.github.io/mariadb-galera-cluster/
