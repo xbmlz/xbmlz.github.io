@@ -8,7 +8,7 @@ nav:
 favicon: /favicon.ico
 
 # logo
-logo: /images/logo.svg
+logo: /img/logo.svg
 
 # links
 links:
@@ -48,5 +48,10 @@ giscus:
   category_id: DIC_kwDOIgC6Zs4CSwIE
   mapping: pathname
 
+# maple
+maple:
+  enable: true
+  count: 10
+  speed: 1
 
 
