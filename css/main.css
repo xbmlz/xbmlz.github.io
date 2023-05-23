@@ -115,3 +115,45 @@ a:hover {
   background-color: var(--c-scroll);
   border-radius: 4px;
 }
+.maple {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  top: 0px;
+  left: 0px;
+  background-image: url("../img/logo.svg");
+  background-size: cover;
+  will-change: transform;
+}
+@-moz-keyframes fall {
+  0% {
+    transform: translate(0px, 0px);
+  }
+  100% {
+    transform: translate(calc(100vw * var(--maple-fall-offset)), var(--maple-fall-height));
+  }
+}
+@-webkit-keyframes fall {
+  0% {
+    transform: translate(0px, 0px);
+  }
+  100% {
+    transform: translate(calc(100vw * var(--maple-fall-offset)), var(--maple-fall-height));
+  }
+}
+@-o-keyframes fall {
+  0% {
+    transform: translate(0px, 0px);
+  }
+  100% {
+    transform: translate(calc(100vw * var(--maple-fall-offset)), var(--maple-fall-height));
+  }
+}
+@keyframes fall {
+  0% {
+    transform: translate(0px, 0px);
+  }
+  100% {
+    transform: translate(calc(100vw * var(--maple-fall-offset)), var(--maple-fall-height));
+  }
+}
