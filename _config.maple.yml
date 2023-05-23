@@ -1,24 +1,25 @@
 # Header
 nav:
   Posts: /archives
-
+  Categories: /category
+  Tags: /tag
 
 # favicon
-favicon: /favicon.png
+favicon: /favicon.ico
 
 # logo
-logo: /images/logo.svg
+logo: /img/logo.svg
 
 # links
 links:
   Github: https://github.com/xbmlz
-  # ZhiHu:
-  # Twitter:
-  # Weibo:
+  # ZhiHu: https://github.com/xbmlz
+  # Twitter: https://github.com/xbmlz
+  # Weibo: https://github.com/xbmlz
 
 # analytics
-google_analytics:
-baidu_analytics:
+google_analytics: G-EHXM4GYP5W
+baidu_analytics: 0a6515fb9c839d6a56d4cfd8b7d243d4
 
 # mathjax
 fancybox: true
@@ -29,15 +30,30 @@ mathjax: true
 # echarts
 echarts: true
 
+# busuanzi
+busuanzi: true
+
 # mermaid
 mermaid:
   enable: true
   # Available themes: default | dark | forest | neutral
   theme: default
 
-# disqusjs
-disqusjs:
+# giscus
+giscus:
   enable: true
-  api: https://disqus.com/api/
-  apikey: F8Js8W3WLwXc20bYiKGLS9qTCL1qeq33cPjWFzat1HYLMkH0V9mdUg9JBHpXSBYw
-  shortname: hexo-theme-maple
+  repo: xbmlz/maple-giscus
+  repo_id: R_kgDOIgC6Zg
+  category: General
+  category_id: DIC_kwDOIgC6Zs4CSwIE
+  mapping: pathname
+
+# maple
+maple:
+  enable: true
+  # fall leaf count
+  count: 10
+  # 0-1
+  speed: 0.5
+
+
