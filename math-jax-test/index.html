@@ -166,7 +166,7 @@
 
 
 <meta name="generator" content="Hexo 6.3.0"></head>
-<body class="font-sans bg-white dark:bg-zinc-900 text-gray-700 dark:text-gray-200">
+<body class="font-sans text-gray-700 dark:text-gray-200 relative">
   <header class="fixed w-full px-5 py-1 z-10 backdrop-blur-xl backdrop-saturate-150 border-b border-black/5">
   <div class="max-auto">
     <nav class="flex items-center text-base">
@@ -231,7 +231,7 @@
   <div class="mask bg-black/20 absolute inset-0"></div>
 </div>
 
-  <main class="p-12">
+  <main>
     <!-- css -->
 
 <link rel="stylesheet" href="/lib/fancybox/fancybox.min.css">
@@ -245,86 +245,91 @@
 <nav class="post-toc toc text-sm w-48 relative top-32 right-0 opacity-70 hidden lg:block" style="position: fixed !important;"></nav>
 
 
-<section class="px-6 max-w-prose mx-auto md:px-0">
+<section class="px-6 max-w-prose prose mx-auto md:px-0">
   <!-- header -->
   <header class="overflow-hidden pt-6 pb-6 md:pt-12">
     <div class="pt-4 md:pt-6">
       <h1 id="article-title" class="text-[2rem] font-bold leading-snug mb-4 md:mb-6 md:text-[2.6rem]">
         MathJax Test
       </h1>
-      <p class="mb-6">
-        测试MathJax语法
-      </p>
       <div>
         <section class="flex items-center gap-3 text-sm">
-          <time>2023-05-23 10:37:34</time>
+          <time>2023-09-13 15:52:37</time>
           <span class="text-gray-400">·</span>
           <span>4 min</span>
           <span class="text-gray-400">·</span>
-          <span>897 words</span>
+          <span>884 words</span>
+          
+            <span class="text-gray-400">·</span>
+            
+              <span>
+                <a href="/categories/markdown/">markdown</a>
+              </span>
+            
+          
         </section>
       </div>
     </div>
   </header>
   <!-- content -->
-  <article class="post-content mt-10 prose dark:prose-invert post-content">
-    <h2 id="行内公式与块公式"><a href="#行内公式与块公式" class="headerlink" title="行内公式与块公式"></a>行内公式与块公式</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$f(x)=ax+b$ 这是行内公式.</span><br><span class="line">$$f(x)=ax+b$$ 这是块公式，单独占一行.</span><br></pre></td></tr></table></figure>
+  <article class="post-content mt-10 dark:prose-invert">
+    <h2 id="行内公式与块公式"><a href="#行内公式与块公式" class="headerlink" title="行内公式与块公式"></a>行内公式与块公式</h2><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">$f(x)=ax+b$ 这是行内公式.</span><br><span class="line">$$f(x)=ax+b$$ 这是块公式，单独占一行.</span><br></pre></td></tr></table></figure>
 <p>$f(x)&#x3D;ax+b$ 这是行内公式.<br>$$f(x)&#x3D;ax+b$$ 这是块公式，单独占一行.</p>
 <h2 id="上标与下标"><a href="#上标与下标" class="headerlink" title="上标与下标"></a>上标与下标</h2><p>使用 ^ 表示上标，使用 _ 表示下标，如果上下标的内容多于一个字符，可以使用大括号括起来：</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$$f(x) = a<span class="emphasis">_1x^n + a_</span>2x^&#123;n-1&#125; + a<span class="emphasis">_3x^&#123;n-2&#125;$$</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">$$f(x) = a<span class="emphasis">_1x^n + a_</span>2x^&#123;n-1&#125; + a<span class="emphasis">_3x^&#123;n-2&#125;$$</span></span><br></pre></td></tr></table></figure>
 
 <p>显示效果：</p>
 <p>$$f(x) &#x3D; a_1x^n + a_2x^{n-1} + a_3x^{n-2}$$</p>
 <p>如果左右两边都有上下标可以使用 \sideset 语法：</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$$\sideset&#123;^n<span class="emphasis">_k&#125;&#123;^x_</span>y&#125;a$$</span><br></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">$$\sideset&#123;^n<span class="emphasis">_k&#125;&#123;^x_</span>y&#125;a$$</span><br></pre></td></tr></table></figure>
 
 <p>显示效果：</p>
 <p>$$\sideset{^n_k}{^x_y}a$$</p>
 <h2 id="括号"><a href="#括号" class="headerlink" title="括号"></a>括号</h2><p>在 markdown 语法中，, $, {, }, _都是有特殊含义的，所以需要加\转义。小括号与方括号可以使用原始的() [] 大括号需要转义\也可以使用\lbrace和 \rbrace</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$$ \\&#123;x<span class="emphasis">*y\\&#125; $$  --注：大括号在markdown中已有一次转义，在mathjax中还要再转一次，所以为两个斜杠</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">$$\lbrace x*</span>y \rbrace$$</span><br></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">$$ \\&#123;x<span class="emphasis">*y\\&#125; $$  --注：大括号在markdown中已有一次转义，在mathjax中还要再转一次，所以为两个斜杠</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">$$\lbrace x*</span>y \rbrace$$</span><br></pre></td></tr></table></figure>
 
 <p>显示效果：</p>
 <p>$$ \{x*y\} $$</p>
 <p>$$\lbrace x*y \rbrace$$</p>
 <p>原始符号不会随着公式大小自动缩放，需要使用 \left 和 \right 来实现自动缩放：</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$$\left \lbrace \sum<span class="emphasis">_&#123;i=0&#125;^n i^3 = \frac&#123;(n^2+n)(n+6)&#125;&#123;9&#125; \right \rbrace$$</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">$$\left \lbrace \sum<span class="emphasis">_&#123;i=0&#125;^n i^3 = \frac&#123;(n^2+n)(n+6)&#125;&#123;9&#125; \right \rbrace$$</span></span><br></pre></td></tr></table></figure>
 
 <p>显示效果：</p>
 <p>$$\left \lbrace \sum_{i&#x3D;0}^n i^3 &#x3D; \frac{(n^2+n)(n+6)}{9} \right \rbrace$$</p>
 <p>不使用\left 和 \right的效果：</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$$ \lbrace \sum<span class="emphasis">_&#123;i=0&#125;^n i^3 = \frac&#123;(n^2+n)(n+6)&#125;&#123;9&#125;  \rbrace$$</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">$$ \lbrace \sum<span class="emphasis">_&#123;i=0&#125;^n i^3 = \frac&#123;(n^2+n)(n+6)&#125;&#123;9&#125;  \rbrace$$</span></span><br></pre></td></tr></table></figure>
 
 <p>显示效果：</p>
 <p>$$ \lbrace \sum_{i&#x3D;0}^n i^3 &#x3D; \frac{(n^2+n)(n+6)}{9}  \rbrace$$</p>
 <h2 id="分数与开方"><a href="#分数与开方" class="headerlink" title="分数与开方"></a>分数与开方</h2><p>可以使用\frac 或者 \over 实现分数的显示：</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$\frac xy$</span><br><span class="line">$ x+3 \over y+5 $</span><br></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">$\frac xy$</span><br><span class="line">$ x+3 \over y+5 $</span><br></pre></td></tr></table></figure>
 
 <p>显示为 $\frac xy$ 和 $ x+3 \over y+5 $</p>
 <p>开方使用\sqrt:</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ \sqrt&#123;x^5&#125; $</span><br><span class="line">$ \sqrt[3]&#123;\frac xy&#125; $</span><br></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">$ \sqrt&#123;x^5&#125; $</span><br><span class="line">$ \sqrt[3]&#123;\frac xy&#125; $</span><br></pre></td></tr></table></figure>
 
 <p>显示为 $ \sqrt{x^5} $ 和 $ \sqrt[3]{\frac xy} $</p>
 <h2 id="求和与积分"><a href="#求和与积分" class="headerlink" title="求和与积分"></a>求和与积分</h2><p>求和使用\sum,可加上下标，积分使用\int可加上下限，双重积分用\iint</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ \sum<span class="emphasis">_&#123;i=0&#125;^n $</span></span><br><span class="line"><span class="emphasis">$ \int_</span>1^\infty $</span><br><span class="line">$ \iint<span class="emphasis">_1^\infty $</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">$ \sum<span class="emphasis">_&#123;i=0&#125;^n $</span></span><br><span class="line"><span class="emphasis">$ \int_</span>1^\infty $</span><br><span class="line">$ \iint<span class="emphasis">_1^\infty $</span></span><br></pre></td></tr></table></figure>
 
 <p>显示为 $ \sum_{i&#x3D;0}^n $ 和 $ \int_1^\infty $ 以及 $ \iint_1^\infty $</p>
 <h2 id="极限"><a href="#极限" class="headerlink" title="极限"></a>极限</h2><p>极限使用\lim:</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ \lim<span class="emphasis">_&#123;x \to 0&#125; $</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">$ \lim<span class="emphasis">_&#123;x \to 0&#125; $</span></span><br></pre></td></tr></table></figure>
 
 <p>显示为: $ \lim_{x \to 0} $</p>
 <h2 id="表格与矩阵"><a href="#表格与矩阵" class="headerlink" title="表格与矩阵"></a>表格与矩阵</h2><p>表格样式lcr表示居中，|加入一条竖线，\hline表示行间横线，列之间用&amp;分隔，行之间用\分隔：</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$$\begin&#123;array&#125;&#123;c|lcr&#125;</span><br><span class="line">n &amp; \text&#123;Left&#125; &amp; \text&#123;Center&#125; &amp; \text&#123;Right&#125; \\\\</span><br><span class="line">\hline</span><br><span class="line">1 &amp; 1.97 &amp; 5 &amp; 12 \\\\</span><br><span class="line">2 &amp; -11 &amp; 19 &amp; -80 \\\\</span><br><span class="line">3 &amp; 70 &amp; 209 &amp; 1+i \\\\</span><br><span class="line">\end&#123;array&#125;$$</span><br></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">$$\begin&#123;array&#125;&#123;c|lcr&#125;</span><br><span class="line">n &amp; \text&#123;Left&#125; &amp; \text&#123;Center&#125; &amp; \text&#123;Right&#125; \\\\</span><br><span class="line">\hline</span><br><span class="line">1 &amp; 1.97 &amp; 5 &amp; 12 \\\\</span><br><span class="line">2 &amp; -11 &amp; 19 &amp; -80 \\\\</span><br><span class="line">3 &amp; 70 &amp; 209 &amp; 1+i \\\\</span><br><span class="line">\end&#123;array&#125;$$</span><br></pre></td></tr></table></figure>
 
 <p>显示效果：</p>
 <p>$$\begin{array}{c|lcr}<br>n &amp; \text{Left} &amp; \text{Center} &amp; \text{Right} \\<br>\hline<br>1 &amp; 1.97 &amp; 5 &amp; 12 \\<br>2 &amp; -11 &amp; 19 &amp; -80 \\<br>3 &amp; 70 &amp; 209 &amp; 1+i \\<br>\end{array}$$</p>
-<h2 id="矩阵"><a href="#矩阵" class="headerlink" title="矩阵"></a>矩阵</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">$$\left[</span><br><span class="line">\begin&#123;matrix&#125;</span><br><span class="line">V<span class="emphasis">_A \\\\</span></span><br><span class="line"><span class="emphasis">V_</span>B \\\\</span><br><span class="line">V<span class="emphasis">_C \\\\</span></span><br><span class="line"><span class="emphasis">\end&#123;matrix&#125;</span></span><br><span class="line"><span class="emphasis">\right] =</span></span><br><span class="line"><span class="emphasis">\left[</span></span><br><span class="line"><span class="emphasis">\begin&#123;matrix&#125;</span></span><br><span class="line"><span class="emphasis">1 &amp; 0 &amp; L \\\\</span></span><br><span class="line"><span class="emphasis">-cosψ &amp; sinψ &amp; L \\\\</span></span><br><span class="line"><span class="emphasis">-cosψ &amp; -sinψ &amp; L</span></span><br><span class="line"><span class="emphasis">\end&#123;matrix&#125;</span></span><br><span class="line"><span class="emphasis">\right]</span></span><br><span class="line"><span class="emphasis">\left[</span></span><br><span class="line"><span class="emphasis">\begin&#123;matrix&#125;</span></span><br><span class="line"><span class="emphasis">V_</span>x \\\\</span><br><span class="line">V<span class="emphasis">_y \\\\</span></span><br><span class="line"><span class="emphasis">W \\\\</span></span><br><span class="line"><span class="emphasis">\end&#123;matrix&#125;</span></span><br><span class="line"><span class="emphasis">\right] $$</span></span><br></pre></td></tr></table></figure>
+<h2 id="矩阵"><a href="#矩阵" class="headerlink" title="矩阵"></a>矩阵</h2><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">$$\left[</span><br><span class="line">\begin&#123;matrix&#125;</span><br><span class="line">V<span class="emphasis">_A \\\\</span></span><br><span class="line"><span class="emphasis">V_</span>B \\\\</span><br><span class="line">V<span class="emphasis">_C \\\\</span></span><br><span class="line"><span class="emphasis">\end&#123;matrix&#125;</span></span><br><span class="line"><span class="emphasis">\right] =</span></span><br><span class="line"><span class="emphasis">\left[</span></span><br><span class="line"><span class="emphasis">\begin&#123;matrix&#125;</span></span><br><span class="line"><span class="emphasis">1 &amp; 0 &amp; L \\\\</span></span><br><span class="line"><span class="emphasis">-cosψ &amp; sinψ &amp; L \\\\</span></span><br><span class="line"><span class="emphasis">-cosψ &amp; -sinψ &amp; L</span></span><br><span class="line"><span class="emphasis">\end&#123;matrix&#125;</span></span><br><span class="line"><span class="emphasis">\right]</span></span><br><span class="line"><span class="emphasis">\left[</span></span><br><span class="line"><span class="emphasis">\begin&#123;matrix&#125;</span></span><br><span class="line"><span class="emphasis">V_</span>x \\\\</span><br><span class="line">V<span class="emphasis">_y \\\\</span></span><br><span class="line"><span class="emphasis">W \\\\</span></span><br><span class="line"><span class="emphasis">\end&#123;matrix&#125;</span></span><br><span class="line"><span class="emphasis">\right] $$</span></span><br></pre></td></tr></table></figure>
 
 <p>显示效果:</p>
 <p>$$\left[<br>\begin{matrix}<br>V_A \\<br>V_B \\<br>V_C \\<br>\end{matrix}<br>\right] &#x3D;<br>\left[<br>\begin{matrix}<br>1 &amp; 0 &amp; L \\<br>-cosψ &amp; sinψ &amp; L \\<br>-cosψ &amp; -sinψ &amp; L<br>\end{matrix}<br>\right]<br>\left[<br>\begin{matrix}<br>V_x \\<br>V_y \\<br>W \\<br>\end{matrix}<br>\right] $$</p>
 <hr>
 
 <p>综合测试：</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$$\frac&#123;\partial u&#125;&#123;\partial t&#125;</span><br><span class="line">= h^2 \left( \frac&#123;\partial^2 u&#125;&#123;\partial x^2&#125; +</span><br><span class="line">\frac&#123;\partial^2 u&#125;&#123;\partial y^2&#125; +</span><br><span class="line">\frac&#123;\partial^2 u&#125;&#123;\partial z^2&#125;\right)$$</span><br><span class="line"></span><br><span class="line">$$ \lbrace \sum<span class="emphasis">_&#123;i=0&#125;^n i^3 = \frac&#123;(n^2+n)(n+6)&#125;&#123;9&#125;  \rbrace$$</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">$$\frac&#123;\partial u&#125;&#123;\partial t&#125;</span><br><span class="line">= h^2 \left( \frac&#123;\partial^2 u&#125;&#123;\partial x^2&#125; +</span><br><span class="line">\frac&#123;\partial^2 u&#125;&#123;\partial y^2&#125; +</span><br><span class="line">\frac&#123;\partial^2 u&#125;&#123;\partial z^2&#125;\right)$$</span><br><span class="line"></span><br><span class="line">$$ \lbrace \sum<span class="emphasis">_&#123;i=0&#125;^n i^3 = \frac&#123;(n^2+n)(n+6)&#125;&#123;9&#125;  \rbrace$$</span></span><br></pre></td></tr></table></figure>
 <p>显示效果:</p>
 <p>$$\frac{\partial u}{\partial t}<br>&#x3D; h^2 \left( \frac{\partial^2 u}{\partial x^2} +<br>\frac{\partial^2 u}{\partial y^2} +<br>\frac{\partial^2 u}{\partial z^2}\right)$$</p>
 <p>$$ \lbrace \sum_{i&#x3D;0}^n i^3 &#x3D; \frac{(n^2+n)(n+6)}{9}  \rbrace$$</p>
@@ -562,7 +567,7 @@
   
 
 
-  <div class="w-screen h-screen -z-999" id="maple"></div>
+  <div class="fixed top-0 bottom-0 left-0 right-0 pointer-events-none print:hidden" id="maple"></div>
 </body>
 
 </html>

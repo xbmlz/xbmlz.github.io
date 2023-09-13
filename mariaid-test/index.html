@@ -166,7 +166,7 @@
 
 
 <meta name="generator" content="Hexo 6.3.0"></head>
-<body class="font-sans bg-white dark:bg-zinc-900 text-gray-700 dark:text-gray-200">
+<body class="font-sans text-gray-700 dark:text-gray-200 relative">
   <header class="fixed w-full px-5 py-1 z-10 backdrop-blur-xl backdrop-saturate-150 border-b border-black/5">
   <div class="max-auto">
     <nav class="flex items-center text-base">
@@ -231,7 +231,7 @@
   <div class="mask bg-black/20 absolute inset-0"></div>
 </div>
 
-  <main class="p-12">
+  <main>
     <!-- css -->
 
 <link rel="stylesheet" href="/lib/fancybox/fancybox.min.css">
@@ -245,30 +245,35 @@
 <nav class="post-toc toc text-sm w-48 relative top-32 right-0 opacity-70 hidden lg:block" style="position: fixed !important;"></nav>
 
 
-<section class="px-6 max-w-prose mx-auto md:px-0">
+<section class="px-6 max-w-prose prose mx-auto md:px-0">
   <!-- header -->
   <header class="overflow-hidden pt-6 pb-6 md:pt-12">
     <div class="pt-4 md:pt-6">
       <h1 id="article-title" class="text-[2rem] font-bold leading-snug mb-4 md:mb-6 md:text-[2.6rem]">
         Mariaid Test
       </h1>
-      <p class="mb-6">
-        测试Mariaid是否成功渲染
-      </p>
       <div>
         <section class="flex items-center gap-3 text-sm">
-          <time>2023-05-23 10:37:34</time>
+          <time>2023-09-13 15:52:37</time>
           <span class="text-gray-400">·</span>
           <span>6 min</span>
           <span class="text-gray-400">·</span>
           <span>1.1k words</span>
+          
+            <span class="text-gray-400">·</span>
+            
+              <span>
+                <a href="/categories/markdown/">markdown</a>
+              </span>
+            
+          
         </section>
       </div>
     </div>
   </header>
   <!-- content -->
-  <article class="post-content mt-10 prose dark:prose-invert post-content">
-    <h2 id="Flowchart"><a href="#Flowchart" class="headerlink" title="Flowchart"></a>Flowchart</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">graph TD</span><br><span class="line">A[Hard] --&gt;|Text| B(Round)</span><br><span class="line">B --&gt; C&#123;Decision&#125;</span><br><span class="line">C --&gt;|One| D[Result 1]</span><br><span class="line">C --&gt;|Two| E[Result 2]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+  <article class="post-content mt-10 dark:prose-invert">
+    <h2 id="Flowchart"><a href="#Flowchart" class="headerlink" title="Flowchart"></a>Flowchart</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">graph TD</span><br><span class="line">A[Hard] --&gt;|Text| B(Round)</span><br><span class="line">B --&gt; C&#123;Decision&#125;</span><br><span class="line">C --&gt;|One| D[Result 1]</span><br><span class="line">C --&gt;|Two| E[Result 2]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <pre class="mermaid">graph TD
 A[Hard] -->|Text| B(Round)
@@ -276,7 +281,7 @@ B --> C{Decision}
 C -->|One| D[Result 1]
 C -->|Two| E[Result 2]</pre>
 
-<h2 id="Sequence-diagrams"><a href="#Sequence-diagrams" class="headerlink" title="Sequence diagrams"></a>Sequence diagrams</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sequenceDiagram</span><br><span class="line">Alice-&gt;&gt;John: Hello John, how are you?</span><br><span class="line">loop Healthcheck</span><br><span class="line">    John-&gt;&gt;John: Fight against hypochondria</span><br><span class="line">end</span><br><span class="line">Note right of John: Rational thoughts!</span><br><span class="line">John--&gt;&gt;Alice: Great!</span><br><span class="line">John-&gt;&gt;Bob: How about you?</span><br><span class="line">Bob--&gt;&gt;John: Jolly good!</span><br></pre></td></tr></table></figure>
+<h2 id="Sequence-diagrams"><a href="#Sequence-diagrams" class="headerlink" title="Sequence diagrams"></a>Sequence diagrams</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sequenceDiagram</span><br><span class="line">Alice-&gt;&gt;John: Hello John, how are you?</span><br><span class="line">loop Healthcheck</span><br><span class="line">    John-&gt;&gt;John: Fight against hypochondria</span><br><span class="line">end</span><br><span class="line">Note right of John: Rational thoughts!</span><br><span class="line">John--&gt;&gt;Alice: Great!</span><br><span class="line">John-&gt;&gt;Bob: How about you?</span><br><span class="line">Bob--&gt;&gt;John: Jolly good!</span><br></pre></td></tr></table></figure>
 
 <pre class="mermaid">sequenceDiagram
 Alice->>John: Hello John, how are you?
@@ -288,7 +293,7 @@ John-->>Alice: Great!
 John->>Bob: How about you?
 Bob-->>John: Jolly good!</pre>
 
-<h2 id="Class-diagrams"><a href="#Class-diagrams" class="headerlink" title="Class diagrams"></a>Class diagrams</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">classDiagram</span><br><span class="line">    Animal &lt;|-- Duck</span><br><span class="line">    Animal &lt;|-- Fish</span><br><span class="line">    Animal &lt;|-- Zebra</span><br><span class="line">    Animal : +int age</span><br><span class="line">    Animal : +String gender</span><br><span class="line">    Animal: +isMammal()</span><br><span class="line">    Animal: +mate()</span><br><span class="line">    class Duck&#123;</span><br><span class="line">        +String beakColor</span><br><span class="line">        +swim()</span><br><span class="line">        +quack()</span><br><span class="line">    &#125;</span><br><span class="line">    class Fish&#123;</span><br><span class="line">        -int sizeInFeet</span><br><span class="line">        -canEat()</span><br><span class="line">    &#125;</span><br><span class="line">    class Zebra&#123;</span><br><span class="line">        +bool is_wild</span><br><span class="line">        +run()</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Class-diagrams"><a href="#Class-diagrams" class="headerlink" title="Class diagrams"></a>Class diagrams</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">classDiagram</span><br><span class="line">    Animal &lt;|-- Duck</span><br><span class="line">    Animal &lt;|-- Fish</span><br><span class="line">    Animal &lt;|-- Zebra</span><br><span class="line">    Animal : +int age</span><br><span class="line">    Animal : +String gender</span><br><span class="line">    Animal: +isMammal()</span><br><span class="line">    Animal: +mate()</span><br><span class="line">    class Duck&#123;</span><br><span class="line">        +String beakColor</span><br><span class="line">        +swim()</span><br><span class="line">        +quack()</span><br><span class="line">    &#125;</span><br><span class="line">    class Fish&#123;</span><br><span class="line">        -int sizeInFeet</span><br><span class="line">        -canEat()</span><br><span class="line">    &#125;</span><br><span class="line">    class Zebra&#123;</span><br><span class="line">        +bool is_wild</span><br><span class="line">        +run()</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
 <pre class="mermaid">classDiagram
     Animal <|-- Duck
@@ -312,7 +317,7 @@ Bob-->>John: Jolly good!</pre>
         +run()
     }</pre>
 
-<h2 id="State-diagrams"><a href="#State-diagrams" class="headerlink" title="State diagrams"></a>State diagrams</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">stateDiagram-v2</span><br><span class="line">[*] --&gt; Still</span><br><span class="line">Still --&gt; [*]</span><br><span class="line">Still --&gt; Moving</span><br><span class="line">Moving --&gt; Still</span><br><span class="line">Moving --&gt; Crash</span><br><span class="line">Crash --&gt; [*]</span><br></pre></td></tr></table></figure>
+<h2 id="State-diagrams"><a href="#State-diagrams" class="headerlink" title="State diagrams"></a>State diagrams</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">stateDiagram-v2</span><br><span class="line">[*] --&gt; Still</span><br><span class="line">Still --&gt; [*]</span><br><span class="line">Still --&gt; Moving</span><br><span class="line">Moving --&gt; Still</span><br><span class="line">Moving --&gt; Crash</span><br><span class="line">Crash --&gt; [*]</span><br></pre></td></tr></table></figure>
 
 <pre class="mermaid">stateDiagram-v2
 [*] --> Still
@@ -322,14 +327,14 @@ Moving --> Still
 Moving --> Crash
 Crash --> [*]</pre>
 
-<h2 id="Entity-Relationship-Diagrams"><a href="#Entity-Relationship-Diagrams" class="headerlink" title="Entity Relationship Diagrams"></a>Entity Relationship Diagrams</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">erDiagram</span><br><span class="line">    CUSTOMER ||--o&#123; ORDER : places</span><br><span class="line">    ORDER ||--|&#123; LINE-ITEM : contains</span><br><span class="line">    CUSTOMER &#125;|..|&#123; DELIVERY-ADDRESS : uses</span><br></pre></td></tr></table></figure>
+<h2 id="Entity-Relationship-Diagrams"><a href="#Entity-Relationship-Diagrams" class="headerlink" title="Entity Relationship Diagrams"></a>Entity Relationship Diagrams</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">erDiagram</span><br><span class="line">    CUSTOMER ||--o&#123; ORDER : places</span><br><span class="line">    ORDER ||--|&#123; LINE-ITEM : contains</span><br><span class="line">    CUSTOMER &#125;|..|&#123; DELIVERY-ADDRESS : uses</span><br></pre></td></tr></table></figure>
 
 <pre class="mermaid">erDiagram
     CUSTOMER ||--o{ ORDER : places
     ORDER ||--|{ LINE-ITEM : contains
     CUSTOMER }|..|{ DELIVERY-ADDRESS : uses</pre>
 
-<h2 id="User-Journey-Diagram"><a href="#User-Journey-Diagram" class="headerlink" title="User Journey Diagram"></a>User Journey Diagram</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">journey</span><br><span class="line">    title My working day</span><br><span class="line">    section Go to work</span><br><span class="line">      Make tea: 5: Me</span><br><span class="line">      Go upstairs: 3: Me</span><br><span class="line">      Do work: 1: Me, Cat</span><br><span class="line">    section Go home</span><br><span class="line">      Go downstairs: 5: Me</span><br><span class="line">      Sit down: 5: Me</span><br></pre></td></tr></table></figure>
+<h2 id="User-Journey-Diagram"><a href="#User-Journey-Diagram" class="headerlink" title="User Journey Diagram"></a>User Journey Diagram</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">journey</span><br><span class="line">    title My working day</span><br><span class="line">    section Go to work</span><br><span class="line">      Make tea: 5: Me</span><br><span class="line">      Go upstairs: 3: Me</span><br><span class="line">      Do work: 1: Me, Cat</span><br><span class="line">    section Go home</span><br><span class="line">      Go downstairs: 5: Me</span><br><span class="line">      Sit down: 5: Me</span><br></pre></td></tr></table></figure>
 
 <pre class="mermaid">journey
     title My working day
@@ -341,7 +346,7 @@ Crash --> [*]</pre>
       Go downstairs: 5: Me
       Sit down: 5: Me</pre>
 
-<h2 id="Gantt-diagrams"><a href="#Gantt-diagrams" class="headerlink" title="Gantt diagrams"></a>Gantt diagrams</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">gantt</span><br><span class="line">    title A Gantt Diagram</span><br><span class="line">    dateFormat  YYYY-MM-DD</span><br><span class="line">    section Section</span><br><span class="line">    A task           :a1, 2014-01-01, 30d</span><br><span class="line">    Another task     :after a1  , 20d</span><br><span class="line">    section Another</span><br><span class="line">    Task in sec      :2014-01-12  , 12d</span><br><span class="line">    another task      : 24d</span><br></pre></td></tr></table></figure>
+<h2 id="Gantt-diagrams"><a href="#Gantt-diagrams" class="headerlink" title="Gantt diagrams"></a>Gantt diagrams</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">gantt</span><br><span class="line">    title A Gantt Diagram</span><br><span class="line">    dateFormat  YYYY-MM-DD</span><br><span class="line">    section Section</span><br><span class="line">    A task           :a1, 2014-01-01, 30d</span><br><span class="line">    Another task     :after a1  , 20d</span><br><span class="line">    section Another</span><br><span class="line">    Task in sec      :2014-01-12  , 12d</span><br><span class="line">    another task      : 24d</span><br></pre></td></tr></table></figure>
 
 <pre class="mermaid">gantt
     title A Gantt Diagram
@@ -353,14 +358,14 @@ Crash --> [*]</pre>
     Task in sec      :2014-01-12  , 12d
     another task      : 24d</pre>
 
-<h2 id="Pie-chart-diagrams"><a href="#Pie-chart-diagrams" class="headerlink" title="Pie chart diagrams"></a>Pie chart diagrams</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pie title Pets adopted by volunteers</span><br><span class="line">    &quot;Dogs&quot; : 386</span><br><span class="line">    &quot;Cats&quot; : 85</span><br><span class="line">    &quot;Rats&quot; : 15</span><br></pre></td></tr></table></figure>
+<h2 id="Pie-chart-diagrams"><a href="#Pie-chart-diagrams" class="headerlink" title="Pie chart diagrams"></a>Pie chart diagrams</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pie title Pets adopted by volunteers</span><br><span class="line">    &quot;Dogs&quot; : 386</span><br><span class="line">    &quot;Cats&quot; : 85</span><br><span class="line">    &quot;Rats&quot; : 15</span><br></pre></td></tr></table></figure>
 
 <pre class="mermaid">pie title Pets adopted by volunteers
     "Dogs" : 386
     "Cats" : 85
     "Rats" : 15</pre>
 
-<h2 id="Requirement-Diagram"><a href="#Requirement-Diagram" class="headerlink" title="Requirement Diagram"></a>Requirement Diagram</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">requirementDiagram</span><br><span class="line"></span><br><span class="line">requirement test_req &#123;</span><br><span class="line">id: 1</span><br><span class="line">text: the test text.</span><br><span class="line">risk: high</span><br><span class="line">verifymethod: test</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">element test_entity &#123;</span><br><span class="line">type: simulation</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">test_entity - satisfies -&gt; test_req</span><br></pre></td></tr></table></figure>
+<h2 id="Requirement-Diagram"><a href="#Requirement-Diagram" class="headerlink" title="Requirement Diagram"></a>Requirement Diagram</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">requirementDiagram</span><br><span class="line"></span><br><span class="line">requirement test_req &#123;</span><br><span class="line">id: 1</span><br><span class="line">text: the test text.</span><br><span class="line">risk: high</span><br><span class="line">verifymethod: test</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">element test_entity &#123;</span><br><span class="line">type: simulation</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">test_entity - satisfies -&gt; test_req</span><br></pre></td></tr></table></figure>
 
 <pre class="mermaid">requirementDiagram
 
@@ -377,7 +382,7 @@ type: simulation
 
 test_entity - satisfies -> test_req</pre>
 
-<h2 id="Gitgraph-Diagrams"><a href="#Gitgraph-Diagrams" class="headerlink" title="Gitgraph Diagrams"></a>Gitgraph Diagrams</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">gitGraph</span><br><span class="line">    commit</span><br><span class="line">    commit</span><br><span class="line">    branch develop</span><br><span class="line">    checkout develop</span><br><span class="line">    commit</span><br><span class="line">    commit</span><br><span class="line">    checkout main</span><br><span class="line">    merge develop</span><br><span class="line">    commit</span><br><span class="line">    commit</span><br></pre></td></tr></table></figure>
+<h2 id="Gitgraph-Diagrams"><a href="#Gitgraph-Diagrams" class="headerlink" title="Gitgraph Diagrams"></a>Gitgraph Diagrams</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">gitGraph</span><br><span class="line">    commit</span><br><span class="line">    commit</span><br><span class="line">    branch develop</span><br><span class="line">    checkout develop</span><br><span class="line">    commit</span><br><span class="line">    commit</span><br><span class="line">    checkout main</span><br><span class="line">    merge develop</span><br><span class="line">    commit</span><br><span class="line">    commit</span><br></pre></td></tr></table></figure>
 
 <pre class="mermaid">gitGraph
     commit
@@ -391,7 +396,7 @@ test_entity - satisfies -> test_req</pre>
     commit
     commit</pre>
 
-<h2 id="C4-Diagrams"><a href="#C4-Diagrams" class="headerlink" title="C4 Diagrams"></a>C4 Diagrams</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">C4Context</span><br><span class="line">      title System Context diagram for Internet Banking System</span><br><span class="line">      Enterprise_Boundary(b0, &quot;BankBoundary0&quot;) &#123;</span><br><span class="line">        Person(customerA, &quot;Banking Customer A&quot;, &quot;A customer of the bank, with personal bank accounts.&quot;)</span><br><span class="line">        Person(customerB, &quot;Banking Customer B&quot;)      </span><br><span class="line">        Person_Ext(customerC, &quot;Banking Customer C&quot;, &quot;desc&quot;)            </span><br><span class="line"></span><br><span class="line">        Person(customerD, &quot;Banking Customer D&quot;, &quot;A customer of the bank, &lt;br/&gt; with personal bank accounts.&quot;)</span><br><span class="line"></span><br><span class="line">        System(SystemAA, &quot;Internet Banking System&quot;, &quot;Allows customers to view information about their bank accounts, and make payments.&quot;)  </span><br><span class="line"></span><br><span class="line">        Enterprise_Boundary(b1, &quot;BankBoundary&quot;) &#123;</span><br><span class="line">         </span><br><span class="line">          SystemDb_Ext(SystemE, &quot;Mainframe Banking System&quot;, &quot;Stores all of the core banking information about customers, accounts, transactions, etc.&quot;)      </span><br><span class="line"></span><br><span class="line">          System_Boundary(b2, &quot;BankBoundary2&quot;) &#123;  </span><br><span class="line">            System(SystemA, &quot;Banking System A&quot;)  </span><br><span class="line">            System(SystemB, &quot;Banking System B&quot;, &quot;A system of the bank, with personal bank accounts. next line.&quot;)        </span><br><span class="line">          &#125; </span><br><span class="line"></span><br><span class="line">          System_Ext(SystemC, &quot;E-mail system&quot;, &quot;The internal Microsoft Exchange e-mail system.&quot;) </span><br><span class="line">          SystemDb(SystemD, &quot;Banking System D Database&quot;, &quot;A system of the bank, with personal bank accounts.&quot;) </span><br><span class="line"></span><br><span class="line">          Boundary(b3, &quot;BankBoundary3&quot;, &quot;boundary&quot;) &#123;  </span><br><span class="line">            SystemQueue(SystemF, &quot;Banking System F Queue&quot;, &quot;A system of the bank.&quot;)        </span><br><span class="line">            SystemQueue_Ext(SystemG, &quot;Banking System G Queue&quot;, &quot;A system of the bank, with personal bank accounts.&quot;) </span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      </span><br><span class="line">      BiRel(customerA, SystemAA, &quot;Uses&quot;)</span><br><span class="line">      BiRel(SystemAA, SystemE, &quot;Uses&quot;)</span><br><span class="line">      Rel(SystemAA, SystemC, &quot;Sends e-mails&quot;, &quot;SMTP&quot;)</span><br><span class="line">      Rel(SystemC, customerA, &quot;Sends e-mails to&quot;)</span><br><span class="line"></span><br><span class="line">      UpdateElementStyle(customerA, $fontColor=&quot;red&quot;, $bgColor=&quot;grey&quot;, $borderColor=&quot;red&quot;)</span><br><span class="line">      UpdateRelStyle(customerA, SystemAA, $textColor=&quot;blue&quot;, $lineColor=&quot;blue&quot;, $offsetX=&quot;5&quot;)</span><br><span class="line">      UpdateRelStyle(SystemAA, SystemE, $textColor=&quot;blue&quot;, $lineColor=&quot;blue&quot;, $offsetY=&quot;-10&quot;)</span><br><span class="line">      UpdateRelStyle(SystemAA, SystemC, $textColor=&quot;blue&quot;, $lineColor=&quot;blue&quot;, $offsetY=&quot;-40&quot;, $offsetX=&quot;-50&quot;)</span><br><span class="line">      UpdateRelStyle(SystemC, customerA, $textColor=&quot;red&quot;, $lineColor=&quot;red&quot;, $offsetX=&quot;-50&quot;, $offsetY=&quot;20&quot;)</span><br><span class="line">      </span><br><span class="line">      UpdateLayoutConfig($c4ShapeInRow=&quot;3&quot;, $c4BoundaryInRow=&quot;1&quot;)</span><br></pre></td></tr></table></figure>
+<h2 id="C4-Diagrams"><a href="#C4-Diagrams" class="headerlink" title="C4 Diagrams"></a>C4 Diagrams</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">C4Context</span><br><span class="line">      title System Context diagram for Internet Banking System</span><br><span class="line">      Enterprise_Boundary(b0, &quot;BankBoundary0&quot;) &#123;</span><br><span class="line">        Person(customerA, &quot;Banking Customer A&quot;, &quot;A customer of the bank, with personal bank accounts.&quot;)</span><br><span class="line">        Person(customerB, &quot;Banking Customer B&quot;)      </span><br><span class="line">        Person_Ext(customerC, &quot;Banking Customer C&quot;, &quot;desc&quot;)            </span><br><span class="line"></span><br><span class="line">        Person(customerD, &quot;Banking Customer D&quot;, &quot;A customer of the bank, &lt;br/&gt; with personal bank accounts.&quot;)</span><br><span class="line"></span><br><span class="line">        System(SystemAA, &quot;Internet Banking System&quot;, &quot;Allows customers to view information about their bank accounts, and make payments.&quot;)  </span><br><span class="line"></span><br><span class="line">        Enterprise_Boundary(b1, &quot;BankBoundary&quot;) &#123;</span><br><span class="line">         </span><br><span class="line">          SystemDb_Ext(SystemE, &quot;Mainframe Banking System&quot;, &quot;Stores all of the core banking information about customers, accounts, transactions, etc.&quot;)      </span><br><span class="line"></span><br><span class="line">          System_Boundary(b2, &quot;BankBoundary2&quot;) &#123;  </span><br><span class="line">            System(SystemA, &quot;Banking System A&quot;)  </span><br><span class="line">            System(SystemB, &quot;Banking System B&quot;, &quot;A system of the bank, with personal bank accounts. next line.&quot;)        </span><br><span class="line">          &#125; </span><br><span class="line"></span><br><span class="line">          System_Ext(SystemC, &quot;E-mail system&quot;, &quot;The internal Microsoft Exchange e-mail system.&quot;) </span><br><span class="line">          SystemDb(SystemD, &quot;Banking System D Database&quot;, &quot;A system of the bank, with personal bank accounts.&quot;) </span><br><span class="line"></span><br><span class="line">          Boundary(b3, &quot;BankBoundary3&quot;, &quot;boundary&quot;) &#123;  </span><br><span class="line">            SystemQueue(SystemF, &quot;Banking System F Queue&quot;, &quot;A system of the bank.&quot;)        </span><br><span class="line">            SystemQueue_Ext(SystemG, &quot;Banking System G Queue&quot;, &quot;A system of the bank, with personal bank accounts.&quot;) </span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      </span><br><span class="line">      BiRel(customerA, SystemAA, &quot;Uses&quot;)</span><br><span class="line">      BiRel(SystemAA, SystemE, &quot;Uses&quot;)</span><br><span class="line">      Rel(SystemAA, SystemC, &quot;Sends e-mails&quot;, &quot;SMTP&quot;)</span><br><span class="line">      Rel(SystemC, customerA, &quot;Sends e-mails to&quot;)</span><br><span class="line"></span><br><span class="line">      UpdateElementStyle(customerA, $fontColor=&quot;red&quot;, $bgColor=&quot;grey&quot;, $borderColor=&quot;red&quot;)</span><br><span class="line">      UpdateRelStyle(customerA, SystemAA, $textColor=&quot;blue&quot;, $lineColor=&quot;blue&quot;, $offsetX=&quot;5&quot;)</span><br><span class="line">      UpdateRelStyle(SystemAA, SystemE, $textColor=&quot;blue&quot;, $lineColor=&quot;blue&quot;, $offsetY=&quot;-10&quot;)</span><br><span class="line">      UpdateRelStyle(SystemAA, SystemC, $textColor=&quot;blue&quot;, $lineColor=&quot;blue&quot;, $offsetY=&quot;-40&quot;, $offsetX=&quot;-50&quot;)</span><br><span class="line">      UpdateRelStyle(SystemC, customerA, $textColor=&quot;red&quot;, $lineColor=&quot;red&quot;, $offsetX=&quot;-50&quot;, $offsetY=&quot;20&quot;)</span><br><span class="line">      </span><br><span class="line">      UpdateLayoutConfig($c4ShapeInRow=&quot;3&quot;, $c4BoundaryInRow=&quot;1&quot;)</span><br></pre></td></tr></table></figure>
 
 <pre class="mermaid">C4Context
       title System Context diagram for Internet Banking System
@@ -668,7 +673,7 @@ test_entity - satisfies -> test_req</pre>
   
 
 
-  <div class="w-screen h-screen -z-999" id="maple"></div>
+  <div class="fixed top-0 bottom-0 left-0 right-0 pointer-events-none print:hidden" id="maple"></div>
 </body>
 
 </html>

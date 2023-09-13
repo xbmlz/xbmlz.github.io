@@ -166,7 +166,7 @@
 
 
 <meta name="generator" content="Hexo 6.3.0"></head>
-<body class="font-sans bg-white dark:bg-zinc-900 text-gray-700 dark:text-gray-200">
+<body class="font-sans text-gray-700 dark:text-gray-200 relative">
   <header class="fixed w-full px-5 py-1 z-10 backdrop-blur-xl backdrop-saturate-150 border-b border-black/5">
   <div class="max-auto">
     <nav class="flex items-center text-base">
@@ -231,7 +231,7 @@
   <div class="mask bg-black/20 absolute inset-0"></div>
 </div>
 
-  <main class="p-12">
+  <main>
     <!-- css -->
 
 <link rel="stylesheet" href="/lib/fancybox/fancybox.min.css">
@@ -245,76 +245,81 @@
 <nav class="post-toc toc text-sm w-48 relative top-32 right-0 opacity-70 hidden lg:block" style="position: fixed !important;"></nav>
 
 
-<section class="px-6 max-w-prose mx-auto md:px-0">
+<section class="px-6 max-w-prose prose mx-auto md:px-0">
   <!-- header -->
   <header class="overflow-hidden pt-6 pb-6 md:pt-12">
     <div class="pt-4 md:pt-6">
       <h1 id="article-title" class="text-[2rem] font-bold leading-snug mb-4 md:mb-6 md:text-[2.6rem]">
         Linux下使用Clash
       </h1>
-      <p class="mb-6">
-        
-      </p>
       <div>
         <section class="flex items-center gap-3 text-sm">
-          <time>2023-05-23 10:37:34</time>
+          <time>2023-09-13 15:52:37</time>
           <span class="text-gray-400">·</span>
           <span>1 min</span>
           <span class="text-gray-400">·</span>
           <span>358 words</span>
+          
+            <span class="text-gray-400">·</span>
+            
+              <span>
+                <a href="/categories/%E5%BC%80%E5%8F%91/">开发</a>
+              </span>
+            
+          
         </section>
       </div>
     </div>
   </header>
   <!-- content -->
-  <article class="post-content mt-10 prose dark:prose-invert post-content">
+  <article class="post-content mt-10 dark:prose-invert">
     <p>Clash官方地址</p>
 <p><a target="_blank" rel="noopener" href="https://github.com/Dreamacro/clash/releases">Releases · Dreamacro&#x2F;clash (github.com)</a></p>
 <h3 id="下载-Clash"><a href="#下载-Clash" class="headerlink" title="下载 Clash"></a>下载 Clash</h3><p>新建安装目录</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> -p /opt/clash</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> -p /opt/clash</span><br></pre></td></tr></table></figure>
 
 <p>下载clash</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/Dreamacro/clash/releases/download/v1.7.1/clash-linux-amd64-v1.7.1.gz -O /opt/clash/clash-linux-amd64-v1.7.1.gz</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wget https://github.com/Dreamacro/clash/releases/download/v1.7.1/clash-linux-amd64-v1.7.1.gz -O /opt/clash/clash-linux-amd64-v1.7.1.gz</span><br></pre></td></tr></table></figure>
 
 <p>解压</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gunzip /opt/clash/clash-linux-amd64-v1.7.1.gz</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gunzip /opt/clash/clash-linux-amd64-v1.7.1.gz</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>重命名</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mv</span> /opt/clash/clash-linux-amd64-v1.7.1 /opt/clash/clash</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mv</span> /opt/clash/clash-linux-amd64-v1.7.1 /opt/clash/clash</span><br></pre></td></tr></table></figure>
 
 <h3 id="配置并运行Clash"><a href="#配置并运行Clash" class="headerlink" title="配置并运行Clash"></a>配置并运行Clash</h3><p>下载配置文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -O /opt/clash/config.yaml [订阅链接]</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wget -O /opt/clash/config.yaml [订阅链接]</span><br></pre></td></tr></table></figure>
 
 <p>授权clash</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chmod</span> +x clash</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">chmod</span> +x clash</span><br></pre></td></tr></table></figure>
 
 <p>启动clash</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ./clash -d .</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo ./clash -d .</span><br></pre></td></tr></table></figure>
 
 <h3 id="启动系统代理"><a href="#启动系统代理" class="headerlink" title="启动系统代理"></a>启动系统代理</h3><blockquote>
 <p>以下命令适用于Gnome桌面环境</p>
 </blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">gsettings <span class="built_in">set</span> org.gnome.system.proxy mode <span class="string">&#x27;manual&#x27;</span></span><br><span class="line">gsettings <span class="built_in">set</span> org.gnome.system.proxy.http port 7890</span><br><span class="line">gsettings <span class="built_in">set</span> org.gnome.system.proxy.http host <span class="string">&#x27;127.0.0.1&#x27;</span></span><br><span class="line">gsettings <span class="built_in">set</span> org.gnome.system.proxy.socks port 7891</span><br><span class="line">gsettings <span class="built_in">set</span> org.gnome.system.proxy.socks host <span class="string">&#x27;127.0.0.1&#x27;</span></span><br><span class="line">gsettings <span class="built_in">set</span> org.gnome.system.proxy ignore-hosts <span class="string">&quot;[&#x27;localhost&#x27;, &#x27;127.0.0.0/8&#x27;, &#x27;::1&#x27;]&quot;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gsettings <span class="built_in">set</span> org.gnome.system.proxy mode <span class="string">&#x27;manual&#x27;</span></span><br><span class="line">gsettings <span class="built_in">set</span> org.gnome.system.proxy.http port 7890</span><br><span class="line">gsettings <span class="built_in">set</span> org.gnome.system.proxy.http host <span class="string">&#x27;127.0.0.1&#x27;</span></span><br><span class="line">gsettings <span class="built_in">set</span> org.gnome.system.proxy.socks port 7891</span><br><span class="line">gsettings <span class="built_in">set</span> org.gnome.system.proxy.socks host <span class="string">&#x27;127.0.0.1&#x27;</span></span><br><span class="line">gsettings <span class="built_in">set</span> org.gnome.system.proxy ignore-hosts <span class="string">&quot;[&#x27;localhost&#x27;, &#x27;127.0.0.0/8&#x27;, &#x27;::1&#x27;]&quot;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <h3 id="配置开机启动"><a href="#配置开机启动" class="headerlink" title="配置开机启动"></a>配置开机启动</h3><p>新建系统服务文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> &gt; /etc/systemd/system/clash.service &lt;&lt;<span class="string">EOF</span></span><br><span class="line"><span class="string">[Unit]</span></span><br><span class="line"><span class="string">Description=clash daemon</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[Service]</span></span><br><span class="line"><span class="string">Type=simple</span></span><br><span class="line"><span class="string">User=root</span></span><br><span class="line"><span class="string">ExecStart=/opt/clash/clash -d /opt/clash/</span></span><br><span class="line"><span class="string">Restart=on-failure</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[Install]</span></span><br><span class="line"><span class="string">WantedBy=multi-user.target</span></span><br><span class="line"><span class="string">EOF</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cat</span> &gt; /etc/systemd/system/clash.service &lt;&lt;<span class="string">EOF</span></span><br><span class="line"><span class="string">[Unit]</span></span><br><span class="line"><span class="string">Description=clash daemon</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[Service]</span></span><br><span class="line"><span class="string">Type=simple</span></span><br><span class="line"><span class="string">User=root</span></span><br><span class="line"><span class="string">ExecStart=/opt/clash/clash -d /opt/clash/</span></span><br><span class="line"><span class="string">Restart=on-failure</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[Install]</span></span><br><span class="line"><span class="string">WantedBy=multi-user.target</span></span><br><span class="line"><span class="string">EOF</span></span><br></pre></td></tr></table></figure>
 
 <p>重载配置</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl daemon-reload</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">systemctl daemon-reload</span><br></pre></td></tr></table></figure>
 
 <p>启动Clash</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start clash.service</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">systemctl start clash.service</span><br></pre></td></tr></table></figure>
 
 <p>配置开机启动</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl <span class="built_in">enable</span> clash.service</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">systemctl <span class="built_in">enable</span> clash.service</span><br></pre></td></tr></table></figure>
 
-<h3 id="配置订阅定时更新"><a href="#配置订阅定时更新" class="headerlink" title="配置订阅定时更新"></a>配置订阅定时更新</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">crontab -e</span><br></pre></td></tr></table></figure>
+<h3 id="配置订阅定时更新"><a href="#配置订阅定时更新" class="headerlink" title="配置订阅定时更新"></a>配置订阅定时更新</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">crontab -e</span><br></pre></td></tr></table></figure>
 
 <p>填入以下内容</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">29 6    * * *   root    pgrep clash | xargs <span class="built_in">kill</span> -s 9 </span><br><span class="line">30 6    * * *   root    <span class="built_in">mv</span> /opt/clash/config.yaml /opt/clash/configbackup.yaml </span><br><span class="line">31 6    * * *   root    wget -P /opt/clash/ -O config.yaml [你的订阅链接]</span><br><span class="line">32 6    * * *   root    <span class="built_in">nohup</span> /opt/clash/clash -d /opt/clash/</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">29 6    * * *   root    pgrep clash | xargs <span class="built_in">kill</span> -s 9 </span><br><span class="line">30 6    * * *   root    <span class="built_in">mv</span> /opt/clash/config.yaml /opt/clash/configbackup.yaml </span><br><span class="line">31 6    * * *   root    wget -P /opt/clash/ -O config.yaml [你的订阅链接]</span><br><span class="line">32 6    * * *   root    <span class="built_in">nohup</span> /opt/clash/clash -d /opt/clash/</span><br></pre></td></tr></table></figure>
 
 <p>重启定时任务使之生效</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart crond.service</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">systemctl restart crond.service</span><br></pre></td></tr></table></figure>
 
 
   </article>
@@ -550,7 +555,7 @@
   
 
 
-  <div class="w-screen h-screen -z-999" id="maple"></div>
+  <div class="fixed top-0 bottom-0 left-0 right-0 pointer-events-none print:hidden" id="maple"></div>
 </body>
 
 </html>

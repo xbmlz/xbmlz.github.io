@@ -166,7 +166,7 @@
 
 
 <meta name="generator" content="Hexo 6.3.0"></head>
-<body class="font-sans bg-white dark:bg-zinc-900 text-gray-700 dark:text-gray-200">
+<body class="font-sans text-gray-700 dark:text-gray-200 relative">
   <header class="fixed w-full px-5 py-1 z-10 backdrop-blur-xl backdrop-saturate-150 border-b border-black/5">
   <div class="max-auto">
     <nav class="flex items-center text-base">
@@ -231,7 +231,7 @@
   <div class="mask bg-black/20 absolute inset-0"></div>
 </div>
 
-  <main class="p-12">
+  <main>
     <!-- css -->
 
 <link rel="stylesheet" href="/lib/fancybox/fancybox.min.css">
@@ -245,29 +245,34 @@
 <nav class="post-toc toc text-sm w-48 relative top-32 right-0 opacity-70 hidden lg:block" style="position: fixed !important;"></nav>
 
 
-<section class="px-6 max-w-prose mx-auto md:px-0">
+<section class="px-6 max-w-prose prose mx-auto md:px-0">
   <!-- header -->
   <header class="overflow-hidden pt-6 pb-6 md:pt-12">
     <div class="pt-4 md:pt-6">
       <h1 id="article-title" class="text-[2rem] font-bold leading-snug mb-4 md:mb-6 md:text-[2.6rem]">
         MariaDB 表分区
       </h1>
-      <p class="mb-6">
-        
-      </p>
       <div>
         <section class="flex items-center gap-3 text-sm">
-          <time>2023-05-23 10:37:34</time>
+          <time>2023-09-13 15:52:37</time>
           <span class="text-gray-400">·</span>
           <span>6 min</span>
           <span class="text-gray-400">·</span>
           <span>1.5k words</span>
+          
+            <span class="text-gray-400">·</span>
+            
+              <span>
+                <a href="/categories/database/">database</a>
+              </span>
+            
+          
         </section>
       </div>
     </div>
   </header>
   <!-- content -->
-  <article class="post-content mt-10 prose dark:prose-invert post-content">
+  <article class="post-content mt-10 dark:prose-invert">
     <h2 id="InnoDB逻辑存储结构"><a href="#InnoDB逻辑存储结构" class="headerlink" title="InnoDB逻辑存储结构"></a>InnoDB逻辑存储结构</h2><p>首先要先介绍一下InnoDB逻辑存储结构和区的概念，它的所有数据都被逻辑地存放在表空间，表空间又由段，区，页组成。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/xbmlz/static/img/202212021202813.png"></p>
 <h3 id="segment（段）"><a href="#segment（段）" class="headerlink" title="segment（段）"></a>segment（段）</h3><p>常见的段有数据段、索引段、回滚段等，在<code>InnoDB</code>存储引擎中，对段的管理都是由引擎自身所完成的</p>
@@ -282,62 +287,62 @@
 <p>这种分区方法的变体RANGE COLUMNS允许我们使用多个列和更多的数据类型。</p>
 <p><a target="_blank" rel="noopener" href="https://mariadb.com/kb/en/range-partitioning-type/">RANGE Partitioning Type - MariaDB Knowledge Base</a></p>
 <p>创建分区</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> `partition_test`.`range_partition` ( </span><br><span class="line">    `id` <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span> AUTO_INCREMENT,</span><br><span class="line">    `create_time` <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>, </span><br><span class="line">    `num` <span class="type">BIGINT</span> <span class="keyword">NULL</span>,</span><br><span class="line">    <span class="keyword">PRIMARY</span> KEY (`id`, `create_time`)</span><br><span class="line">) </span><br><span class="line"><span class="keyword">PARTITION</span> <span class="keyword">BY</span> <span class="keyword">RANGE</span> (create_time) PARTITIONS <span class="number">3</span> </span><br><span class="line">(</span><br><span class="line">    <span class="keyword">PARTITION</span> part0 <span class="keyword">VALUES</span> LESS THAN (<span class="number">202101</span>),</span><br><span class="line">    <span class="keyword">PARTITION</span> part1 <span class="keyword">VALUES</span> LESS THAN (<span class="number">202102</span>),</span><br><span class="line">    <span class="keyword">PARTITION</span> part2 <span class="keyword">VALUES</span> LESS THAN (<span class="number">202103</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> `partition_test`.`range_partition` ( </span><br><span class="line">    `id` <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span> AUTO_INCREMENT,</span><br><span class="line">    `create_time` <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>, </span><br><span class="line">    `num` <span class="type">BIGINT</span> <span class="keyword">NULL</span>,</span><br><span class="line">    <span class="keyword">PRIMARY</span> KEY (`id`, `create_time`)</span><br><span class="line">) </span><br><span class="line"><span class="keyword">PARTITION</span> <span class="keyword">BY</span> <span class="keyword">RANGE</span> (create_time) PARTITIONS <span class="number">3</span> </span><br><span class="line">(</span><br><span class="line">    <span class="keyword">PARTITION</span> part0 <span class="keyword">VALUES</span> LESS THAN (<span class="number">202101</span>),</span><br><span class="line">    <span class="keyword">PARTITION</span> part1 <span class="keyword">VALUES</span> LESS THAN (<span class="number">202102</span>),</span><br><span class="line">    <span class="keyword">PARTITION</span> part2 <span class="keyword">VALUES</span> LESS THAN (<span class="number">202103</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
 
 <p>插入测试数据</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `partition_test`.`range_partition` (`id`, `create_time`, `num`) <span class="keyword">VALUES</span> (<span class="string">&#x27;1&#x27;</span>, <span class="number">202101</span>, <span class="number">500</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `partition_test`.`range_partition` (`id`, `create_time`, `num`) <span class="keyword">VALUES</span> (<span class="string">&#x27;2&#x27;</span>, <span class="number">202102</span>, <span class="number">800</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `partition_test`.`range_partition` (`id`, `create_time`, `num`) <span class="keyword">VALUES</span> (<span class="string">&#x27;3&#x27;</span>, <span class="number">202103</span>, <span class="number">1000</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `partition_test`.`range_partition` (`id`, `create_time`, `num`) <span class="keyword">VALUES</span> (<span class="string">&#x27;1&#x27;</span>, <span class="number">202101</span>, <span class="number">500</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `partition_test`.`range_partition` (`id`, `create_time`, `num`) <span class="keyword">VALUES</span> (<span class="string">&#x27;2&#x27;</span>, <span class="number">202102</span>, <span class="number">800</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `partition_test`.`range_partition` (`id`, `create_time`, `num`) <span class="keyword">VALUES</span> (<span class="string">&#x27;3&#x27;</span>, <span class="number">202103</span>, <span class="number">1000</span>);</span><br></pre></td></tr></table></figure>
 
 <p>通过<code>EXPLAIN PARTITION</code>命令发现SQL优化器只需搜对应的区，不会搜索所有分区</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">EXPLAIN PARTITIONS <span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> `partition_test`.`range_partition` <span class="keyword">WHERE</span> create_time <span class="operator">=</span> <span class="number">202101</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">EXPLAIN PARTITIONS <span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> `partition_test`.`range_partition` <span class="keyword">WHERE</span> create_time <span class="operator">=</span> <span class="number">202101</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p><img src="https://cdn.jsdelivr.net/gh/xbmlz/static/img/202212021208190.png"></p>
 <p>如果sql语句有问题，那么会走所有区。会很危险。所以分区表后，select语句必须走分区键</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">EXPLAIN PARTITIONS <span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> `partition_test`.`range_partition` <span class="keyword">WHERE</span> num <span class="operator">&gt;</span> <span class="number">500</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">EXPLAIN PARTITIONS <span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> `partition_test`.`range_partition` <span class="keyword">WHERE</span> num <span class="operator">&gt;</span> <span class="number">500</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p><img src="https://cdn.jsdelivr.net/gh/xbmlz/static/img/202212021208456.png"></p>
 <p>增加分区</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> range_partition <span class="keyword">add</span> <span class="keyword">partition</span> (<span class="keyword">partition</span> part3 <span class="keyword">values</span> LESS THAN (<span class="number">202104</span>));</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> range_partition <span class="keyword">add</span> <span class="keyword">partition</span> (<span class="keyword">partition</span> part3 <span class="keyword">values</span> LESS THAN (<span class="number">202104</span>));</span><br></pre></td></tr></table></figure>
 
 <p>删除分区</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> range_partition <span class="keyword">drop</span> <span class="keyword">partition</span> part3;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> range_partition <span class="keyword">drop</span> <span class="keyword">partition</span> part3;</span><br></pre></td></tr></table></figure>
 
 <h4 id="List分区"><a href="#List分区" class="headerlink" title="List分区"></a>List分区</h4><p>类似于按RANGE分区，区别在于LIST分区是基于列值匹配一个离散值集合中的某个值来进行选择</p>
 <p><a target="_blank" rel="noopener" href="https://mariadb.com/kb/en/list-partitioning-type/">LIST Partitioning Type - MariaDB Knowledge Base</a></p>
 <p>创建分区</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> `partition_test`.`list_partition`</span><br><span class="line">( </span><br><span class="line">  `id` <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span> AUTO_INCREMENT, </span><br><span class="line">  `hos_code` <span class="type">BIGINT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>, </span><br><span class="line">  `name` <span class="type">VARCHAR</span> (<span class="number">32</span>) <span class="keyword">NULL</span>, </span><br><span class="line">  <span class="keyword">PRIMARY</span> KEY (`id`, `hos_code`) </span><br><span class="line">) </span><br><span class="line"><span class="keyword">PARTITION</span> <span class="keyword">BY</span> LIST (hos_code) </span><br><span class="line">(</span><br><span class="line">  <span class="keyword">PARTITION</span> part100 <span class="keyword">VALUES</span> <span class="keyword">IN</span> (<span class="number">100</span>),</span><br><span class="line">    <span class="keyword">PARTITION</span> part200 <span class="keyword">VALUES</span> <span class="keyword">IN</span> (<span class="number">200</span>),</span><br><span class="line">    <span class="keyword">PARTITION</span> part300 <span class="keyword">VALUES</span> <span class="keyword">IN</span> (<span class="number">300</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> `partition_test`.`list_partition`</span><br><span class="line">( </span><br><span class="line">  `id` <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span> AUTO_INCREMENT, </span><br><span class="line">  `hos_code` <span class="type">BIGINT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>, </span><br><span class="line">  `name` <span class="type">VARCHAR</span> (<span class="number">32</span>) <span class="keyword">NULL</span>, </span><br><span class="line">  <span class="keyword">PRIMARY</span> KEY (`id`, `hos_code`) </span><br><span class="line">) </span><br><span class="line"><span class="keyword">PARTITION</span> <span class="keyword">BY</span> LIST (hos_code) </span><br><span class="line">(</span><br><span class="line">  <span class="keyword">PARTITION</span> part100 <span class="keyword">VALUES</span> <span class="keyword">IN</span> (<span class="number">100</span>),</span><br><span class="line">    <span class="keyword">PARTITION</span> part200 <span class="keyword">VALUES</span> <span class="keyword">IN</span> (<span class="number">200</span>),</span><br><span class="line">    <span class="keyword">PARTITION</span> part300 <span class="keyword">VALUES</span> <span class="keyword">IN</span> (<span class="number">300</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
 
 <p>插入测试数据</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `partition_test`.`list_partition` (`hos_code`, `name`) <span class="keyword">VALUES</span> (<span class="number">100</span>, &quot;张三&quot;);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `partition_test`.`list_partition` (`hos_code`, `name`) <span class="keyword">VALUES</span> (<span class="number">200</span>, &quot;李四&quot;);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `partition_test`.`list_partition` (`hos_code`, `name`) <span class="keyword">VALUES</span> (<span class="number">300</span>, &quot;李四&quot;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `partition_test`.`list_partition` (`hos_code`, `name`) <span class="keyword">VALUES</span> (<span class="number">100</span>, &quot;张三&quot;);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `partition_test`.`list_partition` (`hos_code`, `name`) <span class="keyword">VALUES</span> (<span class="number">200</span>, &quot;李四&quot;);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `partition_test`.`list_partition` (`hos_code`, `name`) <span class="keyword">VALUES</span> (<span class="number">300</span>, &quot;李四&quot;);</span><br></pre></td></tr></table></figure>
 
 <p>通过<code>EXPLAIN PARTITION</code>命令发现SQL优化器只需搜对应的区，不会搜索所有分区</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">EXPLAIN PARTITIONS <span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> `partition_test`.`list_partition` <span class="keyword">WHERE</span> hos_code <span class="operator">=</span> <span class="number">100</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">EXPLAIN PARTITIONS <span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> `partition_test`.`list_partition` <span class="keyword">WHERE</span> hos_code <span class="operator">=</span> <span class="number">100</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p><img src="https://cdn.jsdelivr.net/gh/xbmlz/static/img/202212021209483.png"></p>
 <p>增加分区</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> list_partition <span class="keyword">add</span> <span class="keyword">partition</span> (<span class="keyword">partition</span> part400 <span class="keyword">values</span> <span class="keyword">in</span> (<span class="number">400</span>));</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> list_partition <span class="keyword">add</span> <span class="keyword">partition</span> (<span class="keyword">partition</span> part400 <span class="keyword">values</span> <span class="keyword">in</span> (<span class="number">400</span>));</span><br></pre></td></tr></table></figure>
 
 <p>删除分区</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> list_partition <span class="keyword">drop</span> <span class="keyword">partition</span> part400;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> list_partition <span class="keyword">drop</span> <span class="keyword">partition</span> part400;</span><br></pre></td></tr></table></figure>
 
 <h4 id="HASH分区"><a href="#HASH分区" class="headerlink" title="HASH分区"></a>HASH分区</h4><p><code>HASH</code>分区是一种分区形式，其中服务器负责放置数据的分区，以确保分区之间的均匀分布。</p>
 <p>它需要一个列值，或者一个基于列值的表达式，该列值是散列的，还需要将表划分到的分区数。</p>
 <p><code>number_of_partitions </code>表达式需要返回一个非常量的确定整数。每次插入和更新都会对其求值，因此过于复杂的表达式可能会导致性能问题</p>
 <p>是一个正整数，指定要将表划分到的分区数。如果省略PARTITIONS子句，则默认分区数为1。</p>
 <p>创建分区</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> `partition_test`.`hash_partition`</span><br><span class="line">( </span><br><span class="line">    `name` <span class="type">VARCHAR</span> (<span class="number">32</span>) <span class="keyword">NULL</span>, </span><br><span class="line">  `birthdate` <span class="type">date</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span></span><br><span class="line">) </span><br><span class="line"><span class="keyword">PARTITION</span> <span class="keyword">BY</span> HASH (<span class="keyword">YEAR</span>(birthdate)) </span><br><span class="line">PARTITIONS <span class="number">4</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> `partition_test`.`hash_partition`</span><br><span class="line">( </span><br><span class="line">    `name` <span class="type">VARCHAR</span> (<span class="number">32</span>) <span class="keyword">NULL</span>, </span><br><span class="line">  `birthdate` <span class="type">date</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span></span><br><span class="line">) </span><br><span class="line"><span class="keyword">PARTITION</span> <span class="keyword">BY</span> HASH (<span class="keyword">YEAR</span>(birthdate)) </span><br><span class="line">PARTITIONS <span class="number">4</span>;</span><br></pre></td></tr></table></figure>
 
 <p>插入测试数据</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `partition_test`.`hash_partition` (`name`, `birthdate`) <span class="keyword">VALUES</span> (&quot;张三&quot;, <span class="string">&#x27;2001-01-01&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `partition_test`.`hash_partition` (`name`, `birthdate`) <span class="keyword">VALUES</span> (&quot;李四&quot;, <span class="string">&#x27;2002-02-02&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `partition_test`.`hash_partition` (`name`, `birthdate`) <span class="keyword">VALUES</span> (&quot;王五&quot;, <span class="string">&#x27;2003-03-03&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `partition_test`.`hash_partition` (`name`, `birthdate`) <span class="keyword">VALUES</span> (&quot;赵六&quot;, <span class="string">&#x27;2004-04-04&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `partition_test`.`hash_partition` (`name`, `birthdate`) <span class="keyword">VALUES</span> (&quot;张三&quot;, <span class="string">&#x27;2001-01-01&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `partition_test`.`hash_partition` (`name`, `birthdate`) <span class="keyword">VALUES</span> (&quot;李四&quot;, <span class="string">&#x27;2002-02-02&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `partition_test`.`hash_partition` (`name`, `birthdate`) <span class="keyword">VALUES</span> (&quot;王五&quot;, <span class="string">&#x27;2003-03-03&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `partition_test`.`hash_partition` (`name`, `birthdate`) <span class="keyword">VALUES</span> (&quot;赵六&quot;, <span class="string">&#x27;2004-04-04&#x27;</span>);</span><br></pre></td></tr></table></figure>
 
 <p>通过<code>EXPLAIN PARTITION</code>命令发现SQL优化器只需搜对应的区，不会搜索所有分区</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">EXPLAIN PARTITIONS <span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> `partition_test`.`hash_partition` <span class="keyword">WHERE</span> birthdate <span class="operator">=</span> <span class="string">&#x27;2001-01-01&#x27;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">EXPLAIN PARTITIONS <span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> `partition_test`.`hash_partition` <span class="keyword">WHERE</span> birthdate <span class="operator">=</span> <span class="string">&#x27;2001-01-01&#x27;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p><img src="https://cdn.jsdelivr.net/gh/xbmlz/static/img/202212021209124.png"></p>
 <p>增加分区</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> hash_partition <span class="keyword">add</span> <span class="keyword">partition</span> (<span class="keyword">partition</span> p4);</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> hash_partition <span class="keyword">add</span> <span class="keyword">partition</span> (<span class="keyword">partition</span> p4);</span><br></pre></td></tr></table></figure>
 
 <p>删除分区(只能在RANGE或者LIST分区时被删除)</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">PARTITION</span> can <span class="keyword">only</span> be used <span class="keyword">on</span> <span class="keyword">RANGE</span><span class="operator">/</span>LIST partitions</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">PARTITION</span> can <span class="keyword">only</span> be used <span class="keyword">on</span> <span class="keyword">RANGE</span><span class="operator">/</span>LIST partitions</span><br></pre></td></tr></table></figure>
 
 
 
@@ -580,7 +585,7 @@
   
 
 
-  <div class="w-screen h-screen -z-999" id="maple"></div>
+  <div class="fixed top-0 bottom-0 left-0 right-0 pointer-events-none print:hidden" id="maple"></div>
 </body>
 
 </html>
