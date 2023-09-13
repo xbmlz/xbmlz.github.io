@@ -21,10 +21,12 @@
           <%- post.title %>
         </h2>
       </header>
-      <section class="text-gray-400 my-1 text-sm time">
+      <section class="text-gray-400 my-2 text-sm time">
         <p class="line-clamp-4">
           <% if (post.excerpt) { %>
-            <%= post.excerpt %>
+            <div class="py-4">
+              <%= post.excerpt %>
+            </div>
           <% } %>
         </p>
         <p class="line-clamp-4">

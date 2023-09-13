@@ -5,16 +5,13 @@
 <% if (toc(page.content).length !== 0) { %>
   <%- partial('_partial/toc') %>
 <% } %>
-<section class="px-6 max-w-prose mx-auto md:px-0">
+<section class="px-6 max-w-prose prose mx-auto md:px-0">
   <!-- header -->
   <header class="overflow-hidden pt-6 pb-6 md:pt-12">
     <div class="pt-4 md:pt-6">
       <h1 id="article-title" class="text-[2rem] font-bold leading-snug mb-4 md:mb-6 md:text-[2.6rem]">
         <%- page.title %>
       </h1>
-      <p class="mb-6">
-        <%- page.excerpt %>
-      </p>
       <div>
         <section class="flex items-center gap-3 text-sm">
           <time><%- date(page.updated, "YYYY-MM-DD HH:mm:ss") %></time>
@@ -22,12 +19,20 @@
           <span><%= min2read(page.content) %> min</span>
           <span class="text-gray-400">·</span>
           <span><%= wordcount(page.content) %> words</span>
+          <% if (page.categories && page.categories.length) { %>
+            <span class="text-gray-400">·</span>
+            <% page.categories.forEach(function (c) { %>
+              <span>
+                <a href="<%- url_for(c.path) %>"><%- c.name %></a>
+              </span>
+            <% }); %>
+          <% } %>
         </section>
       </div>
     </div>
   </header>
   <!-- content -->
-  <article class="post-content mt-10 prose dark:prose-invert post-content">
+  <article class="post-content mt-10 dark:prose-invert">
     <%- page.content %>
   </article>
   <!-- tag -->

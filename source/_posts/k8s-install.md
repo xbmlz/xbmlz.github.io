@@ -2,7 +2,14 @@
 title: k8s集群安装
 date: 2023-04-18 13:32:56
 tags: devOps
+categories:
+- devOps
+- k8s
 ---
+
+## 介绍
+
+Kubernetes（K8s）是一个开源的容器编排引擎，它支持自动化部署、大规模可伸缩、应用容器化管理。Kubernetes 项目由 Google（谷歌）发起并开源，现在由 Cloud Native Computing Foundation（CNCF）维护。Kubernetes 的目标是让部署容器化的应用简单并且高效（powerful）,Kubernetes 提供了应用部署、规划、更新、维护的一种机制，还提供了伸缩、弹性伸缩等功能。
 
 ## 环境准备
 
@@ -13,6 +20,7 @@ tags: devOps
 - docker
 - kubectl集群命令行交互工具
 - kubeadm集群初始化工具
+
 
 ### 工作节点
 
