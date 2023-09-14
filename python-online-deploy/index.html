@@ -133,8 +133,8 @@
     // toggle dark mode
     function toggleDark() {
       let isDark = document.documentElement.classList.contains("dark");
-      isDark = !isDark;
       const setting = localStorage.getItem("hexo-color-scheme") || "auto";
+      isDark = !isDark;
       document.documentElement.classList.toggle("dark", isDark);
       $("#theme-icon").attr("icon", isDark ? "ri:moon-line" : "ri:sun-line");
       if (prefersDark === isDark) {
@@ -145,6 +145,7 @@
       toggleGiscusTheme();
     }
     $("#toggle-dark").click(toggleDark);
+
     // listen dark mode change
     window
       .matchMedia("(prefers-color-scheme: dark)")
@@ -258,7 +259,7 @@
 <nav class="post-toc toc text-sm w-48 relative top-32 right-0 opacity-70 hidden lg:block" style="position: fixed !important;"></nav>
 
 
-<section class="px-6 max-w-prose prose mx-auto md:px-0">
+<section class="px-6 max-w-prose mx-auto md:px-0">
   <!-- header -->
   <header class="overflow-hidden pt-6 pb-6 md:pt-12">
     <div class="pt-4 md:pt-6">
@@ -293,7 +294,7 @@
     </div>
   </header>
   <!-- content -->
-  <article class="post-content prose m-auto slide-enter-content mt-10 dark:prose-invert">
+  <article class="post-content prose m-auto slide-enter-content dark:prose-invert">
     <h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><p>以下步骤需要在有网络的环境下操作</p>
 <h4 id="1-下载Python-3-7-9-压缩文件"><a href="#1-下载Python-3-7-9-压缩文件" class="headerlink" title="1. 下载Python 3.7.9 压缩文件"></a>1. 下载Python 3.7.9 压缩文件</h4><p>下载<a target="_blank" rel="noopener" href="https://www.python.org/ftp/python/3.7.9/python-3.7.9-embed-amd64.zip">Windows x86-64 embeddable zip file</a>并解压到<code>.runtime</code>目录下</p>
 <h4 id="2-安装PIP"><a href="#2-安装PIP" class="headerlink" title="2. 安装PIP"></a>2. 安装PIP</h4><p>下载安装pip脚本，在浏览器打开下面地址，复制内容到<code>get-pip.py</code></p>
@@ -368,6 +369,7 @@
 ></script>
 <script>
   window.onload = function () {
+    console.log("giscus loaded");
     const isDark = document.documentElement.classList.contains("dark");
     const giscusFrame = document.querySelector("iframe.giscus-frame");
     giscusFrame.contentWindow.postMessage(
@@ -491,9 +493,9 @@
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 <!-- Busuanzi Analytics -->
 <div class="flex items-center gap-2">
-  <span>Visitor Count</span>
+  <span>Visitors</span>
   <span id="busuanzi_value_site_uv"></span>
-  <span>Totalview</span>
+  <span>Page Views</span>
   <span id="busuanzi_value_site_pv"></span>
 </div>
 <!-- End Busuanzi Analytics -->
@@ -516,7 +518,7 @@
 
 </footer>
 
-  <div class="back-to-top box-border fixed right-6 z-1024 -bottom-20 rounded py-1 px-1 bg-slate-900 opacity-60 text-white cursor-pointer text-center transition-bottom">
+  <div class="back-to-top box-border fixed right-6 z-1024 -bottom-20 rounded py-1 px-1 bg-slate-900 opacity-60 text-white cursor-pointer text-center dark:bg-slate-600">
     <span class="flex justify-center items-center text-sm">
       <iconify-icon width="18" icon="ion:arrow-up-c" id="go-top"></iconify-icon>
       <span id="scrollpercent"><span>0</span> %</span>

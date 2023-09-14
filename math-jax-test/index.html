@@ -133,8 +133,8 @@
     // toggle dark mode
     function toggleDark() {
       let isDark = document.documentElement.classList.contains("dark");
-      isDark = !isDark;
       const setting = localStorage.getItem("hexo-color-scheme") || "auto";
+      isDark = !isDark;
       document.documentElement.classList.toggle("dark", isDark);
       $("#theme-icon").attr("icon", isDark ? "ri:moon-line" : "ri:sun-line");
       if (prefersDark === isDark) {
@@ -145,6 +145,7 @@
       toggleGiscusTheme();
     }
     $("#toggle-dark").click(toggleDark);
+
     // listen dark mode change
     window
       .matchMedia("(prefers-color-scheme: dark)")
@@ -258,7 +259,7 @@
 <nav class="post-toc toc text-sm w-48 relative top-32 right-0 opacity-70 hidden lg:block" style="position: fixed !important;"></nav>
 
 
-<section class="px-6 max-w-prose prose mx-auto md:px-0">
+<section class="px-6 max-w-prose mx-auto md:px-0">
   <!-- header -->
   <header class="overflow-hidden pt-6 pb-6 md:pt-12">
     <div class="pt-4 md:pt-6">
@@ -293,7 +294,7 @@
     </div>
   </header>
   <!-- content -->
-  <article class="post-content prose m-auto slide-enter-content mt-10 dark:prose-invert">
+  <article class="post-content prose m-auto slide-enter-content dark:prose-invert">
     <h2 id="行内公式与块公式"><a href="#行内公式与块公式" class="headerlink" title="行内公式与块公式"></a>行内公式与块公式</h2><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">$f(x)=ax+b$ 这是行内公式.</span><br><span class="line">$$f(x)=ax+b$$ 这是块公式，单独占一行.</span><br></pre></td></tr></table></figure>
 <p>$f(x)&#x3D;ax+b$ 这是行内公式.<br>$$f(x)&#x3D;ax+b$$ 这是块公式，单独占一行.</p>
 <h2 id="上标与下标"><a href="#上标与下标" class="headerlink" title="上标与下标"></a>上标与下标</h2><p>使用 ^ 表示上标，使用 _ 表示下标，如果上下标的内容多于一个字符，可以使用大括号括起来：</p>
@@ -406,6 +407,7 @@
 ></script>
 <script>
   window.onload = function () {
+    console.log("giscus loaded");
     const isDark = document.documentElement.classList.contains("dark");
     const giscusFrame = document.querySelector("iframe.giscus-frame");
     giscusFrame.contentWindow.postMessage(
@@ -529,9 +531,9 @@
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 <!-- Busuanzi Analytics -->
 <div class="flex items-center gap-2">
-  <span>Visitor Count</span>
+  <span>Visitors</span>
   <span id="busuanzi_value_site_uv"></span>
-  <span>Totalview</span>
+  <span>Page Views</span>
   <span id="busuanzi_value_site_pv"></span>
 </div>
 <!-- End Busuanzi Analytics -->
@@ -554,7 +556,7 @@
 
 </footer>
 
-  <div class="back-to-top box-border fixed right-6 z-1024 -bottom-20 rounded py-1 px-1 bg-slate-900 opacity-60 text-white cursor-pointer text-center transition-bottom">
+  <div class="back-to-top box-border fixed right-6 z-1024 -bottom-20 rounded py-1 px-1 bg-slate-900 opacity-60 text-white cursor-pointer text-center dark:bg-slate-600">
     <span class="flex justify-center items-center text-sm">
       <iconify-icon width="18" icon="ion:arrow-up-c" id="go-top"></iconify-icon>
       <span id="scrollpercent"><span>0</span> %</span>

@@ -133,8 +133,8 @@
     // toggle dark mode
     function toggleDark() {
       let isDark = document.documentElement.classList.contains("dark");
-      isDark = !isDark;
       const setting = localStorage.getItem("hexo-color-scheme") || "auto";
+      isDark = !isDark;
       document.documentElement.classList.toggle("dark", isDark);
       $("#theme-icon").attr("icon", isDark ? "ri:moon-line" : "ri:sun-line");
       if (prefersDark === isDark) {
@@ -145,6 +145,7 @@
       toggleGiscusTheme();
     }
     $("#toggle-dark").click(toggleDark);
+
     // listen dark mode change
     window
       .matchMedia("(prefers-color-scheme: dark)")
@@ -258,7 +259,7 @@
 <nav class="post-toc toc text-sm w-48 relative top-32 right-0 opacity-70 hidden lg:block" style="position: fixed !important;"></nav>
 
 
-<section class="px-6 max-w-prose prose mx-auto md:px-0">
+<section class="px-6 max-w-prose mx-auto md:px-0">
   <!-- header -->
   <header class="overflow-hidden pt-6 pb-6 md:pt-12">
     <div class="pt-4 md:pt-6">
@@ -293,7 +294,7 @@
     </div>
   </header>
   <!-- content -->
-  <article class="post-content prose m-auto slide-enter-content mt-10 dark:prose-invert">
+  <article class="post-content prose m-auto slide-enter-content dark:prose-invert">
     <h2 id="InnoDB逻辑存储结构"><a href="#InnoDB逻辑存储结构" class="headerlink" title="InnoDB逻辑存储结构"></a>InnoDB逻辑存储结构</h2><p>首先要先介绍一下InnoDB逻辑存储结构和区的概念，它的所有数据都被逻辑地存放在表空间，表空间又由段，区，页组成。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/xbmlz/static/img/202212021202813.png"></p>
 <h3 id="segment（段）"><a href="#segment（段）" class="headerlink" title="segment（段）"></a>segment（段）</h3><p>常见的段有数据段、索引段、回滚段等，在<code>InnoDB</code>存储引擎中，对段的管理都是由引擎自身所完成的</p>
@@ -424,6 +425,7 @@
 ></script>
 <script>
   window.onload = function () {
+    console.log("giscus loaded");
     const isDark = document.documentElement.classList.contains("dark");
     const giscusFrame = document.querySelector("iframe.giscus-frame");
     giscusFrame.contentWindow.postMessage(
@@ -547,9 +549,9 @@
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 <!-- Busuanzi Analytics -->
 <div class="flex items-center gap-2">
-  <span>Visitor Count</span>
+  <span>Visitors</span>
   <span id="busuanzi_value_site_uv"></span>
-  <span>Totalview</span>
+  <span>Page Views</span>
   <span id="busuanzi_value_site_pv"></span>
 </div>
 <!-- End Busuanzi Analytics -->
@@ -572,7 +574,7 @@
 
 </footer>
 
-  <div class="back-to-top box-border fixed right-6 z-1024 -bottom-20 rounded py-1 px-1 bg-slate-900 opacity-60 text-white cursor-pointer text-center transition-bottom">
+  <div class="back-to-top box-border fixed right-6 z-1024 -bottom-20 rounded py-1 px-1 bg-slate-900 opacity-60 text-white cursor-pointer text-center dark:bg-slate-600">
     <span class="flex justify-center items-center text-sm">
       <iconify-icon width="18" icon="ion:arrow-up-c" id="go-top"></iconify-icon>
       <span id="scrollpercent"><span>0</span> %</span>

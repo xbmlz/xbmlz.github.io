@@ -133,8 +133,8 @@
     // toggle dark mode
     function toggleDark() {
       let isDark = document.documentElement.classList.contains("dark");
-      isDark = !isDark;
       const setting = localStorage.getItem("hexo-color-scheme") || "auto";
+      isDark = !isDark;
       document.documentElement.classList.toggle("dark", isDark);
       $("#theme-icon").attr("icon", isDark ? "ri:moon-line" : "ri:sun-line");
       if (prefersDark === isDark) {
@@ -145,6 +145,7 @@
       toggleGiscusTheme();
     }
     $("#toggle-dark").click(toggleDark);
+
     // listen dark mode change
     window
       .matchMedia("(prefers-color-scheme: dark)")
@@ -258,7 +259,7 @@
 <nav class="post-toc toc text-sm w-48 relative top-32 right-0 opacity-70 hidden lg:block" style="position: fixed !important;"></nav>
 
 
-<section class="px-6 max-w-prose prose mx-auto md:px-0">
+<section class="px-6 max-w-prose mx-auto md:px-0">
   <!-- header -->
   <header class="overflow-hidden pt-6 pb-6 md:pt-12">
     <div class="pt-4 md:pt-6">
@@ -293,12 +294,12 @@
     </div>
   </header>
   <!-- content -->
-  <article class="post-content prose m-auto slide-enter-content mt-10 dark:prose-invert">
+  <article class="post-content prose m-auto slide-enter-content dark:prose-invert">
     <h2 id="折线图"><a href="#折线图" class="headerlink" title="折线图"></a>折线图</h2>
-  <div id="echarts-8556" style="width: 85%; height: 400px; margin: 0 auto"></div>
+  <div id="echarts-6413" style="width: 85%; height: 400px; margin: 0 auto"></div>
   <script src="https://cdn.jsdelivr.net/npm/echarts@5.3.3/dist/echarts.min.js"></script>
   <script>
-    var myChart = echarts.init(document.getElementById('echarts-8556'));
+    var myChart = echarts.init(document.getElementById('echarts-6413'));
     var option = {
   xAxis: {
     type: 'category',
@@ -319,10 +320,10 @@
   
 
 <h2 id="柱状图"><a href="#柱状图" class="headerlink" title="柱状图"></a>柱状图</h2>
-  <div id="echarts-9338" style="width: 85%; height: 400px; margin: 0 auto"></div>
+  <div id="echarts-9685" style="width: 85%; height: 400px; margin: 0 auto"></div>
   <script src="https://cdn.jsdelivr.net/npm/echarts@5.3.3/dist/echarts.min.js"></script>
   <script>
-    var myChart = echarts.init(document.getElementById('echarts-9338'));
+    var myChart = echarts.init(document.getElementById('echarts-9685'));
     var option = {
   xAxis: {
     type: 'category',
@@ -347,10 +348,10 @@
   
 
 <h2 id="饼图"><a href="#饼图" class="headerlink" title="饼图"></a>饼图</h2>
-  <div id="echarts-4892" style="width: 85%; height: 400px; margin: 0 auto"></div>
+  <div id="echarts-2144" style="width: 85%; height: 400px; margin: 0 auto"></div>
   <script src="https://cdn.jsdelivr.net/npm/echarts@5.3.3/dist/echarts.min.js"></script>
   <script>
-    var myChart = echarts.init(document.getElementById('echarts-4892'));
+    var myChart = echarts.init(document.getElementById('echarts-2144'));
     var option = {
   title: {
     text: 'Referer of a Website',
@@ -391,10 +392,10 @@
   
 
 <h2 id="散点图"><a href="#散点图" class="headerlink" title="散点图"></a>散点图</h2>
-  <div id="echarts-5063" style="width: 85%; height: 400px; margin: 0 auto"></div>
+  <div id="echarts-3770" style="width: 85%; height: 400px; margin: 0 auto"></div>
   <script src="https://cdn.jsdelivr.net/npm/echarts@5.3.3/dist/echarts.min.js"></script>
   <script>
-    var myChart = echarts.init(document.getElementById('echarts-5063'));
+    var myChart = echarts.init(document.getElementById('echarts-3770'));
     var option = {
   xAxis: {},
   yAxis: {},
@@ -434,10 +435,10 @@
   
 
 <h2 id="雷达图"><a href="#雷达图" class="headerlink" title="雷达图"></a>雷达图</h2>
-  <div id="echarts-9781" style="width: 85%; height: 400px; margin: 0 auto"></div>
+  <div id="echarts-2324" style="width: 85%; height: 400px; margin: 0 auto"></div>
   <script src="https://cdn.jsdelivr.net/npm/echarts@5.3.3/dist/echarts.min.js"></script>
   <script>
-    var myChart = echarts.init(document.getElementById('echarts-9781'));
+    var myChart = echarts.init(document.getElementById('echarts-2324'));
     var option = {
   title: {
     text: 'Basic Radar Chart'
@@ -478,10 +479,10 @@
   
 
 <h2 id="盒须图"><a href="#盒须图" class="headerlink" title="盒须图"></a>盒须图</h2>
-  <div id="echarts-533" style="width: 85%; height: 400px; margin: 0 auto"></div>
+  <div id="echarts-8319" style="width: 85%; height: 400px; margin: 0 auto"></div>
   <script src="https://cdn.jsdelivr.net/npm/echarts@5.3.3/dist/echarts.min.js"></script>
   <script>
-    var myChart = echarts.init(document.getElementById('echarts-533'));
+    var myChart = echarts.init(document.getElementById('echarts-8319'));
     var option = {
   title: [
     {
@@ -619,6 +620,7 @@
 ></script>
 <script>
   window.onload = function () {
+    console.log("giscus loaded");
     const isDark = document.documentElement.classList.contains("dark");
     const giscusFrame = document.querySelector("iframe.giscus-frame");
     giscusFrame.contentWindow.postMessage(
@@ -742,9 +744,9 @@
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 <!-- Busuanzi Analytics -->
 <div class="flex items-center gap-2">
-  <span>Visitor Count</span>
+  <span>Visitors</span>
   <span id="busuanzi_value_site_uv"></span>
-  <span>Totalview</span>
+  <span>Page Views</span>
   <span id="busuanzi_value_site_pv"></span>
 </div>
 <!-- End Busuanzi Analytics -->
@@ -767,7 +769,7 @@
 
 </footer>
 
-  <div class="back-to-top box-border fixed right-6 z-1024 -bottom-20 rounded py-1 px-1 bg-slate-900 opacity-60 text-white cursor-pointer text-center transition-bottom">
+  <div class="back-to-top box-border fixed right-6 z-1024 -bottom-20 rounded py-1 px-1 bg-slate-900 opacity-60 text-white cursor-pointer text-center dark:bg-slate-600">
     <span class="flex justify-center items-center text-sm">
       <iconify-icon width="18" icon="ion:arrow-up-c" id="go-top"></iconify-icon>
       <span id="scrollpercent"><span>0</span> %</span>
