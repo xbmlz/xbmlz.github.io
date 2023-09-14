@@ -13,8 +13,8 @@ logo: /img/logo.svg
 # links
 links:
   Github: https://github.com/xbmlz
-  # ZhiHu: https://github.com/xbmlz
-  # Twitter: https://github.com/xbmlz
+  ZhiHu: https://www.zhihu.com/people/xc-chen-62
+  Twitter: https://twitter.com/chenxia86081267
   # Weibo: https://github.com/xbmlz
 
 # analytics
@@ -54,5 +54,5 @@ maple:
   # fall leaf count
   count: 10
   # 0-1
-  speed: 0.5
+  speed: 0.3
 

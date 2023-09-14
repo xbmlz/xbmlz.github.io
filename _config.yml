@@ -110,7 +110,9 @@ marked:
 
 # sitemap
 sitemap:
-  path: sitemap.xml
+  path: 
+    - sitemap.xml
+    - sitemap.txt
 baidusitemap:
   path: baidusitemap.xml
 baidu_url_submit:
@@ -118,3 +120,15 @@ baidu_url_submit:
   host: https://xbmlz.github.io/
   token: 414de38fVwHvxWpL
   path: baidu_urls.txt
+
+# feed
+feed:
+  type: 
+    - atom
+    - rss2
+  path: 
+    - atom.xml
+    - rss2.xml
+  limit: 20
+  order_by: -date
+  autodiscovery: true
