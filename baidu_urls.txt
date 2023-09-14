@@ -1,3 +1,6 @@
+https://xbmlz.github.io/fastreport-core-linux-chinese/
+https://xbmlz.github.io/golang-go-get-china/
+https://xbmlz.github.io/golang-xp-sp3/
 https://xbmlz.github.io/python-online-deploy/
 https://xbmlz.github.io/k8s-install/
 https://xbmlz.github.io/linux-clash/

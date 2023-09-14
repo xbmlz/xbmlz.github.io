@@ -20,6 +20,33 @@
   </url>
   
   <url>
+    <loc>https://xbmlz.github.io/fastreport-core-linux-chinese/</loc>
+    
+    <lastmod>2023-09-14</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://xbmlz.github.io/golang-go-get-china/</loc>
+    
+    <lastmod>2023-09-14</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://xbmlz.github.io/golang-xp-sp3/</loc>
+    
+    <lastmod>2023-09-14</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://xbmlz.github.io/k8s-install/</loc>
     
     <lastmod>2023-09-14</lastmod>
@@ -176,6 +203,27 @@
   </url>
   
   <url>
+    <loc>https://xbmlz.github.io/tags/fastreport/</loc>
+    <lastmod>2023-09-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://xbmlz.github.io/tags/C/</loc>
+    <lastmod>2023-09-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://xbmlz.github.io/tags/golang/</loc>
+    <lastmod>2023-09-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://xbmlz.github.io/tags/devOps/</loc>
     <lastmod>2023-09-14</lastmod>
     <changefreq>weekly</changefreq>
@@ -234,6 +282,20 @@
   </url>
   
   <url>
+    <loc>https://xbmlz.github.io/categories/C/</loc>
+    <lastmod>2023-09-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://xbmlz.github.io/categories/golang/</loc>
+    <lastmod>2023-09-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://xbmlz.github.io/categories/devOps/</loc>
     <lastmod>2023-09-14</lastmod>
     <changefreq>weekly</changefreq>
@@ -255,13 +317,6 @@
   </url>
   
   <url>
-    <loc>https://xbmlz.github.io/categories/devOps/k8s/</loc>
-    <lastmod>2023-09-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://xbmlz.github.io/categories/markdown/</loc>
     <lastmod>2023-09-14</lastmod>
     <changefreq>weekly</changefreq>
@@ -269,7 +324,7 @@
   </url>
   
   <url>
-    <loc>https://xbmlz.github.io/categories/music/%E6%9D%8E%E5%BF%97/</loc>
+    <loc>https://xbmlz.github.io/categories/devOps/k8s/</loc>
     <lastmod>2023-09-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -277,6 +332,13 @@
   
   <url>
     <loc>https://xbmlz.github.io/categories/python/</loc>
+    <lastmod>2023-09-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://xbmlz.github.io/categories/music/%E6%9D%8E%E5%BF%97/</loc>
     <lastmod>2023-09-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

@@ -39,7 +39,7 @@
 
 
 
-<title>Mariaid Test | 记昨日书</title>
+<title>FastReport Core Linux 中文支持 | 记昨日书</title>
 
 
 
@@ -179,7 +179,7 @@
         </h2>
       </a>
       <div id="header-title" class="opacity-0 md:ml-2 md:mt-[0.1rem] text-xs font-medium whitespace-nowrap overflow-hidden overflow-ellipsis">
-        Mariaid Test
+        FastReport Core Linux 中文支持
       </div>
       <div class="flex-1"></div>
       <div class="flex items-center gap-3">
@@ -263,7 +263,7 @@
   <header class="overflow-hidden pt-6 pb-6 md:pt-12">
     <div class="pt-4 md:pt-6">
       <h1 id="article-title" class="text-[2rem] font-bold leading-snug mb-4 md:mb-6 md:text-[2.6rem]">
-        Mariaid Test
+        FastReport Core Linux 中文支持
       </h1>
       <div>
         <section class="flex items-center gap-3 text-sm">
@@ -274,18 +274,18 @@
           <span class="text-gray-400">·</span>
           <span class="flex items-center gap-1">
             <iconify-icon width="18" icon="ic:round-access-alarm" ></iconify-icon>
-            <span>6 min</span>
+            <span>1 min</span>
           </span>
           <span class="text-gray-400">·</span>
           <span class="flex items-center gap-1">
             <iconify-icon width="18" icon="icon-park-outline:font-search" ></iconify-icon>
-            <span>1.1k words</span>
+            <span>144 words</span>
           </span>
           
             <span class="text-gray-400">·</span>
             <span class="flex items-center gap-1">
               <iconify-icon width="16" icon="icon-park-outline:box" class="mr-2"></iconify-icon>
-              <a class="article-category-link" href="/categories/markdown/">markdown</a>
+              <a class="article-category-link" href="/categories/C/">C#</a>
             </span>
           
         </section>
@@ -294,180 +294,36 @@
   </header>
   <!-- content -->
   <article class="post-content prose m-auto slide-enter-content mt-10 dark:prose-invert">
-    <h2 id="Flowchart"><a href="#Flowchart" class="headerlink" title="Flowchart"></a>Flowchart</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">graph TD</span><br><span class="line">A[Hard] --&gt;|Text| B(Round)</span><br><span class="line">B --&gt; C&#123;Decision&#125;</span><br><span class="line">C --&gt;|One| D[Result 1]</span><br><span class="line">C --&gt;|Two| E[Result 2]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+    <h4 id="1-安装中文字体"><a href="#1-安装中文字体" class="headerlink" title="1. 安装中文字体"></a>1. 安装中文字体</h4><p>在Linux下创建中文字体目录</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> -p /usr/share/fonts/chinese</span><br></pre></td></tr></table></figure>
 
-<pre class="mermaid">graph TD
-A[Hard] -->|Text| B(Round)
-B --> C{Decision}
-C -->|One| D[Result 1]
-C -->|Two| E[Result 2]</pre>
+<p>将Windows下<code>C:\Windows\Fonts\</code>中需要的字体拷贝到Linux中的<code>/usr/share/fonts/chinese/</code>下面</p>
+<p>安装字体索引命令</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum install mkfontscale</span><br></pre></td></tr></table></figure>
 
-<h2 id="Sequence-diagrams"><a href="#Sequence-diagrams" class="headerlink" title="Sequence diagrams"></a>Sequence diagrams</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sequenceDiagram</span><br><span class="line">Alice-&gt;&gt;John: Hello John, how are you?</span><br><span class="line">loop Healthcheck</span><br><span class="line">    John-&gt;&gt;John: Fight against hypochondria</span><br><span class="line">end</span><br><span class="line">Note right of John: Rational thoughts!</span><br><span class="line">John--&gt;&gt;Alice: Great!</span><br><span class="line">John-&gt;&gt;Bob: How about you?</span><br><span class="line">Bob--&gt;&gt;John: Jolly good!</span><br></pre></td></tr></table></figure>
+<p>进入中文字体目录生成字体索引</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span>  /usr/share/fonts/chinese</span><br><span class="line">mkfontscale</span><br></pre></td></tr></table></figure>
 
-<pre class="mermaid">sequenceDiagram
-Alice->>John: Hello John, how are you?
-loop Healthcheck
-    John->>John: Fight against hypochondria
-end
-Note right of John: Rational thoughts!
-John-->>Alice: Great!
-John->>Bob: How about you?
-Bob-->>John: Jolly good!</pre>
+<p>验证安装</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">fc-list :lang=zh</span><br></pre></td></tr></table></figure>
 
-<h2 id="Class-diagrams"><a href="#Class-diagrams" class="headerlink" title="Class diagrams"></a>Class diagrams</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">classDiagram</span><br><span class="line">    Animal &lt;|-- Duck</span><br><span class="line">    Animal &lt;|-- Fish</span><br><span class="line">    Animal &lt;|-- Zebra</span><br><span class="line">    Animal : +int age</span><br><span class="line">    Animal : +String gender</span><br><span class="line">    Animal: +isMammal()</span><br><span class="line">    Animal: +mate()</span><br><span class="line">    class Duck&#123;</span><br><span class="line">        +String beakColor</span><br><span class="line">        +swim()</span><br><span class="line">        +quack()</span><br><span class="line">    &#125;</span><br><span class="line">    class Fish&#123;</span><br><span class="line">        -int sizeInFeet</span><br><span class="line">        -canEat()</span><br><span class="line">    &#125;</span><br><span class="line">    class Zebra&#123;</span><br><span class="line">        +bool is_wild</span><br><span class="line">        +run()</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>如显示<code>/usr/share/fonts/chinese/</code>相关信息则表示中文字体安装成功</p>
+<h4 id="2-启动FastReport服务"><a href="#2-启动FastReport服务" class="headerlink" title="2. 启动FastReport服务"></a>2. 启动FastReport服务</h4><p>设置中文字体目录的环境变量（解决问题的关键！！！）</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> FONTDIR=/usr/share/fonts/</span><br></pre></td></tr></table></figure>
 
-<pre class="mermaid">classDiagram
-    Animal <|-- Duck
-    Animal <|-- Fish
-    Animal <|-- Zebra
-    Animal : +int age
-    Animal : +String gender
-    Animal: +isMammal()
-    Animal: +mate()
-    class Duck{
-        +String beakColor
-        +swim()
-        +quack()
-    }
-    class Fish{
-        -int sizeInFeet
-        -canEat()
-    }
-    class Zebra{
-        +bool is_wild
-        +run()
-    }</pre>
+<p>启动服务即可…</p>
 
-<h2 id="State-diagrams"><a href="#State-diagrams" class="headerlink" title="State diagrams"></a>State diagrams</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">stateDiagram-v2</span><br><span class="line">[*] --&gt; Still</span><br><span class="line">Still --&gt; [*]</span><br><span class="line">Still --&gt; Moving</span><br><span class="line">Moving --&gt; Still</span><br><span class="line">Moving --&gt; Crash</span><br><span class="line">Crash --&gt; [*]</span><br></pre></td></tr></table></figure>
-
-<pre class="mermaid">stateDiagram-v2
-[*] --> Still
-Still --> [*]
-Still --> Moving
-Moving --> Still
-Moving --> Crash
-Crash --> [*]</pre>
-
-<h2 id="Entity-Relationship-Diagrams"><a href="#Entity-Relationship-Diagrams" class="headerlink" title="Entity Relationship Diagrams"></a>Entity Relationship Diagrams</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">erDiagram</span><br><span class="line">    CUSTOMER ||--o&#123; ORDER : places</span><br><span class="line">    ORDER ||--|&#123; LINE-ITEM : contains</span><br><span class="line">    CUSTOMER &#125;|..|&#123; DELIVERY-ADDRESS : uses</span><br></pre></td></tr></table></figure>
-
-<pre class="mermaid">erDiagram
-    CUSTOMER ||--o{ ORDER : places
-    ORDER ||--|{ LINE-ITEM : contains
-    CUSTOMER }|..|{ DELIVERY-ADDRESS : uses</pre>
-
-<h2 id="User-Journey-Diagram"><a href="#User-Journey-Diagram" class="headerlink" title="User Journey Diagram"></a>User Journey Diagram</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">journey</span><br><span class="line">    title My working day</span><br><span class="line">    section Go to work</span><br><span class="line">      Make tea: 5: Me</span><br><span class="line">      Go upstairs: 3: Me</span><br><span class="line">      Do work: 1: Me, Cat</span><br><span class="line">    section Go home</span><br><span class="line">      Go downstairs: 5: Me</span><br><span class="line">      Sit down: 5: Me</span><br></pre></td></tr></table></figure>
-
-<pre class="mermaid">journey
-    title My working day
-    section Go to work
-      Make tea: 5: Me
-      Go upstairs: 3: Me
-      Do work: 1: Me, Cat
-    section Go home
-      Go downstairs: 5: Me
-      Sit down: 5: Me</pre>
-
-<h2 id="Gantt-diagrams"><a href="#Gantt-diagrams" class="headerlink" title="Gantt diagrams"></a>Gantt diagrams</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">gantt</span><br><span class="line">    title A Gantt Diagram</span><br><span class="line">    dateFormat  YYYY-MM-DD</span><br><span class="line">    section Section</span><br><span class="line">    A task           :a1, 2014-01-01, 30d</span><br><span class="line">    Another task     :after a1  , 20d</span><br><span class="line">    section Another</span><br><span class="line">    Task in sec      :2014-01-12  , 12d</span><br><span class="line">    another task      : 24d</span><br></pre></td></tr></table></figure>
-
-<pre class="mermaid">gantt
-    title A Gantt Diagram
-    dateFormat  YYYY-MM-DD
-    section Section
-    A task           :a1, 2014-01-01, 30d
-    Another task     :after a1  , 20d
-    section Another
-    Task in sec      :2014-01-12  , 12d
-    another task      : 24d</pre>
-
-<h2 id="Pie-chart-diagrams"><a href="#Pie-chart-diagrams" class="headerlink" title="Pie chart diagrams"></a>Pie chart diagrams</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pie title Pets adopted by volunteers</span><br><span class="line">    &quot;Dogs&quot; : 386</span><br><span class="line">    &quot;Cats&quot; : 85</span><br><span class="line">    &quot;Rats&quot; : 15</span><br></pre></td></tr></table></figure>
-
-<pre class="mermaid">pie title Pets adopted by volunteers
-    "Dogs" : 386
-    "Cats" : 85
-    "Rats" : 15</pre>
-
-<h2 id="Requirement-Diagram"><a href="#Requirement-Diagram" class="headerlink" title="Requirement Diagram"></a>Requirement Diagram</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">requirementDiagram</span><br><span class="line"></span><br><span class="line">requirement test_req &#123;</span><br><span class="line">id: 1</span><br><span class="line">text: the test text.</span><br><span class="line">risk: high</span><br><span class="line">verifymethod: test</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">element test_entity &#123;</span><br><span class="line">type: simulation</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">test_entity - satisfies -&gt; test_req</span><br></pre></td></tr></table></figure>
-
-<pre class="mermaid">requirementDiagram
-
-requirement test_req {
-id: 1
-text: the test text.
-risk: high
-verifymethod: test
-}
-
-element test_entity {
-type: simulation
-}
-
-test_entity - satisfies -> test_req</pre>
-
-<h2 id="Gitgraph-Diagrams"><a href="#Gitgraph-Diagrams" class="headerlink" title="Gitgraph Diagrams"></a>Gitgraph Diagrams</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">gitGraph</span><br><span class="line">    commit</span><br><span class="line">    commit</span><br><span class="line">    branch develop</span><br><span class="line">    checkout develop</span><br><span class="line">    commit</span><br><span class="line">    commit</span><br><span class="line">    checkout main</span><br><span class="line">    merge develop</span><br><span class="line">    commit</span><br><span class="line">    commit</span><br></pre></td></tr></table></figure>
-
-<pre class="mermaid">gitGraph
-    commit
-    commit
-    branch develop
-    checkout develop
-    commit
-    commit
-    checkout main
-    merge develop
-    commit
-    commit</pre>
-
-<h2 id="C4-Diagrams"><a href="#C4-Diagrams" class="headerlink" title="C4 Diagrams"></a>C4 Diagrams</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">C4Context</span><br><span class="line">      title System Context diagram for Internet Banking System</span><br><span class="line">      Enterprise_Boundary(b0, &quot;BankBoundary0&quot;) &#123;</span><br><span class="line">        Person(customerA, &quot;Banking Customer A&quot;, &quot;A customer of the bank, with personal bank accounts.&quot;)</span><br><span class="line">        Person(customerB, &quot;Banking Customer B&quot;)      </span><br><span class="line">        Person_Ext(customerC, &quot;Banking Customer C&quot;, &quot;desc&quot;)            </span><br><span class="line"></span><br><span class="line">        Person(customerD, &quot;Banking Customer D&quot;, &quot;A customer of the bank, &lt;br/&gt; with personal bank accounts.&quot;)</span><br><span class="line"></span><br><span class="line">        System(SystemAA, &quot;Internet Banking System&quot;, &quot;Allows customers to view information about their bank accounts, and make payments.&quot;)  </span><br><span class="line"></span><br><span class="line">        Enterprise_Boundary(b1, &quot;BankBoundary&quot;) &#123;</span><br><span class="line">         </span><br><span class="line">          SystemDb_Ext(SystemE, &quot;Mainframe Banking System&quot;, &quot;Stores all of the core banking information about customers, accounts, transactions, etc.&quot;)      </span><br><span class="line"></span><br><span class="line">          System_Boundary(b2, &quot;BankBoundary2&quot;) &#123;  </span><br><span class="line">            System(SystemA, &quot;Banking System A&quot;)  </span><br><span class="line">            System(SystemB, &quot;Banking System B&quot;, &quot;A system of the bank, with personal bank accounts. next line.&quot;)        </span><br><span class="line">          &#125; </span><br><span class="line"></span><br><span class="line">          System_Ext(SystemC, &quot;E-mail system&quot;, &quot;The internal Microsoft Exchange e-mail system.&quot;) </span><br><span class="line">          SystemDb(SystemD, &quot;Banking System D Database&quot;, &quot;A system of the bank, with personal bank accounts.&quot;) </span><br><span class="line"></span><br><span class="line">          Boundary(b3, &quot;BankBoundary3&quot;, &quot;boundary&quot;) &#123;  </span><br><span class="line">            SystemQueue(SystemF, &quot;Banking System F Queue&quot;, &quot;A system of the bank.&quot;)        </span><br><span class="line">            SystemQueue_Ext(SystemG, &quot;Banking System G Queue&quot;, &quot;A system of the bank, with personal bank accounts.&quot;) </span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      </span><br><span class="line">      BiRel(customerA, SystemAA, &quot;Uses&quot;)</span><br><span class="line">      BiRel(SystemAA, SystemE, &quot;Uses&quot;)</span><br><span class="line">      Rel(SystemAA, SystemC, &quot;Sends e-mails&quot;, &quot;SMTP&quot;)</span><br><span class="line">      Rel(SystemC, customerA, &quot;Sends e-mails to&quot;)</span><br><span class="line"></span><br><span class="line">      UpdateElementStyle(customerA, $fontColor=&quot;red&quot;, $bgColor=&quot;grey&quot;, $borderColor=&quot;red&quot;)</span><br><span class="line">      UpdateRelStyle(customerA, SystemAA, $textColor=&quot;blue&quot;, $lineColor=&quot;blue&quot;, $offsetX=&quot;5&quot;)</span><br><span class="line">      UpdateRelStyle(SystemAA, SystemE, $textColor=&quot;blue&quot;, $lineColor=&quot;blue&quot;, $offsetY=&quot;-10&quot;)</span><br><span class="line">      UpdateRelStyle(SystemAA, SystemC, $textColor=&quot;blue&quot;, $lineColor=&quot;blue&quot;, $offsetY=&quot;-40&quot;, $offsetX=&quot;-50&quot;)</span><br><span class="line">      UpdateRelStyle(SystemC, customerA, $textColor=&quot;red&quot;, $lineColor=&quot;red&quot;, $offsetX=&quot;-50&quot;, $offsetY=&quot;20&quot;)</span><br><span class="line">      </span><br><span class="line">      UpdateLayoutConfig($c4ShapeInRow=&quot;3&quot;, $c4BoundaryInRow=&quot;1&quot;)</span><br></pre></td></tr></table></figure>
-
-<pre class="mermaid">C4Context
-      title System Context diagram for Internet Banking System
-      Enterprise_Boundary(b0, "BankBoundary0") {
-        Person(customerA, "Banking Customer A", "A customer of the bank, with personal bank accounts.")
-        Person(customerB, "Banking Customer B")      
-        Person_Ext(customerC, "Banking Customer C", "desc")            
-
-        Person(customerD, "Banking Customer D", "A customer of the bank, <br/> with personal bank accounts.")
-
-        System(SystemAA, "Internet Banking System", "Allows customers to view information about their bank accounts, and make payments.")  
-
-        Enterprise_Boundary(b1, "BankBoundary") {
-         
-          SystemDb_Ext(SystemE, "Mainframe Banking System", "Stores all of the core banking information about customers, accounts, transactions, etc.")      
-
-          System_Boundary(b2, "BankBoundary2") {  
-            System(SystemA, "Banking System A")  
-            System(SystemB, "Banking System B", "A system of the bank, with personal bank accounts. next line.")        
-          } 
-
-          System_Ext(SystemC, "E-mail system", "The internal Microsoft Exchange e-mail system.") 
-          SystemDb(SystemD, "Banking System D Database", "A system of the bank, with personal bank accounts.") 
-
-          Boundary(b3, "BankBoundary3", "boundary") {  
-            SystemQueue(SystemF, "Banking System F Queue", "A system of the bank.")        
-            SystemQueue_Ext(SystemG, "Banking System G Queue", "A system of the bank, with personal bank accounts.") 
-          }
-        }
-      }
-      
-      BiRel(customerA, SystemAA, "Uses")
-      BiRel(SystemAA, SystemE, "Uses")
-      Rel(SystemAA, SystemC, "Sends e-mails", "SMTP")
-      Rel(SystemC, customerA, "Sends e-mails to")
-
-      UpdateElementStyle(customerA, $fontColor="red", $bgColor="grey", $borderColor="red")
-      UpdateRelStyle(customerA, SystemAA, $textColor="blue", $lineColor="blue", $offsetX="5")
-      UpdateRelStyle(SystemAA, SystemE, $textColor="blue", $lineColor="blue", $offsetY="-10")
-      UpdateRelStyle(SystemAA, SystemC, $textColor="blue", $lineColor="blue", $offsetY="-40", $offsetX="-50")
-      UpdateRelStyle(SystemC, customerA, $textColor="red", $lineColor="red", $offsetX="-50", $offsetY="20")
-      
-      UpdateLayoutConfig($c4ShapeInRow="3", $c4BoundaryInRow="1")</pre>
   </article>
   <!-- tag -->
   <div class="mt-12 pt-6 border-t border-gray-200">
     
       
         <span class="bg-gray-100 dark:bg-gray-700 px-2 py-1 m-1 text-sm rounded-md transition-colors hover:bg-gray-200">
-          <a href="/tags/markdown/">markdown</a>
+          <a href="/tags/fastreport/">fastreport</a>
+        </span>
+      
+        <span class="bg-gray-100 dark:bg-gray-700 px-2 py-1 m-1 text-sm rounded-md transition-colors hover:bg-gray-200">
+          <a href="/tags/C/">C#</a>
         </span>
       
     
@@ -476,16 +332,11 @@ test_entity - satisfies -> test_req</pre>
   <div class="flex justify-between mt-12 pt-6 border-t border-gray-200">
     <div>
       
-        <a href="/echarts-test/" class="text-sm text-gray-400 hover:text-gray-500 flex justify-center">
-          <iconify-icon width="20" icon="ri:arrow-left-s-line" data-inline="false"></iconify-icon>
-          Echarts Test
-        </a>
-      
     </div>
     <div>
       
-        <a href="/math-jax-test/" class="text-sm text-gray-400 hover:text-gray-500 flex justify-center">
-          MathJax Test
+        <a href="/golang-go-get-china/" class="text-sm text-gray-400 hover:text-gray-500 flex justify-center">
+          Golang go get 国内镜像
           <iconify-icon width="20" icon="ri:arrow-right-s-line" data-inline="false"></iconify-icon>
         </a>
       
