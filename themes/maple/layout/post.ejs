@@ -14,25 +14,38 @@
       </h1>
       <div>
         <section class="flex items-center gap-3 text-sm">
-          <time><%- date(page.updated, "YYYY-MM-DD HH:mm:ss") %></time>
+          <span class="flex items-center gap-1">
+            <iconify-icon width="18" icon="carbon-calendar" ></iconify-icon>
+            <time><%- date(page.updated, "YYYY-MM-DD") %></time>
+          </span>
           <span class="text-gray-400">·</span>
-          <span><%= min2read(page.content) %> min</span>
+          <span class="flex items-center gap-1">
+            <iconify-icon width="18" icon="ic:round-access-alarm" ></iconify-icon>
+            <span><%= min2read(page.content) %> min</span>
+          </span>
           <span class="text-gray-400">·</span>
-          <span><%= wordcount(page.content) %> words</span>
+          <span class="flex items-center gap-1">
+            <iconify-icon width="18" icon="icon-park-outline:font-search" ></iconify-icon>
+            <span><%= wordcount(page.content) %> words</span>
+          </span>
           <% if (page.categories && page.categories.length) { %>
             <span class="text-gray-400">·</span>
-            <% page.categories.forEach(function (c) { %>
-              <span>
-                <a href="<%- url_for(c.path) %>"><%- c.name %></a>
-              </span>
-            <% }); %>
+            <span class="flex items-center gap-1">
+              <iconify-icon width="16" icon="icon-park-outline:box" class="mr-2"></iconify-icon>
+              <%- list_categories(page.categories, {
+                show_count: false,
+                class: 'article-category',
+                style: 'none',
+                separator: '/'
+              }) %>
+            </span>
           <% } %>
         </section>
       </div>
     </div>
   </header>
   <!-- content -->
-  <article class="post-content mt-10 dark:prose-invert">
+  <article class="post-content prose m-auto slide-enter-content mt-10 dark:prose-invert">
     <%- page.content %>
   </article>
   <!-- tag -->
