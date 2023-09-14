@@ -131,6 +131,44 @@ a:hover {
 .toc-list ol {
   margin-top: 0.3rem;
 }
+.back-to-top {
+  -webkit-transform: translateZ(0);
+  transition-property: bottom;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+  transition-delay: 0s;
+}
+.back-to-top.back-to-top-on {
+  bottom: 30px;
+}
+[data-animate] {
+  --stagger: 0;
+  --delay: 120ms;
+  --start: 0ms;
+}
+@media (prefers-reduced-motion: no-preference) {
+  [data-animate] {
+    animation: enter 0.6s both;
+    animation-delay: calc(var(--stagger) * var(--delay) + var(--start));
+  }
+}
+[data-animation-controller=false] [data-animate] {
+  animation: none;
+}
+.slide-enter-content {
+  counter-reset: enter-count;
+}
+.slide-enter-content > * {
+  --stagger: 0;
+  --delay: 150ms;
+  --start: 0ms;
+  animation: enter 1s both 1;
+  animation-delay: calc(var(--start) + var(--stagger) * var(--delay));
+}
+.slide-enter-content > p {
+  counter-increment: enter-count;
+  --stagger: counter(enter-count);
+}
 @-moz-keyframes fall {
   0% {
     transform: translate(0px, 0px);
@@ -161,5 +199,45 @@ a:hover {
   }
   100% {
     transform: translate(calc(100vw * var(--maple-fall-offset)), var(--maple-fall-height));
+  }
+}
+@-moz-keyframes enter {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@-webkit-keyframes enter {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@-o-keyframes enter {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes enter {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
   }
 }

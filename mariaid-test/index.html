@@ -231,7 +231,7 @@
   <div class="mask bg-black/20 absolute inset-0"></div>
 </div>
 
-  <main>
+  <main class="pt-14">
     <!-- css -->
 
 <link rel="stylesheet" href="/lib/fancybox/fancybox.min.css">
@@ -254,25 +254,33 @@
       </h1>
       <div>
         <section class="flex items-center gap-3 text-sm">
-          <time>2023-09-13 15:52:37</time>
+          <span class="flex items-center gap-1">
+            <iconify-icon width="18" icon="carbon-calendar" ></iconify-icon>
+            <time>2023-09-14</time>
+          </span>
           <span class="text-gray-400">·</span>
-          <span>6 min</span>
+          <span class="flex items-center gap-1">
+            <iconify-icon width="18" icon="ic:round-access-alarm" ></iconify-icon>
+            <span>6 min</span>
+          </span>
           <span class="text-gray-400">·</span>
-          <span>1.1k words</span>
+          <span class="flex items-center gap-1">
+            <iconify-icon width="18" icon="icon-park-outline:font-search" ></iconify-icon>
+            <span>1.1k words</span>
+          </span>
           
             <span class="text-gray-400">·</span>
-            
-              <span>
-                <a href="/categories/markdown/">markdown</a>
-              </span>
-            
+            <span class="flex items-center gap-1">
+              <iconify-icon width="16" icon="icon-park-outline:box" class="mr-2"></iconify-icon>
+              <a class="article-category-link" href="/categories/markdown/">markdown</a>
+            </span>
           
         </section>
       </div>
     </div>
   </header>
   <!-- content -->
-  <article class="post-content mt-10 dark:prose-invert">
+  <article class="post-content prose m-auto slide-enter-content mt-10 dark:prose-invert">
     <h2 id="Flowchart"><a href="#Flowchart" class="headerlink" title="Flowchart"></a>Flowchart</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">graph TD</span><br><span class="line">A[Hard] --&gt;|Text| B(Round)</span><br><span class="line">B --&gt; C&#123;Decision&#125;</span><br><span class="line">C --&gt;|One| D[Result 1]</span><br><span class="line">C --&gt;|Two| E[Result 2]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <pre class="mermaid">graph TD
@@ -624,6 +632,7 @@ test_entity - satisfies -> test_req</pre>
 
   <!-- copyright -->
   <div class="flex items-center gap-2">
+    <a target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" style="color: inherit;">CC BY-NC-SA 4.0</a>
     <span>© 2022</span>
     <iconify-icon width="18" icon="emojione-monotone:maple-leaf" ></iconify-icon>
     <a href="https://github.com/xbmlz" target="_blank" rel="noopener noreferrer">xbmlz</a>
@@ -638,7 +647,12 @@ test_entity - satisfies -> test_req</pre>
 
 </footer>
 
-  <iconify-icon class="fixed right-4 bottom-10 z-100 opacity-0" width="24" icon="ion:arrow-up-c" id="go-top"></iconify-icon>
+  <div class="back-to-top box-border fixed right-6 z-1024 -bottom-20 rounded py-1 px-1 bg-slate-900 opacity-60 text-white cursor-pointer text-center transition-bottom">
+    <span class="flex justify-center items-center text-sm">
+      <iconify-icon width="18" icon="ion:arrow-up-c" id="go-top"></iconify-icon>
+      <span id="scrollpercent"><span>0</span> %</span>
+    </span>
+  </div>
   
 <script src="/js/main.js"></script>
 

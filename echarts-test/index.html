@@ -231,7 +231,7 @@
   <div class="mask bg-black/20 absolute inset-0"></div>
 </div>
 
-  <main>
+  <main class="pt-14">
     <!-- css -->
 
 <link rel="stylesheet" href="/lib/fancybox/fancybox.min.css">
@@ -254,30 +254,38 @@
       </h1>
       <div>
         <section class="flex items-center gap-3 text-sm">
-          <time>2023-09-13 15:52:37</time>
+          <span class="flex items-center gap-1">
+            <iconify-icon width="18" icon="carbon-calendar" ></iconify-icon>
+            <time>2023-09-14</time>
+          </span>
           <span class="text-gray-400">·</span>
-          <span>3 min</span>
+          <span class="flex items-center gap-1">
+            <iconify-icon width="18" icon="ic:round-access-alarm" ></iconify-icon>
+            <span>3 min</span>
+          </span>
           <span class="text-gray-400">·</span>
-          <span>583 words</span>
+          <span class="flex items-center gap-1">
+            <iconify-icon width="18" icon="icon-park-outline:font-search" ></iconify-icon>
+            <span>583 words</span>
+          </span>
           
             <span class="text-gray-400">·</span>
-            
-              <span>
-                <a href="/categories/plugin/">plugin</a>
-              </span>
-            
+            <span class="flex items-center gap-1">
+              <iconify-icon width="16" icon="icon-park-outline:box" class="mr-2"></iconify-icon>
+              <a class="article-category-link" href="/categories/plugin/">plugin</a>
+            </span>
           
         </section>
       </div>
     </div>
   </header>
   <!-- content -->
-  <article class="post-content mt-10 dark:prose-invert">
+  <article class="post-content prose m-auto slide-enter-content mt-10 dark:prose-invert">
     <h2 id="折线图"><a href="#折线图" class="headerlink" title="折线图"></a>折线图</h2>
-  <div id="echarts-5538" style="width: 85%; height: 400px; margin: 0 auto"></div>
+  <div id="echarts-965" style="width: 85%; height: 400px; margin: 0 auto"></div>
   <script src="https://cdn.jsdelivr.net/npm/echarts@5.3.3/dist/echarts.min.js"></script>
   <script>
-    var myChart = echarts.init(document.getElementById('echarts-5538'));
+    var myChart = echarts.init(document.getElementById('echarts-965'));
     var option = {
   xAxis: {
     type: 'category',
@@ -298,10 +306,10 @@
   
 
 <h2 id="柱状图"><a href="#柱状图" class="headerlink" title="柱状图"></a>柱状图</h2>
-  <div id="echarts-5986" style="width: 85%; height: 400px; margin: 0 auto"></div>
+  <div id="echarts-4565" style="width: 85%; height: 400px; margin: 0 auto"></div>
   <script src="https://cdn.jsdelivr.net/npm/echarts@5.3.3/dist/echarts.min.js"></script>
   <script>
-    var myChart = echarts.init(document.getElementById('echarts-5986'));
+    var myChart = echarts.init(document.getElementById('echarts-4565'));
     var option = {
   xAxis: {
     type: 'category',
@@ -326,10 +334,10 @@
   
 
 <h2 id="饼图"><a href="#饼图" class="headerlink" title="饼图"></a>饼图</h2>
-  <div id="echarts-4107" style="width: 85%; height: 400px; margin: 0 auto"></div>
+  <div id="echarts-7029" style="width: 85%; height: 400px; margin: 0 auto"></div>
   <script src="https://cdn.jsdelivr.net/npm/echarts@5.3.3/dist/echarts.min.js"></script>
   <script>
-    var myChart = echarts.init(document.getElementById('echarts-4107'));
+    var myChart = echarts.init(document.getElementById('echarts-7029'));
     var option = {
   title: {
     text: 'Referer of a Website',
@@ -370,10 +378,10 @@
   
 
 <h2 id="散点图"><a href="#散点图" class="headerlink" title="散点图"></a>散点图</h2>
-  <div id="echarts-8442" style="width: 85%; height: 400px; margin: 0 auto"></div>
+  <div id="echarts-6046" style="width: 85%; height: 400px; margin: 0 auto"></div>
   <script src="https://cdn.jsdelivr.net/npm/echarts@5.3.3/dist/echarts.min.js"></script>
   <script>
-    var myChart = echarts.init(document.getElementById('echarts-8442'));
+    var myChart = echarts.init(document.getElementById('echarts-6046'));
     var option = {
   xAxis: {},
   yAxis: {},
@@ -413,10 +421,10 @@
   
 
 <h2 id="雷达图"><a href="#雷达图" class="headerlink" title="雷达图"></a>雷达图</h2>
-  <div id="echarts-1984" style="width: 85%; height: 400px; margin: 0 auto"></div>
+  <div id="echarts-2469" style="width: 85%; height: 400px; margin: 0 auto"></div>
   <script src="https://cdn.jsdelivr.net/npm/echarts@5.3.3/dist/echarts.min.js"></script>
   <script>
-    var myChart = echarts.init(document.getElementById('echarts-1984'));
+    var myChart = echarts.init(document.getElementById('echarts-2469'));
     var option = {
   title: {
     text: 'Basic Radar Chart'
@@ -457,10 +465,10 @@
   
 
 <h2 id="盒须图"><a href="#盒须图" class="headerlink" title="盒须图"></a>盒须图</h2>
-  <div id="echarts-5883" style="width: 85%; height: 400px; margin: 0 auto"></div>
+  <div id="echarts-8390" style="width: 85%; height: 400px; margin: 0 auto"></div>
   <script src="https://cdn.jsdelivr.net/npm/echarts@5.3.3/dist/echarts.min.js"></script>
   <script>
-    var myChart = echarts.init(document.getElementById('echarts-5883'));
+    var myChart = echarts.init(document.getElementById('echarts-8390'));
     var option = {
   title: [
     {
@@ -731,6 +739,7 @@
 
   <!-- copyright -->
   <div class="flex items-center gap-2">
+    <a target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" style="color: inherit;">CC BY-NC-SA 4.0</a>
     <span>© 2022</span>
     <iconify-icon width="18" icon="emojione-monotone:maple-leaf" ></iconify-icon>
     <a href="https://github.com/xbmlz" target="_blank" rel="noopener noreferrer">xbmlz</a>
@@ -745,7 +754,12 @@
 
 </footer>
 
-  <iconify-icon class="fixed right-4 bottom-10 z-100 opacity-0" width="24" icon="ion:arrow-up-c" id="go-top"></iconify-icon>
+  <div class="back-to-top box-border fixed right-6 z-1024 -bottom-20 rounded py-1 px-1 bg-slate-900 opacity-60 text-white cursor-pointer text-center transition-bottom">
+    <span class="flex justify-center items-center text-sm">
+      <iconify-icon width="18" icon="ion:arrow-up-c" id="go-top"></iconify-icon>
+      <span id="scrollpercent"><span>0</span> %</span>
+    </span>
+  </div>
   
 <script src="/js/main.js"></script>
 

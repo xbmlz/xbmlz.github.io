@@ -231,7 +231,7 @@
   <div class="mask bg-black/20 absolute inset-0"></div>
 </div>
 
-  <main>
+  <main class="pt-14">
     
 
   <div>
@@ -254,7 +254,7 @@
         <span class="text-9xl opacity-10 absolute -left-11 -top-6 font-bold">2022</span>
       </div>
     
-    <a href="/li-zhi/">
+    <a style="--stagger:0" href="/li-zhi/" data-animate>
       <header>
         <h2 class="font-bold text-xl">
           南京市民李先生
@@ -263,7 +263,7 @@
       <section class="text-gray-400 my-2 text-sm time">
         <p class="line-clamp-4">
           
-            <div class="py-4">
+            <div class="py-2">
               南京市民李先生私藏
             </div>
           
@@ -297,6 +297,7 @@
 
   <!-- copyright -->
   <div class="flex items-center gap-2">
+    <a target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" style="color: inherit;">CC BY-NC-SA 4.0</a>
     <span>© 2022</span>
     <iconify-icon width="18" icon="emojione-monotone:maple-leaf" ></iconify-icon>
     <a href="https://github.com/xbmlz" target="_blank" rel="noopener noreferrer">xbmlz</a>
@@ -311,7 +312,12 @@
 
 </footer>
 
-  <iconify-icon class="fixed right-4 bottom-10 z-100 opacity-0" width="24" icon="ion:arrow-up-c" id="go-top"></iconify-icon>
+  <div class="back-to-top box-border fixed right-6 z-1024 -bottom-20 rounded py-1 px-1 bg-slate-900 opacity-60 text-white cursor-pointer text-center transition-bottom">
+    <span class="flex justify-center items-center text-sm">
+      <iconify-icon width="18" icon="ion:arrow-up-c" id="go-top"></iconify-icon>
+      <span id="scrollpercent"><span>0</span> %</span>
+    </span>
+  </div>
   
 <script src="/js/main.js"></script>
 
