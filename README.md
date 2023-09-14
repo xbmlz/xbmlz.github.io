@@ -1,0 +1,1 @@
+https://github.com/xbmlz/hexo-theme-maple/releases
