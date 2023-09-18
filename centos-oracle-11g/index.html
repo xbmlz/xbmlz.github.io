@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EHXM4GYP5W"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-EHXM4GYP5W');
+</script>
+<!-- End Google Analytics -->
+
+
+
+<!-- Baidu Analytics -->
+<script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?0a6515fb9c839d6a56d4cfd8b7d243d4";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+<!-- End Baidu Analytics -->
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <meta name="author" content="xbmlz">
+
+
+  <meta name="subtitle" content="忙碌把时光缩短, 苦难把岁月拉长">
+
+
+
+
+<title>CentOS7 安装 Oracle 11g | 记昨日书</title>
+
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/nprogress/nprogress.css">
+
+
+
+<script src="/lib/jquery.min.js"></script>
+
+
+<script src="/lib/iconify-icon.min.js"></script>
+
+
+<script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+<script>
+  tailwind.config = {
+    darkMode: "class",
+  };
+</script>
+
+
+<script src="/lib/nprogress/nprogress.js"></script>
+
+<script>
+  $(document).ready(() => {
+    NProgress.configure({
+      showSpinner: false,
+    });
+    NProgress.start();
+    $("#nprogress .bar").css({
+      background: "#de7441",
+    });
+    $("#nprogress .peg").css({
+      "box-shadow": "0 0 2px #de7441, 0 0 4px #de7441",
+    });
+    $("#nprogress .spinner-icon").css({
+      "border-top-color": "#de7441",
+      "border-left-color": "#de7441",
+    });
+    setTimeout(function () {
+      NProgress.done();
+      $(".fade").removeClass("out");
+    }, 800);
+  });
+</script>
+
+<script>
+  (function () {
+    const prefersDark =
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const setting = localStorage.getItem("hexo-color-scheme") || "auto";
+    if (setting === "dark" || (prefersDark && setting !== "light"))
+      document.documentElement.classList.toggle("dark", true);
+    let isDark = document.documentElement.classList.contains("dark");
+  })();
+
+  $(document).ready(function () {
+    // init icon
+    const prefersDark =
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const isDark = document.documentElement.classList.contains("dark");
+    $("#theme-icon").attr("icon", isDark ? "ri:moon-line" : "ri:sun-line");
+
+    function toggleGiscusTheme() {
+      const isDark = document.documentElement.classList.contains("dark");
+      const giscusFrame = document.querySelector("iframe.giscus-frame");
+      if (giscusFrame) {
+        giscusFrame.contentWindow.postMessage(
+          {
+            giscus: {
+              setConfig: {
+                theme: isDark ? "dark" : "light",
+              },
+            },
+          },
+          "https://giscus.app"
+        );
+      }
+    }
+
+
+    // toggle dark mode
+    function toggleDark() {
+      let isDark = document.documentElement.classList.contains("dark");
+      const setting = localStorage.getItem("hexo-color-scheme") || "auto";
+      isDark = !isDark;
+      document.documentElement.classList.toggle("dark", isDark);
+      $("#theme-icon").attr("icon", isDark ? "ri:moon-line" : "ri:sun-line");
+      if (prefersDark === isDark) {
+        localStorage.setItem("hexo-color-scheme", "auto");
+      } else {
+        localStorage.setItem("hexo-color-scheme", isDark ? "dark" : "light");
+      }
+      toggleGiscusTheme();
+    }
+    $("#toggle-dark").click(toggleDark);
+
+    // listen dark mode change
+    window
+      .matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", (e) => {
+        const setting = localStorage.getItem("hexo-color-scheme") || "auto";
+        if (setting === "auto") {
+          document.documentElement.classList.toggle("dark", e.matches);
+          $("#theme-icon").attr(
+            "icon",
+            e.matches ? "ri:moon-line" : "ri:sun-line"
+          );
+          toggleGiscusTheme();
+        }
+      });
+  });
+</script>
+
+
+
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="记昨日书" type="application/atom+xml">
+<link rel="alternate" href="/rss2.xml" title="记昨日书" type="application/rss+xml">
+</head>
+<body class="font-sans bg-white dark:bg-zinc-900 text-gray-700 dark:text-gray-200 relative">
+  <header class="fixed w-full px-5 py-1 z-10 backdrop-blur-xl backdrop-saturate-150 border-b border-black/5">
+  <div class="max-auto">
+    <nav class="flex items-center text-base">
+      <a href="/" class="group">
+        <h2 class="font-medium tracking-tighterp text-l p-2">
+          <img class="w-5 mr-2 inline-block transition-transform group-hover:rotate-[30deg]" id="logo" src="/img/logo.svg" alt="记昨日书" />
+          记昨日书
+        </h2>
+      </a>
+      <div id="header-title" class="opacity-0 md:ml-2 md:mt-[0.1rem] text-xs font-medium whitespace-nowrap overflow-hidden overflow-ellipsis">
+        CentOS7 安装 Oracle 11g
+      </div>
+      <div class="flex-1"></div>
+      <div class="flex items-center gap-3">
+        
+          <a class="hidden sm:flex" href="/archives">Posts</a>
+        
+          <a class="hidden sm:flex" href="/category">Categories</a>
+        
+          <a class="hidden sm:flex" href="/tag">Tags</a>
+        
+        
+          
+            <a class="w-5 h-5 hidden sm:flex" title="Github" target="_blank" rel="noopener" href="https://github.com/xbmlz">
+              <iconify-icon width="20" icon="ri:github-line"></iconify-icon>
+            </a>
+          
+            <a class="w-5 h-5 hidden sm:flex" title="ZhiHu" target="_blank" rel="noopener" href="https://www.zhihu.com/people/xc-chen-62">
+              <iconify-icon width="20" icon="ri:zhihu-line"></iconify-icon>
+            </a>
+          
+            <a class="w-5 h-5 hidden sm:flex" title="Twitter" target="_blank" rel="noopener" href="https://twitter.com/chenxia86081267">
+              <iconify-icon width="20" icon="ri:twitter-line"></iconify-icon>
+            </a>
+          
+        
+        <a class="w-5 h-5 hidden sm:flex" title="Twitter" href="rss2.xml">
+          <iconify-icon width="20" icon="ri:rss-line"></iconify-icon>
+        </a>
+        <a class="w-5 h-5" title="toggle theme" id="toggle-dark">
+          <iconify-icon width="20" icon="" id="theme-icon"></iconify-icon>
+        </a>
+      </div>
+      <div class="flex items-center justify-center gap-3 ml-3 sm:hidden">
+        <span class="w-5 h-5" aria-hidden="true" role="img" id="open-menu">
+          <iconify-icon width="20" icon="carbon:menu" ></iconify-icon>
+        </span>
+        <span class="w-5 h-5 hidden" aria-hidden="true" role="img" id="close-menu">
+          <iconify-icon  width="20" icon="carbon:close" ></iconify-icon>
+        </span>
+      </div>
+    </nav>
+  </div>
+</header>
+<div id="menu-panel" class="h-0 overflow-hidden sm:hidden fixed left-0 right-0 top-12 bottom-0 z-10">
+  <div id="menu-content" class="relative z-20 bg-white/80 px-6 sm:px-8 py-2 backdrop-blur-xl -translate-y-full transition-transform duration-300">
+    <ul class="nav flex flex-col sm:flex-row text-sm font-medium">
+      
+        <li class="nav-portfolio sm:mx-2 border-b sm:border-0 border-black/5 last:border-0 hover:text-main">
+          <a href="/archives" class="flex h-12 sm:h-auto items-center">Posts</a>
+        </li>
+      
+        <li class="nav-portfolio sm:mx-2 border-b sm:border-0 border-black/5 last:border-0 hover:text-main">
+          <a href="/category" class="flex h-12 sm:h-auto items-center">Categories</a>
+        </li>
+      
+        <li class="nav-portfolio sm:mx-2 border-b sm:border-0 border-black/5 last:border-0 hover:text-main">
+          <a href="/tag" class="flex h-12 sm:h-auto items-center">Tags</a>
+        </li>
+      
+    </ul>
+  </div>
+  <div class="mask bg-black/20 absolute inset-0"></div>
+</div>
+
+  <main class="pt-14">
+    <!-- css -->
+
+<link rel="stylesheet" href="/lib/fancybox/fancybox.min.css">
+
+
+<link rel="stylesheet" href="/lib/tocbot/tocbot.min.css">
+
+<!-- toc -->
+
+  <!-- tocbot -->
+<nav class="post-toc toc text-sm w-48 relative top-32 right-0 opacity-70 hidden lg:block" style="position: fixed !important;"></nav>
+
+
+<section class="px-6 max-w-prose mx-auto md:px-0">
+  <!-- header -->
+  <header class="overflow-hidden pt-6 pb-6 md:pt-12">
+    <div class="pt-4 md:pt-6">
+      <h1 id="article-title" class="text-[2rem] font-bold leading-snug mb-4 md:mb-6 md:text-[2.6rem]">
+        CentOS7 安装 Oracle 11g
+      </h1>
+      <div>
+        <section class="flex items-center gap-3 text-sm">
+          <span class="flex items-center gap-1">
+            <iconify-icon width="18" icon="carbon-calendar" ></iconify-icon>
+            <time>2023-09-18</time>
+          </span>
+          <span class="text-gray-400">·</span>
+          <span class="flex items-center gap-1">
+            <iconify-icon width="18" icon="ic:round-access-alarm" ></iconify-icon>
+            <span>10 min</span>
+          </span>
+          <span class="text-gray-400">·</span>
+          <span class="flex items-center gap-1">
+            <iconify-icon width="18" icon="icon-park-outline:font-search" ></iconify-icon>
+            <span>2k words</span>
+          </span>
+          
+            <span class="text-gray-400">·</span>
+            <span class="flex items-center gap-1">
+              <iconify-icon width="16" icon="icon-park-outline:box" class="mr-2"></iconify-icon>
+              <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+            </span>
+          
+        </section>
+      </div>
+    </div>
+  </header>
+  <!-- content -->
+  <article class="post-content prose m-auto slide-enter-content dark:prose-invert">
+    <h4 id="1-关闭防火墙（root）"><a href="#1-关闭防火墙（root）" class="headerlink" title="1. 关闭防火墙（root）"></a>1. 关闭防火墙（root）</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">systemctl stop firewalld.service</span><br><span class="line"></span><br><span class="line"><span class="comment"># 关闭开机自启</span></span><br><span class="line">systemctl <span class="built_in">disable</span> firewalld.service</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-关闭selinux（root）"><a href="#2-关闭selinux（root）" class="headerlink" title="2. 关闭selinux（root）"></a>2. 关闭selinux（root）</h4><p>将<code>SELINUX= enforcing</code> 改为 <code>SELINUX=disabled</code></p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">vi /etc/selinux/config</span><br><span class="line"></span><br><span class="line"><span class="comment"># This file controls the state of SELinux on the system.</span></span><br><span class="line"><span class="comment"># SELINUX= can take one of these three values:</span></span><br><span class="line"><span class="comment">#     enforcing - SELinux security policy is enforced.</span></span><br><span class="line"><span class="comment">#     permissive - SELinux prints warnings instead of enforcing.</span></span><br><span class="line"><span class="comment">#     disabled - No SELinux policy is loaded.</span></span><br><span class="line">SELINUX=disabled</span><br><span class="line"><span class="comment"># SELINUXTYPE= can take one of three values:</span></span><br><span class="line"><span class="comment">#     targeted - Targeted processes are protected,</span></span><br><span class="line"><span class="comment">#     minimum - Modification of targeted policy. Only selected processes are protected.</span></span><br><span class="line"><span class="comment">#     mls - Multi Level Security protection.</span></span><br><span class="line">SELINUXTYPE=targeted</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-安装Oracle11g-r2-相关依赖（root）"><a href="#3-安装Oracle11g-r2-相关依赖（root）" class="headerlink" title="3. 安装Oracle11g r2 相关依赖（root）"></a>3. 安装Oracle11g r2 相关依赖（root）</h4><p>直接复制执行即可</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">yum <span class="literal">-y</span> install gcc make binutils gcc<span class="literal">-c</span>++ compat<span class="literal">-libstdc</span>++<span class="literal">-33</span> elfutils<span class="literal">-libelf-devel</span> elfutils<span class="literal">-libelf-devel-static</span> elfutils<span class="literal">-libelf-devel</span> ksh libaio libaio<span class="literal">-devel</span> numactl<span class="literal">-devel</span> sysstat unixODBC unixODBC<span class="literal">-devel</span> pcre<span class="literal">-devel</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="4-创建用户和组（root）"><a href="#4-创建用户和组（root）" class="headerlink" title="4. 创建用户和组（root）"></a>4. 创建用户和组（root）</h4><p>添加oinstall 、dba 组，新建oracle用户并加入oinstall、dba组中</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">groupadd oinstall</span><br><span class="line">groupadd dba</span><br><span class="line">useradd <span class="literal">-g</span> oinstall <span class="literal">-G</span> dba oracle</span><br><span class="line">passwd oracle</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong> 后面的-G(大写)，否则后面安装oracle报<code>[FATAL] [INS-35341] User is not a member of the following chosen OS groups: [oinstall]</code></p>
+<p><strong>验证：</strong></p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">[<span class="type">root</span>@<span class="type">jfsoft</span> /]<span class="comment"># id oracle</span></span><br><span class="line">uid=<span class="number">1000</span>(oracle) gid=<span class="number">1000</span>(oinstall) 组=<span class="number">1000</span>(oinstall),<span class="number">1001</span>(dba)</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-修改内核参数-优化TCP（root）"><a href="#5-修改内核参数-优化TCP（root）" class="headerlink" title="5. 修改内核参数,优化TCP（root）"></a>5. 修改内核参数,优化TCP（root）</h4><figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">vi /etc/sysctl.conf</span><br></pre></td></tr></table></figure>
+
+<p>添加以下设置，注释最好别复制：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 同时可以拥有的的异步IO请求数目</span></span><br><span class="line">fs.aio-max-nr = 1048576</span><br><span class="line"><span class="comment"># 文件句柄的最大数量</span></span><br><span class="line">fs.file-max = 6815744</span><br><span class="line"><span class="comment"># 所有内存大小（单位：页，1页 = 4Kb），计算公式16G*1024*1024*1024/4KB(页)</span></span><br><span class="line">kernel.shmall = 2097152</span><br><span class="line"><span class="comment"># 单个共享内存段的大小（单位：字节）限制，计算公式64G*1024*1024*1024(字节)</span></span><br><span class="line">kernel.shmmax = 1073741824</span><br><span class="line"><span class="comment"># 整个系统的内存segment的总个数,设置系统级最大共享内存段数量</span></span><br><span class="line">kernel.shmmni = 4096</span><br><span class="line">kernel.sem = 250 32000 100 128</span><br><span class="line"><span class="comment"># 设置本地端口范围限制</span></span><br><span class="line">net.ipv4.ip_local_port_range = 9000 65500</span><br><span class="line"><span class="comment"># 接收套接字缓冲区大小的缺省值(以字节为单位)</span></span><br><span class="line">net.core.rmem_default = 262144</span><br><span class="line"><span class="comment"># 接收套接字缓冲区大小的最大值(以字节为单位)</span></span><br><span class="line">net.core.rmem_max = 4194304</span><br><span class="line"><span class="comment"># 发送套接字缓冲区大小的缺省值(以字节为单位)</span></span><br><span class="line">net.core.wmem_default = 262144</span><br><span class="line"><span class="comment"># 发送套接字缓冲区大小的最大值(以字节为单位)</span></span><br><span class="line">net.core.wmem_max = 1048576</span><br></pre></td></tr></table></figure>
+
+<p>使参数生效：</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">/sbin/sysctl <span class="literal">-p</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="6-修改用户的限制文件（root）"><a href="#6-修改用户的限制文件（root）" class="headerlink" title="6. 修改用户的限制文件（root）"></a>6. 修改用户的限制文件（root）</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vi /etc/security/limits.conf</span><br></pre></td></tr></table></figure>
+
+<p>添加以下配置：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 进程的最大数目</span></span><br><span class="line">oracle           soft    <span class="built_in">nproc</span>           2047</span><br><span class="line">oracle           hard    <span class="built_in">nproc</span>           16384</span><br><span class="line"><span class="comment"># 系统最大打开文件数</span></span><br><span class="line">oracle           soft    nofile          1024</span><br><span class="line">oracle           hard    nofile          65536</span><br><span class="line"><span class="comment"># 最大栈大小</span></span><br><span class="line">oracle           soft    stack           10240</span><br></pre></td></tr></table></figure>
+
+<h4 id="7-修改-etc-pam-d-login文件（root）"><a href="#7-修改-etc-pam-d-login文件（root）" class="headerlink" title="7. 修改/etc/pam.d/login文件（root）"></a>7. 修改<code>/etc/pam.d/login</code>文件（root）</h4><figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">vi /etc/pam.d/login</span><br></pre></td></tr></table></figure>
+
+<p>添加以下配置：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">session  required   /lib64/security/pam_limits.so</span><br><span class="line">session  required   pam_limits.so</span><br></pre></td></tr></table></figure>
+
+<h4 id="8-修改-etc-profile文件（root）"><a href="#8-修改-etc-profile文件（root）" class="headerlink" title="8. 修改/etc/profile文件（root）"></a>8. 修改<code>/etc/profile</code>文件（root）</h4><figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">vi /etc/profile</span><br></pre></td></tr></table></figure>
+
+<p>添加以下配置：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> [ <span class="variable">$USER</span> = <span class="string">&quot;oracle&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">  <span class="keyword">if</span> [ <span class="variable">$SHELL</span> = <span class="string">&quot;/bin/ksh&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">   <span class="built_in">ulimit</span> -p 16384</span><br><span class="line">   <span class="built_in">ulimit</span> -n 65536</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">   <span class="built_in">ulimit</span> -u 16384 -n 65536</span><br><span class="line">  <span class="keyword">fi</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="9-修改-etc-redhat-release文件（root）"><a href="#9-修改-etc-redhat-release文件（root）" class="headerlink" title="9. 修改/etc/redhat-release文件（root）"></a>9. 修改<code>/etc/redhat-release</code>文件（root）</h4><p>修改如下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">redhat-7</span><br></pre></td></tr></table></figure>
+
+<h4 id="10-修改hostname（root）"><a href="#10-修改hostname（root）" class="headerlink" title="10. 修改hostname（root）"></a>10. 修改<code>hostname</code>（root）</h4><p>修改<code>/etc/hosts</code>如下：</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">vi /etc/hosts</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4 jfsoft</span><br><span class="line">::1         localhost localhost.localdomain localhost6 localhost6.localdomain6</span><br></pre></td></tr></table></figure>
+
+<p>修改<code>/etc/sysconfig/network</code>如下：</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">vi /etc/sysconfig/network</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">NETWORKING=<span class="built_in">yes</span></span><br><span class="line">HOSTNAME=jfsoft</span><br><span class="line">GATEWAY=10.0.2.1</span><br></pre></td></tr></table></figure>
+
+<h4 id="11-创建oracle安装目录并修改文件权限（root）"><a href="#11-创建oracle安装目录并修改文件权限（root）" class="headerlink" title="11. 创建oracle安装目录并修改文件权限（root）"></a>11. 创建oracle安装目录并修改文件权限（root）</h4><figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">mkdir /home/oracle/app</span><br><span class="line">mkdir /home/oracle/app/oracle</span><br><span class="line">mkdir /home/oracle/app/oradata</span><br><span class="line">mkdir /home/oracle/app/oraInventory</span><br><span class="line">mkdir /home/oracle/app/fast_recovery_area</span><br><span class="line">mkdir /home/oracle/app/oracle/product</span><br><span class="line"></span><br><span class="line">chown <span class="literal">-R</span> oracle:oinstall /home/oracle</span><br><span class="line">chmod <span class="literal">-R</span> <span class="number">775</span> /home/oracle</span><br></pre></td></tr></table></figure>
+
+<h4 id="12-上传oracle安装包"><a href="#12-上传oracle安装包" class="headerlink" title="12. 上传oracle安装包"></a>12. 上传oracle安装包</h4><p>这里我们上传到<code>/usr/local/oracle/</code>下，没有这个目录的可以自己新建</p>
+<p>安装包下载链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1rq9-MOzP9KynKceOK5Yknw">https://pan.baidu.com/s/1rq9-MOzP9KynKceOK5Yknw</a> </p>
+<p>提取码：knxm</p>
+<h4 id="13-使用xftp上传oracle安装包并解压"><a href="#13-使用xftp上传oracle安装包并解压" class="headerlink" title="13. 使用xftp上传oracle安装包并解压"></a>13. 使用xftp上传oracle安装包并解压</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd /usr/local/oracle/</span><br><span class="line">unzip linux.x64_11gR2_database_1of2.zip &amp;&amp; unzip linux.x64_11gR2_database_2of2.zip</span><br></pre></td></tr></table></figure>
+
+<p>如果出现<code>unzip is not command</code>，执行下面语句</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">yum install <span class="literal">-y</span> unzip zip</span><br></pre></td></tr></table></figure>
+
+<h4 id="14-切换到oracle用户，设置oracle用户环境变量（oracle）"><a href="#14-切换到oracle用户，设置oracle用户环境变量（oracle）" class="headerlink" title="14. 切换到oracle用户，设置oracle用户环境变量（oracle）"></a>14. 切换到oracle用户，设置oracle用户环境变量（oracle）</h4><figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">su oracle</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> ORACLE_HOSTNAME=jfsoft <span class="comment"># 这里填写之前设置的hostname</span></span><br><span class="line"><span class="built_in">export</span> ORACLE_BASE=/home/oracle/app</span><br><span class="line"><span class="built_in">export</span> ORACLE_HOME=<span class="variable">$ORACLE_BASE</span>/product/11.2.0/dbhome_1</span><br><span class="line"><span class="built_in">export</span> ORACLE_SID=orcl</span><br><span class="line"><span class="built_in">export</span> PATH=.:<span class="variable">$ORACLE_HOME</span>/bin:<span class="variable">$ORACLE_HOME</span>/OPatch:<span class="variable">$ORACLE_HOME</span>/jdk/bin:<span class="variable">$PATH</span></span><br><span class="line"><span class="built_in">export</span> LC_ALL=<span class="string">&quot;en_US&quot;</span></span><br><span class="line"><span class="built_in">export</span> LANG=<span class="string">&quot;en_US&quot;</span></span><br><span class="line"><span class="built_in">export</span> NLS_LANG=<span class="string">&quot;AMERICAN_AMERICA.ZHS16GBK&quot;</span></span><br><span class="line"><span class="built_in">export</span> NLS_DATE_FORMAT=<span class="string">&quot;YYYY-MM-DD HH24:MI:SS&quot;</span></span><br><span class="line"><span class="built_in">export</span> DISPLAY=localhost:0.0 <span class="comment"># 解决 配置监听时【DISPLAY environment variable not set!】</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="15-创建-x2F-etc-x2F-oraInst-loc文件，否则安装时会报错：（root）"><a href="#15-创建-x2F-etc-x2F-oraInst-loc文件，否则安装时会报错：（root）" class="headerlink" title="15. 创建&#x2F;etc&#x2F;oraInst.loc文件，否则安装时会报错：（root）"></a>15. 创建&#x2F;etc&#x2F;oraInst.loc文件，否则安装时会报错：（root）</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SEVERE: [FATAL] [INS-32038] The operating system group specified for central inventory (oraInventory) ownership is invalid.</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">vi /etc/oraInst.loc</span><br><span class="line">inventory_loc=/home/oracle/app/oraInventory</span><br><span class="line">inst_group=oinstall</span><br></pre></td></tr></table></figure>
+
+<h4 id="16-编辑静默安装应答文件（root）"><a href="#16-编辑静默安装应答文件（root）" class="headerlink" title="16. 编辑静默安装应答文件（root）"></a>16. 编辑静默安装应答文件（root）</h4><p>切换到<code>root</code>用户进入oracle安装包解压后的目录,备份<code>db_install.rsp</code>文件</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd /usr/local/oracle/database/response/</span><br><span class="line">cp db_install.rsp db_install.rsp.bak</span><br></pre></td></tr></table></figure>
+
+<p>编辑<code>/usr/local/oracle/database/response/db_install.rsp </code>文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vi /usr/local/oracle/database/response/db_install.rsp</span><br></pre></td></tr></table></figure>
+
+<p>修改后的文件如下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">oracle.install.responseFileVersion=/oracle/install/rspfmt_dbinstall_response_schema_v11_2_0</span><br><span class="line">oracle.install.option=INSTALL_DB_AND_CONFIG</span><br><span class="line">ORACLE_HOSTNAME=jfsoft <span class="comment">#前面设置过的hostname</span></span><br><span class="line">UNIX_GROUP_NAME=oinstall</span><br><span class="line">INVENTORY_LOCATION=/home/oracle/app/oraInventory</span><br><span class="line">SELECTED_LANGUAGES=en,zh_CN</span><br><span class="line">ORACLE_HOME=/home/oracle/app/oracle/product/11.2.0/dbhome_1</span><br><span class="line">ORACLE_BASE=/home/oracle/app</span><br><span class="line">oracle.install.db.InstallEdition=EE</span><br><span class="line">oracle.install.db.isCustomInstall=<span class="literal">false</span></span><br><span class="line">oracle.install.db.customComponents=oracle.server:11.2.0.1.0,oracle.sysman.ccr:10.2.7.0.0,oracle.xdk:11.2.0.1.0,oracle.rdbms.oci:11.2.0.1.0,oracle.network:11.2.0.1.0,oracle.network.listener:11.2.0.1.0,oracle.rdbms:11.2.0.1.0,oracle.options:11.2.0.1.0,oracle.rdbms.partitioning:11.2.0.1.0,oracle.oraolap:11.2.0.1.0,oracle.rdbms.dm:11.2.0.1.0,oracle.rdbms.dv:11.2.0.1.0,orcle.rdbms.lbac:11.2.0.1.0,oracle.rdbms.rat:11.2.0.1.0</span><br><span class="line">oracle.install.db.DBA_GROUP=dba</span><br><span class="line">oracle.install.db.OPER_GROUP=oinstall</span><br><span class="line">oracle.install.db.CLUSTER_NODES=</span><br><span class="line">oracle.install.db.config.starterdb.type=GENERAL_PURPOSE</span><br><span class="line">oracle.install.db.config.starterdb.globalDBName=orcl</span><br><span class="line">oracle.install.db.config.starterdb.SID=orcl</span><br><span class="line">oracle.install.db.config.starterdb.characterSet=AL32UTF8</span><br><span class="line">oracle.install.db.config.starterdb.memoryOption=<span class="literal">true</span></span><br><span class="line">oracle.install.db.config.starterdb.memoryLimit=400</span><br><span class="line">oracle.install.db.config.starterdb.installExampleSchemas=<span class="literal">false</span></span><br><span class="line">oracle.install.db.config.starterdb.enableSecuritySettings=<span class="literal">true</span></span><br><span class="line">oracle.install.db.config.starterdb.password.ALL=1Password</span><br><span class="line">oracle.install.db.config.starterdb.password.SYS=</span><br><span class="line">oracle.install.db.config.starterdb.password.SYSTEM=</span><br><span class="line">oracle.install.db.config.starterdb.password.SYSMAN=</span><br><span class="line">oracle.install.db.config.starterdb.password.DBSNMP=</span><br><span class="line">oracle.install.db.config.starterdb.control=DB_CONTROL</span><br><span class="line">oracle.install.db.config.starterdb.gridcontrol.gridControlServiceURL=</span><br><span class="line">oracle.install.db.config.starterdb.dbcontrol.enableEmailNotification=<span class="literal">false</span></span><br><span class="line">oracle.install.db.config.starterdb.dbcontrol.emailAddress=xxxx@xxxx.com</span><br><span class="line">oracle.install.db.config.starterdb.dbcontrol.SMTPServer=</span><br><span class="line">oracle.install.db.config.starterdb.automatedBackup.<span class="built_in">enable</span>=<span class="literal">false</span></span><br><span class="line">oracle.install.db.config.starterdb.automatedBackup.osuid=</span><br><span class="line">oracle.install.db.config.starterdb.automatedBackup.ospwd=</span><br><span class="line">oracle.install.db.config.starterdb.storageType=FILE_SYSTEM_STORAGE</span><br><span class="line">oracle.install.db.config.starterdb.fileSystemStorage.dataLocation=/home/oracle/app/oradata</span><br><span class="line">oracle.install.db.config.starterdb.fileSystemStorage.recoveryLocation=/home/oracle/app/fast_recovery_area</span><br><span class="line">oracle.install.db.config.asm.diskGroup=</span><br><span class="line">oracle.install.db.config.asm.ASMSNMPPassword=</span><br><span class="line">MYORACLESUPPORT_USERNAME=</span><br><span class="line">MYORACLESUPPORT_PASSWORD=</span><br><span class="line">SECURITY_UPDATES_VIA_MYORACLESUPPORT=</span><br><span class="line">DECLINE_SECURITY_UPDATES=<span class="literal">true</span></span><br><span class="line">PROXY_HOST=</span><br><span class="line">PROXY_PORT=</span><br><span class="line">PROXY_USER=</span><br><span class="line">PROXY_PWD=</span><br></pre></td></tr></table></figure>
+
+<h4 id="17-改用oracle用户登录，开始静默安装（oracle）"><a href="#17-改用oracle用户登录，开始静默安装（oracle）" class="headerlink" title="17. 改用oracle用户登录，开始静默安装（oracle）"></a>17. 改用oracle用户登录，开始静默安装（oracle）</h4><figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/local/oracle/database/</span><br><span class="line">./runInstaller <span class="literal">-silent</span> <span class="literal">-ignorePrereq</span> <span class="literal">-responseFile</span> /usr/local/oracle/database/response/db_install.rsp </span><br></pre></td></tr></table></figure>
+
+<p>安装成功如下所示：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[oracle@localhost database]$ You can find the <span class="built_in">log</span> of this install</span><br><span class="line">session at:</span><br><span class="line">/db/app/oracle/inventory/logs/installActions2018-09-11_09-36-40PM.<span class="built_in">log</span></span><br><span class="line">The following configuration scripts need to be executed as the “root”</span><br><span class="line">user. <span class="comment">#!/bin/sh #Root scripts to run</span></span><br><span class="line"></span><br><span class="line">/home/oracle/app/oracle/inventory/orainstRoot.sh(有时候不会出来这句，没有这句就不执行)</span><br><span class="line">/home/oracle/app/oracle/product/11.2.0/root.sh To execute the configuration</span><br><span class="line">scripts:</span><br><span class="line">1. Open a terminal window</span><br><span class="line">2. Log <span class="keyword">in</span> as “root”</span><br><span class="line">3. Run the scripts</span><br><span class="line">4. Return to this window and hit “Enter” key to <span class="built_in">continue</span></span><br><span class="line"></span><br><span class="line">Successfully Setup Software.</span><br></pre></td></tr></table></figure>
+
+<p>切换到root，执行<code>root.sh</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">su root</span><br><span class="line"></span><br><span class="line">sh /home/oracle/app/oracle/inventory/orainstRoot.sh(上面没有这句，这里也不执行)</span><br><span class="line">sh /home/oracle/app/oracle/product/11.2.0/dbhome_1/root.sh</span><br></pre></td></tr></table></figure>
+
+<h4 id="18-配置监听（oracle）"><a href="#18-配置监听（oracle）" class="headerlink" title="18. 配置监听（oracle）"></a>18. 配置监听（oracle）</h4><p>切换到oracle用户，并执行命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/home/oracle/app/oracle/product/11.2.0/dbhome_1/bin/netca -silent -responseFile /usr/local/oracle/database/response/netca.rsp</span><br></pre></td></tr></table></figure>
+
+<p>成功运行后，会在<code>/home/oracle/app/oracle/product/11.2.0/dbhome_1/network/admin/</code> 中生成<code>listener.ora</code>和<code>sqlnet.ora</code>两个文件。</p>
+<p>查看监听端口：<code>netstat -tnulp | grep 1521</code></p>
+<h4 id="19-建立新库，同时建立对应的实例（root）"><a href="#19-建立新库，同时建立对应的实例（root）" class="headerlink" title="19. 建立新库，同时建立对应的实例（root）"></a>19. 建立新库，同时建立对应的实例（root）</h4><p>切换到<code>root</code>用户，编辑<code>dbca.rsp</code></p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">vi /usr/local/oracle/database/response/dbca.rsp</span><br></pre></td></tr></table></figure>
+
+<p>修改以下参数【根据自己需要修改】：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">GDBNAME = <span class="string">&quot;orcl&quot;</span></span><br><span class="line">SID = <span class="string">&quot;orcl&quot;</span></span><br><span class="line"><span class="comment">#开启并设置内置用户（sys、system、sysman、dbsnmp）的密码</span></span><br><span class="line">SYSPASSWORD = <span class="string">&quot;oracle&quot;</span></span><br><span class="line">SYSTEMPASSWORD = <span class="string">&quot;oracle&quot;</span></span><br><span class="line">SYSMANPASSWORD = <span class="string">&quot;oracle&quot;</span></span><br><span class="line">DBSNMPPASSWORD = <span class="string">&quot;oracle&quot;</span></span><br><span class="line">DATAFILEDESTINATION =/home/oracle/app/oradata</span><br><span class="line">RECOVERYAREADESTINATION=/home/oracle/app/fast_recovery_area</span><br><span class="line">CHARACTERSET = <span class="string">&quot;ZHS16GBK&quot;</span></span><br><span class="line">TOTALMEMORY = <span class="string">&quot;1638&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>切换到oracle用户，并执行静默安装</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">su oracle</span><br><span class="line">/home/oracle/app/oracle/product/<span class="number">11.2</span>.<span class="number">0</span>/dbhome_1/bin/dbca <span class="literal">-silent</span> <span class="literal">-responseFile</span> /usr/local/oracle/database/response/dbca.rsp</span><br></pre></td></tr></table></figure>
+
+<p>安装完成后，重启系统</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">reboot</span><br></pre></td></tr></table></figure>
+
+<h4 id="20-启动数据库"><a href="#20-启动数据库" class="headerlink" title="20. 启动数据库"></a>20. 启动数据库</h4><figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">sqlplus / as sysdba</span><br><span class="line">startup</span><br></pre></td></tr></table></figure>
+
+<p><strong>常见错误：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">LRM-00109: could not open parameter file &#x27;/home/oracle/app/oracle/product/11.2.0/dbhome_1/dbs/initora11g.ora&#x27;</span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方案：</strong></p>
+<p>复制 &#x2F;data&#x2F;oracle&#x2F;admin&#x2F;orcl&#x2F;pfile&#x2F;init.ora.017202094913</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cp</span> /<span class="keyword">data</span>/oracle/admin/orcl/pfile/init.ora.<span class="number">017202094913</span> /home/oracle/app/oracle/product/<span class="number">11.2</span>.<span class="number">0</span>/dbhome_1/dbs/initORCL.ora</span><br></pre></td></tr></table></figure>
+
+<p><strong>常见错误：</strong></p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">bash: sqlplus: 未找到命令</span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方案：</strong></p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">source ~/.bash_profile</span><br></pre></td></tr></table></figure>
+
+<h4 id="21-关闭数据库"><a href="#21-关闭数据库" class="headerlink" title="21. 关闭数据库"></a>21. 关闭数据库</h4><figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">shutdown immediate</span><br></pre></td></tr></table></figure>
+
+<h4 id="22-各项检查"><a href="#22-各项检查" class="headerlink" title="22. 各项检查"></a>22. 各项检查</h4><p>实例检查：</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">ps</span> <span class="literal">-ef</span> | grep ora_ | grep <span class="literal">-v</span> grep</span><br></pre></td></tr></table></figure>
+
+<p>监听状态：</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">lsnrctl status</span><br></pre></td></tr></table></figure>
+
+<p>启动监听：</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">lsnrctl <span class="built_in">start</span></span><br></pre></td></tr></table></figure>
+
+<p>停止监听：</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">lsnrctl stop</span><br></pre></td></tr></table></figure>
+
+<h4 id="添加相关服务到开机启动-root"><a href="#添加相关服务到开机启动-root" class="headerlink" title="添加相关服务到开机启动(root)"></a>添加相关服务到开机启动(root)</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vi /etc/rc.d/rc.local</span><br><span class="line"><span class="comment"># 添加如下代码</span></span><br><span class="line">su oracle -lc <span class="string">&quot;/home/oracle/app/oracle/product/11.2.0/dbhome_1/bin/emctl start dbconsole&quot;</span></span><br><span class="line"></span><br><span class="line">su oracle -lc <span class="string">&quot;/home/oracle/app/oracle/product/11.2.0/dbhome_1/bin/lsnrctl start&quot;</span></span><br><span class="line"></span><br><span class="line">su oracle -lc <span class="string">&quot;/home/oracle/app/oracle/product/11.2.0/dbhome_1/bin/dbstart&quot;</span></span><br></pre></td></tr></table></figure>
+
+  </article>
+  <!-- tag -->
+  <div class="mt-12 pt-6 border-t border-gray-200">
+    
+      
+        <span class="bg-gray-100 dark:bg-gray-700 px-2 py-1 m-1 text-sm rounded-md transition-colors hover:bg-gray-200">
+          <a href="/tags/oracle/">oracle</a>
+        </span>
+      
+    
+  </div>
+  <!-- prev and next -->
+  <div class="flex justify-between mt-12 pt-6 border-t border-gray-200">
+    <div>
+      
+    </div>
+    <div>
+      
+        <a href="/fastreport-core-linux-chinese/" class="text-sm text-gray-400 hover:text-gray-500 flex justify-center">
+          FastReport Core Linux 中文支持
+          <iconify-icon width="20" icon="ri:arrow-right-s-line" data-inline="false"></iconify-icon>
+        </a>
+      
+    </div>
+  </div>
+  <!-- comment -->
+  <div class="article-comments mt-12">
+    
+<script
+  src="https://giscus.app/client.js"
+  data-repo="xbmlz/maple-giscus"
+  data-repo-id="R_kgDOIgC6Zg"
+  data-category="General"
+  data-category-id="DIC_kwDOIgC6Zs4CSwIE"
+  data-mapping="pathname"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="bottom"
+  data-theme="preferred_color_scheme"
+  data-lang="zh-CN"
+  crossorigin="anonymous"
+  async
+></script>
+<script>
+  window.onload = function () {
+    console.log("giscus loaded");
+    const isDark = document.documentElement.classList.contains("dark");
+    const giscusFrame = document.querySelector("iframe.giscus-frame");
+    giscusFrame.contentWindow.postMessage(
+      {
+        giscus: {
+          setConfig: {
+            theme: isDark ? "dark" : "light",
+          },
+        },
+      },
+      "https://giscus.app"
+    );
+  };
+</script>
+
+
+  </div>
+</section>
+<!-- js inspect -->
+
+<script src="/lib/clipboard.min.js"></script>
+
+
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+  });
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>
+  $(document).ready(() => {
+    const maraidConfig = {
+      theme: "default",
+      logLevel: 3,
+      flowchart: { curve: "linear" },
+      gantt: { axisFormat: "%m/%d/%Y" },
+      sequence: { actorMargin: 50 },
+    };
+    mermaid.initialize(maraidConfig);
+  });
+</script>
+
+
+
+<script src="/lib/fancybox/fancybox.umd.min.js"></script>
+
+<script>
+  $(document).ready(() => {
+    $('.post-content').each(function(i){
+      $(this).find('img').each(function(){
+        if ($(this).parent().hasClass('fancybox') || $(this).parent().is('a')) return;
+        var alt = this.alt;
+        if (alt) $(this).after('<span class="fancybox-alt">' + alt + '</span>');
+        $(this).wrap('<a class="fancybox-img" href="' + this.src + '" data-fancybox=\"gallery\" data-caption="' + alt + '"></a>')
+      });
+      $(this).find('.fancybox').each(function(){
+        $(this).attr('rel', 'article' + i);
+      });
+    });
+
+    Fancybox.bind('[data-fancybox="gallery"]', {
+        // options
+    })
+  })
+</script>
+
+<!-- tocbot begin -->
+
+<script src="/lib/tocbot/tocbot.min.js"></script>
+
+<script>
+  $(document).ready(() => {
+      tocbot.init({
+        // Where to render the table of contents.
+        tocSelector: '.post-toc',
+        // Where to grab the headings to build the table of contents.
+        contentSelector: '.post-content',
+        // Which headings to grab inside of the contentSelector element.
+        headingSelector: 'h1, h2, h3',
+        // For headings inside relative or absolute positioned containers within content.
+        hasInnerContainers: true,
+    });
+  })
+</script>
+<!-- tocbot end -->
+
+
+  </main>
+  <footer class="flex flex-col h-40 items-center justify-center text-gray-400 text-sm">
+  <!-- busuanzi -->
+  
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- Busuanzi Analytics -->
+<div class="flex items-center gap-2">
+  <span>Visitors</span>
+  <span id="busuanzi_value_site_uv"></span>
+  <span>Page Views</span>
+  <span id="busuanzi_value_site_pv"></span>
+</div>
+<!-- End Busuanzi Analytics -->
+
+
+  <!-- copyright -->
+  <div class="flex items-center gap-2">
+    <a target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" style="color: inherit;">CC BY-NC-SA 4.0</a>
+    <span>© 2022</span>
+    <iconify-icon width="18" icon="emojione-monotone:maple-leaf" ></iconify-icon>
+    <a href="https://github.com/xbmlz" target="_blank" rel="noopener noreferrer">xbmlz</a>
+  </div>
+  <!-- powered by -->
+  <div class="flex items-center gap-2">
+    <span>Powered by</span>
+    <a href="https://hexo.io/" target="_blank" rel="noopener noreferrer">Hexo</a>
+    <span>&</span>
+    <a href="https://github.com/xbmlz/hexo-theme-maple" target="_blank" rel="noopener noreferrer">Maple</a>
+  </div>
+
+</footer>
+
+  <div class="back-to-top box-border fixed right-6 z-1024 -bottom-20 rounded py-1 px-1 bg-slate-900 opacity-60 text-white cursor-pointer text-center dark:bg-slate-600">
+    <span class="flex justify-center items-center text-sm">
+      <iconify-icon width="18" icon="ion:arrow-up-c" id="go-top"></iconify-icon>
+      <span id="scrollpercent"><span>0</span> %</span>
+    </span>
+  </div>
+  
+<script src="/js/main.js"></script>
+
+
+  <script>
+    $(document).ready(function () {
+      const mapleCount = "10";
+      const speed = "0.5";
+      const mapleEl = document.getElementById("maple");
+      const maples = Array.from({ length: mapleCount }).map(() => {
+        const maple = document.createElement("div");
+        const scale = Math.random() * 0.5 + 0.5;
+        const offset = Math.random() * 2 - 1;
+        const x = Math.random() * mapleEl.clientWidth;
+        const y = -Math.random() * mapleEl.clientHeight;
+        const duration = 10 / speed;
+        const delay = -duration;
+        maple.className = "maple";
+        maple.style.width = `${24 * scale}px`;
+        maple.style.height = `${24 * scale}px`;
+        maple.style.left = `${x}px`;
+        maple.style.top = `${y}px`;
+        maple.style.setProperty("--maple-fall-offset", offset);
+        maple.style.setProperty("--maple-fall-height", `${Math.abs(y) + mapleEl.clientHeight}px`);
+        maple.style.animation = `fall ${duration}s linear infinite`;
+        maple.style.animationDelay = `${delay}s`;
+        mapleEl.appendChild(maple)
+        return maple
+      })
+    });
+  </script>
+  
+
+
+  <div class="fixed top-0 bottom-0 left-0 right-0 pointer-events-none print:hidden" id="maple"></div>
+</body>
+
+</html>

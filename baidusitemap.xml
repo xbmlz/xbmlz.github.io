@@ -2,62 +2,66 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://xbmlz.github.io/centos-mariadb-install/</loc>
-    <lastmod>2023-09-14</lastmod>
+    <lastmod>2023-09-18</lastmod>
+  </url>
+  <url>
+    <loc>https://xbmlz.github.io/centos-oracle-11g/</loc>
+    <lastmod>2023-09-18</lastmod>
   </url>
   <url>
     <loc>https://xbmlz.github.io/echarts-test/</loc>
-    <lastmod>2023-09-14</lastmod>
+    <lastmod>2023-09-18</lastmod>
   </url>
   <url>
     <loc>https://xbmlz.github.io/fastreport-core-linux-chinese/</loc>
-    <lastmod>2023-09-14</lastmod>
+    <lastmod>2023-09-18</lastmod>
   </url>
   <url>
     <loc>https://xbmlz.github.io/golang-go-get-china/</loc>
-    <lastmod>2023-09-14</lastmod>
+    <lastmod>2023-09-18</lastmod>
   </url>
   <url>
     <loc>https://xbmlz.github.io/golang-xp-sp3/</loc>
-    <lastmod>2023-09-14</lastmod>
+    <lastmod>2023-09-18</lastmod>
   </url>
   <url>
     <loc>https://xbmlz.github.io/k8s-install/</loc>
-    <lastmod>2023-09-14</lastmod>
+    <lastmod>2023-09-18</lastmod>
   </url>
   <url>
     <loc>https://xbmlz.github.io/li-zhi/</loc>
-    <lastmod>2023-09-14</lastmod>
+    <lastmod>2023-09-18</lastmod>
   </url>
   <url>
     <loc>https://xbmlz.github.io/linux-clash/</loc>
-    <lastmod>2023-09-14</lastmod>
+    <lastmod>2023-09-18</lastmod>
   </url>
   <url>
     <loc>https://xbmlz.github.io/mariadb-galera-cluster/</loc>
-    <lastmod>2023-09-14</lastmod>
+    <lastmod>2023-09-18</lastmod>
   </url>
   <url>
     <loc>https://xbmlz.github.io/mariadb-master-slave-sync/</loc>
-    <lastmod>2023-09-14</lastmod>
+    <lastmod>2023-09-18</lastmod>
   </url>
   <url>
     <loc>https://xbmlz.github.io/mariadb-partition/</loc>
-    <lastmod>2023-09-14</lastmod>
+    <lastmod>2023-09-18</lastmod>
   </url>
   <url>
     <loc>https://xbmlz.github.io/mariaid-test/</loc>
-    <lastmod>2023-09-14</lastmod>
+    <lastmod>2023-09-18</lastmod>
   </url>
   <url>
     <loc>https://xbmlz.github.io/markdown-test/</loc>
-    <lastmod>2023-09-14</lastmod>
+    <lastmod>2023-09-18</lastmod>
   </url>
   <url>
     <loc>https://xbmlz.github.io/math-jax-test/</loc>
-    <lastmod>2023-09-14</lastmod>
+    <lastmod>2023-09-18</lastmod>
   </url>
   <url>
     <loc>https://xbmlz.github.io/python-online-deploy/</loc>
-    <lastmod>2023-09-14</lastmod>
+    <lastmod>2023-09-18</lastmod>
   </url>
 </urlset> 
