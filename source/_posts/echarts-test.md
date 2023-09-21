@@ -1,9 +1,9 @@
 ---
 title: Echarts Test
 date: 2022-07-25 14:00:50
-tags: plugin
-categories: plugin
-excerpt: 测试Echarts是否成功渲染
+tags: Test
+categories: Test
+excerpt: 测试Echarts语法
 ---
 ## 折线图
 

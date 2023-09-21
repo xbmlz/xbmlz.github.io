@@ -2,9 +2,9 @@
 title: MathJax Test
 date: 2022-07-21 08:53:56
 tags:
-- markdown
+- Test
 categories:
-- markdown
+- Test
 excerpt: 测试MathJax语法
 ---
 
