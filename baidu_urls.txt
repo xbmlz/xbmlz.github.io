@@ -1,4 +1,7 @@
 https://xbmlz.github.io/build-frontend-framework/
+https://xbmlz.github.io/centos-china-mirrors/
+https://xbmlz.github.io/centos7-upgrade-glibc/
+https://xbmlz.github.io/linux-clash/
 https://xbmlz.github.io/lizhi/
 https://xbmlz.github.io/echarts-test/
 https://xbmlz.github.io/math-jax-test/

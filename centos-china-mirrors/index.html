@@ -39,7 +39,7 @@
 
 
 
-<title>记昨日书</title>
+<title>CentOS 更换国内源 | 记昨日书</title>
 
 
 
@@ -180,7 +180,7 @@
         </h2>
       </a>
       <div id="header-title" class="opacity-0 md:ml-2 md:mt-[0.1rem] text-xs font-medium whitespace-nowrap overflow-hidden overflow-ellipsis">
-        
+        CentOS 更换国内源
       </div>
       <div class="flex-1"></div>
       <div class="flex items-center gap-3">
@@ -246,206 +246,232 @@
 </div>
 
   <main class="pt-14">
-    <section class="px-6 max-w-prose mx-auto gap-12 grid grid-cols-1">
-  <div class="flex flex-col h-48 items-center justify-center">
-    <h1 class="site-title text-4xl leading-relaxed">
-      记昨日书
-    </h1>
-    <p class="text-gray-500 mt-2">
-      忙碌把时光缩短, 苦难把岁月拉长
-    </p>
+    <!-- css -->
+
+<link rel="stylesheet" href="/lib/fancybox/fancybox.min.css">
+
+
+<link rel="stylesheet" href="/lib/tocbot/tocbot.min.css">
+
+<!-- toc -->
+
+  <!-- tocbot -->
+<nav class="post-toc toc text-sm w-48 relative top-32 right-0 opacity-70 hidden lg:block" style="position: fixed !important;"></nav>
+
+
+<section class="px-6 max-w-prose mx-auto md:px-0">
+  <!-- header -->
+  <header class="overflow-hidden pt-6 pb-6 md:pt-12">
+    <div class="pt-4 md:pt-6">
+      <h1 id="article-title" class="text-[2rem] font-bold leading-snug mb-4 md:mb-6 md:text-[2.6rem]">
+        CentOS 更换国内源
+      </h1>
+      <div>
+        <section class="flex items-center gap-3 text-sm">
+          <span class="flex items-center gap-1">
+            <iconify-icon width="18" icon="carbon-calendar" ></iconify-icon>
+            <time>2024-03-18</time>
+          </span>
+          <span class="text-gray-400">·</span>
+          <span class="flex items-center gap-1">
+            <iconify-icon width="18" icon="ic:round-access-alarm" ></iconify-icon>
+            <span>1 min</span>
+          </span>
+          <span class="text-gray-400">·</span>
+          <span class="flex items-center gap-1">
+            <iconify-icon width="18" icon="icon-park-outline:font-search" ></iconify-icon>
+            <span>156 words</span>
+          </span>
+          
+            <span class="text-gray-400">·</span>
+            <span class="flex items-center gap-1">
+              <iconify-icon width="16" icon="icon-park-outline:box" class="mr-2"></iconify-icon>
+              <a class="article-category-link" href="/categories/devops/">devops</a>
+            </span>
+          
+        </section>
+      </div>
+    </div>
+  </header>
+  <!-- content -->
+  <article class="post-content prose m-auto slide-enter-content dark:prose-invert">
+    <h2 id="查看版本"><a href="#查看版本" class="headerlink" title="查看版本"></a>查看版本</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cat</span> /etc/redhat-release</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="修改源"><a href="#修改源" class="headerlink" title="修改源"></a>修改源</h2><h3 id="阿里"><a href="#阿里" class="headerlink" title="阿里"></a>阿里</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mv</span> /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup</span><br><span class="line"></span><br><span class="line"><span class="comment"># 对于 CentOS 7</span></span><br><span class="line">curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo</span><br><span class="line"></span><br><span class="line"><span class="comment"># 对于 CentOS 8</span></span><br><span class="line">curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-8.repo</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="清华"><a href="#清华" class="headerlink" title="清华"></a>清华</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 对于 CentOS 7</span></span><br><span class="line">sed -e <span class="string">&#x27;s|^mirrorlist=|#mirrorlist=|g&#x27;</span> \</span><br><span class="line">    -e <span class="string">&#x27;s|^#baseurl=http://mirror.centos.org/centos|baseurl=https://mirrors.tuna.tsinghua.edu.cn/centos|g&#x27;</span> \</span><br><span class="line">    -i.bak \</span><br><span class="line">    /etc/yum.repos.d/CentOS-*.repo</span><br><span class="line"></span><br><span class="line"><span class="comment"># 对于 CentOS 8</span></span><br><span class="line">sed -e <span class="string">&#x27;s|^mirrorlist=|#mirrorlist=|g&#x27;</span> \</span><br><span class="line">    -e <span class="string">&#x27;s|^#baseurl=http://mirror.centos.org/$contentdir|baseurl=https://mirrors.tuna.tsinghua.edu.cn/centos|g&#x27;</span> \</span><br><span class="line">    -i.bak \</span><br><span class="line">    /etc/yum.repos.d/CentOS-*.repo</span><br></pre></td></tr></table></figure>
+
+<h2 id="更新软件源缓存"><a href="#更新软件源缓存" class="headerlink" title="更新软件源缓存"></a>更新软件源缓存</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum makecache</span><br></pre></td></tr></table></figure>
+  </article>
+  <!-- tag -->
+  <div class="mt-12 pt-6 border-t border-gray-200">
+    
+      
+        <span class="bg-gray-100 dark:bg-gray-700 px-2 py-1 m-1 text-sm rounded-md transition-colors hover:bg-gray-200">
+          <a href="/tags/centos/">centos</a>
+        </span>
+      
+        <span class="bg-gray-100 dark:bg-gray-700 px-2 py-1 m-1 text-sm rounded-md transition-colors hover:bg-gray-200">
+          <a href="/tags/mirror/">mirror</a>
+        </span>
+      
+    
   </div>
-  
-  
-    
-    
-      <div class="relative pointer-events-none">
-        <span class="text-9xl opacity-10 absolute -left-11 -top-6 font-bold">2023</span>
-      </div>
-    
-    <a style="--stagger:0" href="/build-frontend-framework/" data-animate>
-      <header>
-        <h2 class="font-bold text-xl">
+  <!-- prev and next -->
+  <div class="flex justify-between mt-12 pt-6 border-t border-gray-200">
+    <div>
+      
+        <a href="/build-frontend-framework/" class="text-sm text-gray-400 hover:text-gray-500 flex justify-center">
+          <iconify-icon width="20" icon="ri:arrow-left-s-line" data-inline="false"></iconify-icon>
           构建一个前端框架-响应式，组合式，零依赖
-        </h2>
-      </header>
-      <section class="text-gray-400 my-2 text-sm time">
-        <p class="line-clamp-4">
-          
-            <div class="py-2">
-              构建一个前端框架-响应式，组合式，零依赖
-            </div>
-          
-        </p>
-        <p class="line-clamp-4">
-          Sep 20
-          ·
-          10 min
-        </p>
-      </section>
-    </a>
-  
-    
-    
-    <a style="--stagger:1" href="/centos-china-mirrors/" data-animate>
-      <header>
-        <h2 class="font-bold text-xl">
-          CentOS 更换国内源
-        </h2>
-      </header>
-      <section class="text-gray-400 my-2 text-sm time">
-        <p class="line-clamp-4">
-          
-        </p>
-        <p class="line-clamp-4">
-          Jul 18
-          ·
-          1 min
-        </p>
-      </section>
-    </a>
-  
-    
-    
-    <a style="--stagger:2" href="/centos7-upgrade-glibc/" data-animate>
-      <header>
-        <h2 class="font-bold text-xl">
+        </a>
+      
+    </div>
+    <div>
+      
+        <a href="/centos7-upgrade-glibc/" class="text-sm text-gray-400 hover:text-gray-500 flex justify-center">
           CentOS 7 升级 glibc 到 2.31
-        </h2>
-      </header>
-      <section class="text-gray-400 my-2 text-sm time">
-        <p class="line-clamp-4">
-          
-        </p>
-        <p class="line-clamp-4">
-          Mar 18
-          ·
-          4 min
-        </p>
-      </section>
-    </a>
-  
+          <iconify-icon width="20" icon="ri:arrow-right-s-line" data-inline="false"></iconify-icon>
+        </a>
+      
+    </div>
+  </div>
+  <!-- comment -->
+  <div class="article-comments mt-12">
     
-    
-    <a style="--stagger:3" href="/linux-clash/" data-animate>
-      <header>
-        <h2 class="font-bold text-xl">
-          linux 下使用 Clash
-        </h2>
-      </header>
-      <section class="text-gray-400 my-2 text-sm time">
-        <p class="line-clamp-4">
-          
-        </p>
-        <p class="line-clamp-4">
-          Jan 18
-          ·
-          2 min
-        </p>
-      </section>
-    </a>
-  
-    
-    
-      <div class="relative pointer-events-none">
-        <span class="text-9xl opacity-10 absolute -left-11 -top-6 font-bold">2022</span>
-      </div>
-    
-    <a style="--stagger:4" href="/lizhi/" data-animate>
-      <header>
-        <h2 class="font-bold text-xl">
-          南京市民李先生
-        </h2>
-      </header>
-      <section class="text-gray-400 my-2 text-sm time">
-        <p class="line-clamp-4">
-          
-            <div class="py-2">
-              南京市民李先生私藏
-            </div>
-          
-        </p>
-        <p class="line-clamp-4">
-          Aug 22
-          ·
-          1 min
-        </p>
-      </section>
-    </a>
-  
-    
-    
-    <a style="--stagger:5" href="/echarts-test/" data-animate>
-      <header>
-        <h2 class="font-bold text-xl">
-          Echarts Test
-        </h2>
-      </header>
-      <section class="text-gray-400 my-2 text-sm time">
-        <p class="line-clamp-4">
-          
-            <div class="py-2">
-              测试Echarts语法
-            </div>
-          
-        </p>
-        <p class="line-clamp-4">
-          Jul 25
-          ·
-          3 min
-        </p>
-      </section>
-    </a>
-  
-    
-    
-    <a style="--stagger:6" href="/math-jax-test/" data-animate>
-      <header>
-        <h2 class="font-bold text-xl">
-          MathJax Test
-        </h2>
-      </header>
-      <section class="text-gray-400 my-2 text-sm time">
-        <p class="line-clamp-4">
-          
-            <div class="py-2">
-              测试MathJax语法
-            </div>
-          
-        </p>
-        <p class="line-clamp-4">
-          Jul 21
-          ·
-          4 min
-        </p>
-      </section>
-    </a>
-  
-    
-    
-    <a style="--stagger:7" href="/markdown-test/" data-animate>
-      <header>
-        <h2 class="font-bold text-xl">
-          Markdown Test
-        </h2>
-      </header>
-      <section class="text-gray-400 my-2 text-sm time">
-        <p class="line-clamp-4">
-          
-            <div class="py-2">
-              测试markdown语法
-            </div>
-          
-        </p>
-        <p class="line-clamp-4">
-          Jul 20
-          ·
-          2 min
-        </p>
-      </section>
-    </a>
-  
+<script
+  src="https://giscus.app/client.js"
+  data-repo="xbmlz/maple-giscus"
+  data-repo-id="R_kgDOIgC6Zg"
+  data-category="General"
+  data-category-id="DIC_kwDOIgC6Zs4CSwIE"
+  data-mapping="pathname"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="bottom"
+  data-theme="preferred_color_scheme"
+  data-lang="zh-CN"
+  crossorigin="anonymous"
+  async
+></script>
+<script>
+  window.onload = function () {
+    console.log("giscus loaded");
+    const isDark = document.documentElement.classList.contains("dark");
+    const giscusFrame = document.querySelector("iframe.giscus-frame");
+    giscusFrame.contentWindow.postMessage(
+      {
+        giscus: {
+          setConfig: {
+            theme: isDark ? "dark" : "light",
+          },
+        },
+      },
+      "https://giscus.app"
+    );
+  };
+</script>
+
+
+  </div>
 </section>
+<!-- js inspect -->
+
+<script src="/lib/clipboard.min.js"></script>
+
+
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+  });
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>
+  $(document).ready(() => {
+    const maraidConfig = {
+      theme: "default",
+      logLevel: 3,
+      flowchart: { curve: "linear" },
+      gantt: { axisFormat: "%m/%d/%Y" },
+      sequence: { actorMargin: 50 },
+    };
+    mermaid.initialize(maraidConfig);
+  });
+</script>
+
+
+
+<script src="/lib/fancybox/fancybox.umd.min.js"></script>
+
+<script>
+  $(document).ready(() => {
+    $('.post-content').each(function(i){
+      $(this).find('img').each(function(){
+        if ($(this).parent().hasClass('fancybox') || $(this).parent().is('a')) return;
+        var alt = this.alt;
+        if (alt) $(this).after('<span class="fancybox-alt">' + alt + '</span>');
+        $(this).wrap('<a class="fancybox-img" href="' + this.src + '" data-fancybox=\"gallery\" data-caption="' + alt + '"></a>')
+      });
+      $(this).find('.fancybox').each(function(){
+        $(this).attr('rel', 'article' + i);
+      });
+    });
+
+    Fancybox.bind('[data-fancybox="gallery"]', {
+        // options
+    })
+  })
+</script>
+
+<!-- tocbot begin -->
+
+<script src="/lib/tocbot/tocbot.min.js"></script>
+
+<script>
+  $(document).ready(() => {
+      tocbot.init({
+        // Where to render the table of contents.
+        tocSelector: '.post-toc',
+        // Where to grab the headings to build the table of contents.
+        contentSelector: '.post-content',
+        // Which headings to grab inside of the contentSelector element.
+        headingSelector: 'h1, h2, h3',
+        // For headings inside relative or absolute positioned containers within content.
+        hasInnerContainers: true,
+    });
+  })
+</script>
+<!-- tocbot end -->
 
 
   </main>

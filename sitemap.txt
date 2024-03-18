@@ -1,5 +1,8 @@
 https://xbmlz.github.io/build-frontend-framework/
+https://xbmlz.github.io/centos-china-mirrors/
+https://xbmlz.github.io/centos7-upgrade-glibc/
 https://xbmlz.github.io/echarts-test/
+https://xbmlz.github.io/linux-clash/
 https://xbmlz.github.io/lizhi/
 https://xbmlz.github.io/markdown-test/
 https://xbmlz.github.io/math-jax-test/
@@ -9,8 +12,16 @@ https://xbmlz.github.io/category/index.html
 https://xbmlz.github.io/tag/index.html
 https://xbmlz.github.io/
 https://xbmlz.github.io/tags/Web/
+https://xbmlz.github.io/tags/centos/
+https://xbmlz.github.io/tags/mirror/
+https://xbmlz.github.io/tags/centos7/
+https://xbmlz.github.io/tags/glibc/
+https://xbmlz.github.io/tags/devops/
 https://xbmlz.github.io/tags/Test/
+https://xbmlz.github.io/tags/linux/
+https://xbmlz.github.io/tags/clash/
 https://xbmlz.github.io/tags/Music/
 https://xbmlz.github.io/categories/Web/
+https://xbmlz.github.io/categories/devops/
 https://xbmlz.github.io/categories/Test/
 https://xbmlz.github.io/categories/Music/
