@@ -1,3 +1,4 @@
+https://xbmlz.github.io/python-offline-deploy/
 https://xbmlz.github.io/build-frontend-framework/
 https://xbmlz.github.io/centos-china-mirrors/
 https://xbmlz.github.io/centos7-upgrade-glibc/

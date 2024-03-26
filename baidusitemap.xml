@@ -2,34 +2,38 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://xbmlz.github.io/build-frontend-framework/</loc>
-    <lastmod>2024-03-18</lastmod>
+    <lastmod>2024-03-26</lastmod>
   </url>
   <url>
     <loc>https://xbmlz.github.io/centos-china-mirrors/</loc>
-    <lastmod>2024-03-18</lastmod>
+    <lastmod>2024-03-26</lastmod>
   </url>
   <url>
     <loc>https://xbmlz.github.io/centos7-upgrade-glibc/</loc>
-    <lastmod>2024-03-18</lastmod>
+    <lastmod>2024-03-26</lastmod>
   </url>
   <url>
     <loc>https://xbmlz.github.io/echarts-test/</loc>
-    <lastmod>2024-03-18</lastmod>
+    <lastmod>2024-03-26</lastmod>
   </url>
   <url>
     <loc>https://xbmlz.github.io/linux-clash/</loc>
-    <lastmod>2024-03-18</lastmod>
+    <lastmod>2024-03-26</lastmod>
   </url>
   <url>
     <loc>https://xbmlz.github.io/lizhi/</loc>
-    <lastmod>2024-03-18</lastmod>
+    <lastmod>2024-03-26</lastmod>
   </url>
   <url>
     <loc>https://xbmlz.github.io/markdown-test/</loc>
-    <lastmod>2024-03-18</lastmod>
+    <lastmod>2024-03-26</lastmod>
   </url>
   <url>
     <loc>https://xbmlz.github.io/math-jax-test/</loc>
-    <lastmod>2024-03-18</lastmod>
+    <lastmod>2024-03-26</lastmod>
+  </url>
+  <url>
+    <loc>https://xbmlz.github.io/python-offline-deploy/</loc>
+    <lastmod>2024-03-26</lastmod>
   </url>
 </urlset> 
